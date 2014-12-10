@@ -1,0 +1,30 @@
+D:\Truong\vpro.doanhnghiep.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.csprojResolveAssemblyReference.cache
+D:\Truong\vpro.doanhnghiep.ketoanvn.com.vn.web\Appketoan\Appketoan\bin\Appketoan.dll
+D:\Truong\vpro.doanhnghiep.ketoanvn.com.vn.web\Appketoan\Appketoan\bin\Appketoan.pdb
+D:\Truong\vpro.doanhnghiep.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.dll
+D:\Truong\vpro.doanhnghiep.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.pdb
+D:\Truong\vpro.doanhnghiep.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.dll.licenses
+D:\web\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\bin\Appketoan.dll
+D:\web\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\bin\Appketoan.pdb
+D:\web\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\ResolveAssemblyReference.cache
+D:\web\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.dll.licenses
+D:\web\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.dll
+D:\web\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.pdb
+D:\Truong\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\bin\Appketoan.dll
+D:\Truong\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\bin\Appketoan.pdb
+D:\Truong\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.csprojResolveAssemblyReference.cache
+D:\Truong\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.dll.licenses
+D:\Truong\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.dll
+D:\Truong\qlkh.ketoanvn.com.vn.web\Appketoan\Appketoan\obj\Debug\Appketoan.pdb
+D:\TRUONGNT\SOURCE\APP KE TOAN\Appketoan\Appketoan\bin\Appketoan.dll
+D:\TRUONGNT\SOURCE\APP KE TOAN\Appketoan\Appketoan\bin\Appketoan.pdb
+D:\TRUONGNT\SOURCE\APP KE TOAN\Appketoan\Appketoan\obj\Debug\Appketoan.dll.licenses
+D:\TRUONGNT\SOURCE\APP KE TOAN\Appketoan\Appketoan\obj\Debug\Appketoan.dll
+D:\TRUONGNT\SOURCE\APP KE TOAN\Appketoan\Appketoan\obj\Debug\Appketoan.pdb
+D:\TRUONGNT\SOURCE\APP KE TOAN\Appketoan\Appketoan\obj\Debug\Appketoan.csprojResolveAssemblyReference.cache
+D:\TRUONGNT\SOURCE\DIEN MAY\Appdienmay\Appketoan\bin\Appketoan.dll
+D:\TRUONGNT\SOURCE\DIEN MAY\Appdienmay\Appketoan\bin\Appketoan.pdb
+D:\TRUONGNT\SOURCE\DIEN MAY\Appdienmay\Appketoan\obj\Debug\Appketoan.csprojResolveAssemblyReference.cache
+D:\TRUONGNT\SOURCE\DIEN MAY\Appdienmay\Appketoan\obj\Debug\Appketoan.dll.licenses
+D:\TRUONGNT\SOURCE\DIEN MAY\Appdienmay\Appketoan\obj\Debug\Appketoan.dll
+D:\TRUONGNT\SOURCE\DIEN MAY\Appdienmay\Appketoan\obj\Debug\Appketoan.pdb

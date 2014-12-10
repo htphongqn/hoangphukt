@@ -1,0 +1,663 @@
+﻿
+/*************************************************************
+    width
+**************************************************************/
+.fill-input
+{
+    width: 100% !important;
+}
+
+.small-input, .k-numerictextbox.small-number-input, .k-datepicker.small-number-input
+{
+    width: 100px !important;
+}
+
+.max-fill-input.small-number-input, .max-fill-input.small-input
+{
+    width: 100% !important;
+    max-width: 100px !important;
+}
+
+.x-small-input, .k-numerictextbox.x-small-number-input, .k-datepicker.x-small-number-input, .k-combobox.x-small-number-input
+{
+    width: 150px !important;
+}
+
+    .k-numerictextbox.x-small-number-input input[type=text]
+    {
+        width:125px !important;
+    }
+
+.max-fill-input.x-small-number-input,.max-fill-input.x-small-input
+{
+    width: 100% !important;
+    max-width: 150px !important;
+}
+
+.medium-input, .k-numerictextbox.medium-number-input, .k-datepicker.medium-number-input, .k-combobox.medium-number-input
+{
+    width: 200px !important;
+}
+
+.s-medium-input
+{
+    width: 210px !important;
+}
+
+.x-medium-input, .k-numerictextbox.x-medium-number-input, .k-datepicker.x-medium-number-input, .k-combobox.x-medium-number-input
+{
+    width: 250px !important;
+}
+
+
+.large-input, .k-combobox.large-number-input
+{
+    width: 300px !important;
+}
+
+.x-large-input, .k-combobox.x-large-number-input
+{
+    width: 400px !important;
+}
+
+
+.k-datepicker.small-number-input
+{
+    width: 100px !important;
+}
+
+.label-extend
+{
+    width: 120px !important;
+}
+
+
+/*************************************************************
+    Icon
+**************************************************************/
+
+.k-button
+{
+    font-family: Tahoma !important;
+    font-size: 12px !important;
+    padding: 2px 5px 2px 10px !important;
+}
+
+.k-grid tbody .k-button
+{
+    /*min-width: 40px !important;
+    margin-left: -2px;
+    margin-right: 2px;*/
+    min-width: 25px !important;
+}
+
+.p-i-save, .p-i-back, .p-i-next, .p-i-accept, .p-i-add, .p-i-delete, .p-i-edit, .p-i-print,
+.p-i-reset, .p-i-search, .p-i-mail, .p-i-mail-send, .p-i-refresh, .p-i-cancel-changes,
+.p-i-detail, .p-i-chart, .p-i-sort-asc, .p-i-sort-desc, .p-i-tree, .p-i-copy, .p-i-sync,
+.p-i-import, .p-i-barcode, .p-i-Thanhly, .p-i-Thanhly_gray, .p-i-restore, .p-i-restore_gray, .p-i-transfer, .p-i-clear, .p-i-recycle, .p-i-Bienban,
+.p-i-close, .p-i-Export, .p-i-Phanquyen, .p-i-down, .p-i-up, .p-i-map,.p-i-GiaoVien,.p-i-school
+{
+    padding-left: 20px !important;
+    padding-top: 2px;
+    padding-bottom: 6px;
+    margin-left: -5px;
+}
+.p-i-GiaoVien
+{
+    background: url('images/icons/GiaoVien.png') 0px 0px no-repeat !important;
+}
+
+.p-i-save
+{
+    background: url('images/icons/save.png') 0px 0px no-repeat !important;
+}
+
+.p-i-close
+{
+    background: url('images/icons/close.png') 0px 0px no-repeat !important;
+}
+
+.p-i-back
+{
+    background: url('images/icons/close.png') 0px 0px no-repeat !important;
+}
+
+.p-i-next
+{
+    background: url('images/icons/next.png') 0px 0px no-repeat !important;
+}
+
+.p-i-accept
+{
+    background: url('images/icons/accept.png') 0px 0px no-repeat !important;
+}
+
+.p-i-add
+{
+    background: url('../images/add1.png') 0px 0px no-repeat !important;
+}
+
+.p-i-delete
+{
+    background: url('../images/delete1.png') 0px 0px no-repeat !important;
+}
+
+    .p-i-delete.disabled
+    {
+        background: url('images/icons/delete_gray.png') 0px 0px no-repeat !important;
+    }
+
+.p-i-edit
+{
+    background: url('images/icons/edit.png') 0px 0px no-repeat !important;
+}
+
+    .p-i-edit.disabled
+    {
+        background: url('images/icons/edit_gray.png') 0px 0px no-repeat !important;
+    }
+
+.p-i-print
+{
+    background: url('images/icons/print.png') 0px 0px no-repeat !important;
+}
+
+.p-i-reset
+{
+    background: url('images/icons/refresh.png') 0px 0px no-repeat !important;
+}
+
+.p-i-search
+{
+    background: url('../Images/search.png') 0px 0px no-repeat !important;
+}
+
+.p-i-mail
+{
+    background: url('images/icons/mail.png') 0px 0px no-repeat !important;
+}
+
+.p-i-mail-send
+{
+    background: url('images/icons/mail_send.png') 0px 0px no-repeat !important;
+}
+
+.p-i-refresh
+{
+    background: url('images/icons/refresh.png') 0px 0px no-repeat !important;
+}
+
+.p-i-cancel-changes
+{
+    background: url('images/icons/cancel_changes.png') 0px 0px no-repeat !important;
+}
+
+.p-i-detail
+{
+    background: url('images/icons/detail.png') 0px 0px no-repeat !important;
+}
+
+.p-i-chart
+{
+    background: url('images/icons/chart.png') 0px 0px no-repeat !important;
+}
+
+.p-i-sort-desc
+{
+    background: url('images/icons/sort-desc.png') 0px 0px no-repeat !important;
+}
+
+.p-i-sort-asc
+{
+    background: url('images/icons/sort-asc.png') 0px 0px no-repeat !important;
+}
+
+.p-i-tree
+{
+    background: url('images/icons/tree.png') 0px 0px no-repeat !important;
+}
+
+.p-i-copy
+{
+    background: url('images/icons/copy.png') 0px 0px no-repeat !important;
+}
+
+.p-i-sync
+{
+    background: url('images/icons/sync.png') 0px 0px no-repeat !important;
+}
+
+.p-i-import
+{
+    background: url('images/icons/import.png') 0px 0px no-repeat !important;
+}
+
+.p-i-barcode
+{
+    background: url('images/icons/barcode20x20.png') 0px 0px no-repeat !important;
+}
+
+.p-i-Thanhly
+{
+    background: url('images/icons/Thanhly.png') 0px 0px no-repeat !important;
+}
+
+.p-i-restore
+{
+    background: url('images/icons/restore.png') 0px 0px no-repeat !important;
+}
+
+.p-i-transfer
+{
+    background: url('images/icons/next.png') 0px 0px no-repeat !important;
+}
+
+    .p-i-transfer.disabled
+    {
+        background: url('images/icons/next_gray.png') 0px 0px no-repeat !important;
+    }
+
+.p-i-clear
+{
+    /*background: url('images/icons/clear.png') 0px 0px no-repeat !important;*/
+    background: url('../Images/back.png') 0px 0px no-repeat !important;
+}
+
+.p-i-recycle
+{
+    background: url('images/icons/recycle_bin.png') 0px 0px no-repeat !important;
+}
+
+    .p-i-recycle.disabled
+    {
+        background: url('images/icons/recycle_bin_gray.png') 0px 0px no-repeat !important;
+    }
+
+.p-i-Export
+{
+    background: url('images/icons/Export.png') 0px 0px no-repeat !important;
+}
+
+.p-i-Thanhly_gray
+{
+    background: url('images/icons/Thanhly_gray.png') 0px 0px no-repeat !important;
+}
+
+.p-i-restore_gray
+{
+    background: url('images/icons/restore_gray.png') 0px 0px no-repeat !important;
+}
+
+.p-i-Bienban
+{
+    background: url('images/icons/Bienban.png') 0px 0px no-repeat !important;
+}
+
+.p-i-Phanquyen
+{
+    background: url('images/icons/Phanquyen.png') 0px 0px no-repeat !important;
+}
+
+.p-i-Phanquyen.disabled
+{
+    background: url('images/icons/Phanquyen_gray.png') 0px 0px no-repeat !important;
+}
+
+.p-i-up
+{
+    background: url('images/icons/up.png') 0px 0px no-repeat !important;
+}
+
+.p-i-down
+{
+    background: url('images/icons/down.png') 0px 0px no-repeat !important;
+}
+
+    .p-i-down.disabled
+    {
+        background: url('images/icons/down_gray.png') 0px 0px no-repeat !important;
+    }
+
+.p-i-map
+{
+    background: url('images/icons/map.png') 0px 0px no-repeat !important;
+}
+
+.p-i-school
+{
+    background: url('images/icons/school.png') 0px 0px no-repeat !important;
+}
+/*.p-i-save:hover
+    {
+        background-color: #AFE4FA !important;
+    }*/
+
+.field-validation-error
+{
+    color: red;
+}
+
+/*MENU*/
+
+.widget-menu
+{
+    background: url('images/bgmenu.png') !important;
+    height: 30px;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+
+    .widget-menu .k-menu .k-item > .k-link
+    {
+        padding: 0px .9em 0px !important;
+        line-height: 30px !important;
+    }
+
+
+
+    .widget-menu .k-state-highlight
+    {
+        background-color: transparent !important;
+        background-image: none,-webkit-linear-gradient(top,transparent 0,transparent 0%) !important !important;
+        }
+
+    .widget-menu .k-state-hover
+    {
+        background-image: none,-webkit-linear-gradient(top,transparent 0,transparent 0%) !important;
+        background-color: transparent !important;
+    }
+
+    .widget-menu .k-state-active
+    {
+        background-color: transparent !important;
+        color: yellow !important;
+    }
+    /*menu cap 2*/
+    .widget-menu .k-group
+    {
+        background-color: white !important;
+    }
+
+    .widget-menu .k-item
+    {
+        /*padding: 0 10px;*/
+    }
+
+    .widget-menu .k-state-default
+    {
+        border-color: transparent !important;
+        background: url('images/splitmenu.png') right no-repeat !important;
+    }
+
+    .widget-menu .k-link:link, .widget-menu .k-link:visited
+    {
+        color: white !important;
+    }
+
+    .widget-menu .k-state-hover > .k-link
+    {
+        color: yellow !important;
+    }
+
+    .widget-menu .k-group .k-item > .k-link
+    {
+        color: black !important;
+    }
+
+    .widget-menu .k-group .k-state-hover
+    {
+        background-color: #A50000 !important;
+    }
+
+        .widget-menu .k-group .k-state-hover > .k-link
+        {
+            color: white !important;
+        }
+
+    .widget-menu .k-popup
+    {
+        border: solid 1px #A50000 !important;
+    }
+
+    .widget-menu .k-icon
+    {
+        background-image: url('themes/default/sprite.png') !important;
+        border-color: transparent;
+    }
+
+    .widget-menu .k-state-active .k-icon
+    {
+        background-image: url('themes/default/sprite.png') !important;
+        background-position: -16px -32px !important;
+    }
+
+/*************************************************************
+    Editor
+**************************************************************/
+
+/*hiển thị dấu * ở sau các lable required */
+.editor table td.label .required
+{
+    font-weight: normal !important;
+}
+
+    .editor table td.label .required:after
+    {
+        content: " *";
+        color: red;
+    }
+
+label.required:after
+{
+    content: " *";
+    color: red;
+    display: inline-block;
+}
+
+label.blue-required:after
+{
+    /*content: "*";
+    color: blue;
+    display: inline-block;*/
+}
+/*canh lại khoảng cách các tr*/
+.editor > table > tr, .editor > table > thead > tr, .editor > table > tbody > tr
+{
+    height: 38px;
+}
+
+.editor > table tr.textarea
+{
+    height: 52px;
+}
+
+.editor > table textarea
+{
+    height: 40px;
+}
+
+.editor table td.label
+{
+    text-align: left !important;
+}
+
+
+/*************************************************************
+    Alignment
+**************************************************************/
+
+.JustifyLeft
+{
+    text-align: left;
+}
+
+.JustifyRight
+{
+    text-align: right;
+}
+
+.JustifyCenter
+{
+    text-align: center;
+}
+
+.JustifyFull
+{
+    text-align: justify;
+}
+
+/*loading*/
+.k-loading-mask
+{
+    z-index: 10000000;
+}
+
+/*************************************************************
+    Window
+**************************************************************/
+.k-window-titlebar
+{
+    padding-bottom: 0px !important;
+    height: 23px !important;
+}
+
+    .k-window-titlebar span
+    {
+        height: 20px !important;
+    }
+
+.k-window td.button-container, .k-window div.button-container
+{
+    text-align: center !important;
+}
+
+    .k-window td.button-container .k-button ~ .k-button
+    {
+        margin-left: 15px;
+    }
+
+.k-window .field label ~ input[type=radio]
+{
+    margin-left: 15px !important;
+}
+
+/*************************************************************
+    Grid
+**************************************************************/
+
+.k-grid .link
+{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.k-grid .linkUnderline
+{
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.k-grid td.td-button
+{
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+}
+
+.k-grid td .p-text
+{
+    padding-left: 5px !important;
+    padding-right: 10px !important;
+}
+
+.k-grid .col-header
+{
+    text-align: center !important;
+    font-weight: bold !important;
+}
+
+.k-grid .g-editable
+{
+    background-color: papayawhip;
+}
+
+    .k-grid .g-editable ~ tr td .g-editable
+    {
+        border-top: 1px solid;
+    }
+
+
+/*************************************************************
+    Font
+**************************************************************/
+.bold
+{
+    font-weight: bold;
+}
+
+.italic
+{
+    font-style: italic;
+}
+
+/*************************************************************
+    Visual
+**************************************************************/
+.hide
+{
+    display: none !important;
+}
+
+/*
+*/
+.settings-button span
+{
+    background: transparent url('images/icons/icon-cog-small.png') no-repeat top left;
+    width: 19px;
+    height: 18px;
+    display: block;
+    margin: 5px auto 0px auto;
+    cursor: pointer;
+}
+
+
+/*************************************************************
+    Color
+**************************************************************/
+.title-color
+{
+    color: red;
+}
+
+/*************************************************************
+    General
+**************************************************************/
+
+.fixed-table
+{
+    table-layout: fixed;
+}
+
+/*************************************************************
+    PanelBar
+**************************************************************/
+ .demo-section
+{
+    margin: 0 auto 15px auto;
+    padding: 10px;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.07) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.01)), color-stop(100%,rgba(0,0,0,0.07)));
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.01) 0%,rgba(0,0,0,0.07) 100%);
+    background: -o-linear-gradient(top,  rgba(0,0,0,0.01) 0%,rgba(0,0,0,0.07) 100%);
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0.01) 0%,rgba(0,0,0,0.07) 100%);
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.01) 0%,rgba(0,0,0,0.07) 100%);
+}

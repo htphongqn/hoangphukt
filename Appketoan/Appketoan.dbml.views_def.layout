@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.75" name="Appketoan">
+  <DataContextMoniker Name="/AppketoanDataContext" />
+  <nestedChildShapes>
+    <classShape Id="0864133c-2a21-4b4f-b043-31af1eb893b8" absoluteBounds="3.75, 4.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/AppketoanDataContext/CUSTOMER" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05ab88b1-cd63-486c-90c0-1e09845ed74d" absoluteBounds="3.765, 5.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ac4d7729-6a6d-42fa-979b-cc5d23c49383" absoluteBounds="6.75, 0.75, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/AppketoanDataContext/GROUP" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d0709ce7-e1cc-4a29-a3b3-2d929788f9a9" absoluteBounds="6.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bdfdfee5-8d81-4d08-8d5e-08c600c5bef1" absoluteBounds="4, 0.5, 2, 3.1170068359375">
+      <DataClassMoniker Name="/AppketoanDataContext/USER" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6306959-2037-4a86-903e-c29ab3e0901e" absoluteBounds="4.015, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5c4443d0-3716-4cfc-9d80-bb447deb5bb1" absoluteBounds="6.375, 3.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/AppketoanDataContext/PROPERTy" />
+      <nestedChildShapes>
+        <elementListCompartment Id="289cf332-799a-4c69-bd02-ce66f7dd9872" absoluteBounds="6.39, 4.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ded4f550-b859-4c6c-a6a2-771f8bb9fc5b" absoluteBounds="3.875, 7.25, 2, 1.9631982421875">
+      <DataClassMoniker Name="/AppketoanDataContext/SERVICE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c7d1a9c1-a378-41a7-ae73-4400733355ed" absoluteBounds="3.8899999999999997, 7.7100000000000009, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="63be14d2-947e-45b4-8a60-d402386a680c" absoluteBounds="0.75, 2.375, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/AppketoanDataContext/BUS_SER" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0a3e67e1-086a-4ae3-87aa-6761f39845e2" absoluteBounds="0.765, 2.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f91d71ec-c67f-4aa0-9e68-8570dc8fffc5" absoluteBounds="5.625, 0.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/AppketoanDataContext/MENU" />
+      <nestedChildShapes>
+        <elementListCompartment Id="359cfb29-9225-4f40-9a75-c2f18894e70b" absoluteBounds="5.6400000000000006, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="69100f08-dc61-45d7-a94d-525dd92902a5" absoluteBounds="1.625, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/AppketoanDataContext/MENU_PARENT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e3f9cf82-d745-4396-86a4-1b5df38d8bbb" absoluteBounds="1.6400000000000001, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="00345c0a-d58c-4418-a697-68e19dc27198" absoluteBounds="0.75, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/AppketoanDataContext/GROUP_MENU_AREA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="98d8295d-c19b-4553-916d-5d9953f031db" absoluteBounds="0.765, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6a14795b-4488-4409-b8ce-6ef2db9faea4" absoluteBounds="0.625, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/AppketoanDataContext/GROUP_MENU" />
+      <nestedChildShapes>
+        <elementListCompartment Id="901f2ecc-e643-42cf-9ae4-7e3caded9dce" absoluteBounds="0.64, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0a73990e-c2f0-4e4a-88f7-8156a84824b4" absoluteBounds="1.375, 6.75, 2, 7.7322412109375005">
+      <DataClassMoniker Name="/AppketoanDataContext/BUSINESS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="15cfe68b-5fdd-46ce-ace5-7542ae58c681" absoluteBounds="1.3900000000000001, 7.21, 1.9700000000000002, 7.1722412109375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

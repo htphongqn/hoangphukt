@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{font-family:Tahoma, Geneva, sans-serif;font-size:13px;color:#3e3e3e; margin:0px;}
+#header{width:auto; height:60px; float:left;}
+#outer {height:auto;width:auto;	margin: 0 auto;	}
+#admin{	width:auto;	float:right; padding-right:20px; color:#00F; }
+#admin_float{margin-right:10px; float:left; }
+#logo {	width:auto;	height:60px;padding-top:10px;padding-left:20px;float:left;}
+#logo_images{ width:140px; height:50px; background-image:url(../Images/Logo_ESELL.png);}
+
+#content{width:auto;height:500px;border:#e3e3e3 1px solid; margin-left:5px; margin-right:5px; clear:both;}
+#menu{width:800px;height:480px;	margin:0 auto; margin-top:10px;}
+#menu_parent{width:340px; height:400px; margin-top:20px; float:left; margin-left:25px; margin-right:25px;}
+#menu_child{width:340px; height:70px; margin-bottom:20px;}
+#menu_images{width:70px; height:70px; float:left; padding-right:10px;}
+#menu_title{font-size:13px;font-weight:bold;}
+#menu_content{font-size:13px; text-align:justify; padding-top:5px; }
+
+#footer{color:#878787;font-weight:bold;padding-left:20px;padding-top:5px;}
+
+a{color:#3e3e3e;text-decoration:none; font-size:13px;}
+a:hover{text-decoration:underline;}
+a:active{color:#F00;}
+
+#login{	width:330px;height:auto;margin: 0 auto;border:#e3e3e3 1px solid;margin-top:100px;}
+	
+#title{	width:auto;	height:24px;background:#f3f3f3;	font-weight:bold;	padding-left:20px;	padding-top:5px;border-bottom:#e3e3e3 1px solid;}
+#information{}
+.fogetpass{	font-size:12px;	}
+.text{	width:185px;height:20px;border:#e3e3e3 1px solid;}
+
+#click a{width:auto; height:20px; padding-left:5px; padding-right:5px; background:#f3f3f3; border:#e3e3e3 1px solid; float:left; margin-right:5px; color:#529214; text-align:center; font-weight:bold; padding-top:3px;}
+#click a:hover{ padding-left:5px; padding-right:5px; background:#e6efc2; border:#c6d880 1px solid; text-decoration:none;}
+
+#number a{width:auto; height:17px; padding-left:5px; padding-right:5px; background:#f3f3f3; border:#e3e3e3 1px solid; float:left; margin-right:5px; color:#529214; text-align:center;padding-top:3px; font-size:12px;}
+#number a:hover{ padding-left:5px; padding-right:5px; background:#e6efc2; border:#c6d880 1px solid; text-decoration:none;}
+
+

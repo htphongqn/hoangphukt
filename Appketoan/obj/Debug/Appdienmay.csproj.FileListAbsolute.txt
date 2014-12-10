@@ -1,0 +1,14 @@
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app\Appdienmay\Appketoan\bin\Appketoan.dll
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app\Appdienmay\Appketoan\bin\Appketoan.pdb
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app\Appdienmay\Appketoan\obj\Debug\Appdienmay.csprojResolveAssemblyReference.cache
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app\Appdienmay\Appketoan\obj\Debug\Appketoan.dll.licenses
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app\Appdienmay\Appketoan\obj\Debug\Appketoan.dll
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app\Appdienmay\Appketoan\obj\Debug\Appketoan.pdb
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app\Appdienmay\Appketoan\bin\AjaxControlToolkit.dll
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app - Copy\Appdienmay\Appketoan\bin\Appketoan.dll
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app - Copy\Appdienmay\Appketoan\bin\Appketoan.pdb
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app - Copy\Appdienmay\Appketoan\bin\AjaxControlToolkit.dll
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app - Copy\Appdienmay\Appketoan\obj\Debug\Appdienmay.csprojResolveAssemblyReference.cache
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app - Copy\Appdienmay\Appketoan\obj\Debug\Appketoan.dll.licenses
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app - Copy\Appdienmay\Appketoan\obj\Debug\Appketoan.dll
+D:\PhongHT\Websites\dev\dienmayhoangphu.vstore.app - Copy\Appdienmay\Appketoan\obj\Debug\Appketoan.pdb
