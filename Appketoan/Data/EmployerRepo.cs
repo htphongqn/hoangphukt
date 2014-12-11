@@ -41,7 +41,7 @@ namespace Appketoan.Data
         }
         public virtual List<EMPLOYER> GetAllSortName()
         {
-            return this.db.EMPLOYERs.OrderByDescending(n => n.EMP_NAME).ToList();
+            return this.db.EMPLOYERs.OrderBy(n => n.EMP_NAME).ToList();
         }
         public virtual void Create(EMPLOYER cus)
         {

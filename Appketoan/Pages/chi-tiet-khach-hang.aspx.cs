@@ -131,6 +131,7 @@ namespace Appketoan.Pages
                     Customer.CUS_TYPE = Utils.CIntDef(rdblType.SelectedValue);
                     Customer.USER_ID = Utils.CIntDef(Session["Userid"]);
                     Customer.CUS_CREATE_DATE = DateTime.Now;
+                    Customer.CUS_UPDATE_DATE = DateTime.Now;
                     _CustomerRepo.Create(Customer);
                     SaveHistory(Customer);
                     if (cusnodeli > 0)

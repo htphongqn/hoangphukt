@@ -18,6 +18,7 @@ img
     }
 #admin_float a
 {
+    white-space:nowrap;
     margin: 0 5px;
     float:left;
     color: #3E3E3E;
@@ -217,11 +218,12 @@ body
         {
             margin-left: 5px;
             font-weight: bold;
+            white-space:nowrap;
         }
 
             #main #div-search table td label ~ input[type=radio]
             {
-                margin-left: 15px;
+                margin-left: 15px;                
             }
 
         #main #div-search > input[type=text]
@@ -269,12 +271,14 @@ body
     #footer .designed-by 
     {
         float: right;
+        white-space:nowrap;
         
     }
     #footer .designed-by a
     {
         color: #FF0000 !important;
         text-decoration: none !important;
+        white-space:nowrap;
         
     }
 
@@ -829,6 +833,7 @@ table .div-news-detail img
 #menu-tab a
 {
     text-decoration: none;
+    white-space:nowrap;
 }
 /* tabs section */
 #tabs-container
@@ -1356,6 +1361,7 @@ table .div-news-detail img
 {
         color: #3E3E3E;
         text-decoration: none;
+        white-space:nowrap;
 }
 .menu_title_level2 a:hover
 {

@@ -28,7 +28,7 @@ namespace Appketoan.Pages
             {
                 showEmployer();
                 loadDateInWeek();
-                LoadContract_Canphatphieu();
+                LoadContract_Canphatphieu();                
             }
         }
         private void loadDateInWeek()
@@ -115,7 +115,7 @@ namespace Appketoan.Pages
         }
         private void showEmployer()
         {
-            var list = _EmployerRepo.GetAll();
+            var list = _EmployerRepo.GetAllSortName();
             ddlEmployer.DataValueField = "ID";
             ddlEmployer.DataTextField = "EMP_NAME";
             ddlEmployer.DataSource = list;
@@ -142,7 +142,7 @@ namespace Appketoan.Pages
                          b.ID_CONT,
                          a.CONT_DEBT_PRICE,
                          CONTD_DATE_THU = ddlContractDay.SelectedValue
-                     }).Distinct().ToList();
+                     }).Distinct().OrderByDescending(n=>n.ID_CONT).ToList();
 
             int z = 0; List<int> arr = new List<int>();
             foreach (var item in l)
@@ -179,13 +179,16 @@ namespace Appketoan.Pages
                 b.BILL_DELI_DATE = DateTime.Now;
                 int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item));
                 Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
-                b.CONTD_DATE_THU = DateTime.ParseExact(lbDatethu.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                _BillRepo.Create(b);
-                //cập nhật trạng thái phiếu
-                CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(item));
-                contract.BILL_STATUS = 1;
-                contract.EMP_TN = Utils.CIntDef(ddlEmployer.SelectedValue);
-                _ContractRepo.Update(contract);
+                if (lbDatethu != null)
+                {
+                    b.CONTD_DATE_THU = DateTime.ParseExact(lbDatethu.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    _BillRepo.Create(b);
+                    //cập nhật trạng thái phiếu
+                    CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(item));
+                    contract.BILL_STATUS = 1;
+                    contract.EMP_TN = Utils.CIntDef(ddlEmployer.SelectedValue);
+                    _ContractRepo.Update(contract);
+                }
             }
 
             LoadContract_Canphatphieu();
@@ -193,57 +196,99 @@ namespace Appketoan.Pages
 
         protected void lbtnPhatphieumacdinh_Click(object sender, EventArgs e)
         {
-            var l = (from a in db.CONTRACTs
-                     join b in db.CONTRACT_DETAILs on a.ID equals b.ID_CONT
-                     where a.CONT_STATUS == Cost.HD_CONGOP //hợp đồng còn góp
-                     && (a.BILL_STATUS != 1 || a.BILL_STATUS == null) //chưa giao phiếu
-                         //&& (b.CONTD_PAY_PRICE == 0 || b.CONTD_PAY_PRICE == null)//lấy list chưa đóng tiền
-                     && ((b.CONTD_DATE_THU.Value - DateTime.Parse(ddlContractDay.SelectedValue)).Days <= 0)
-                     && (b.CONTD_DATE_THU.Value.DayOfWeek == DateTime.Parse(ddlContractDay.SelectedValue).DayOfWeek)
+            #region a
+            //string keyword = txtKeyword.Value;
+            //var l = (from a in db.CONTRACTs
+            //         join b in db.CONTRACT_DETAILs on a.ID equals b.ID_CONT
+            //         where a.CONT_STATUS == Cost.HD_CONGOP //hợp đồng còn góp
+            //         && (a.BILL_STATUS != 1 || a.BILL_STATUS == null) //chưa giao phiếu
+            //         && (b.CONTD_PAY_PRICE == 0 || b.CONTD_PAY_PRICE == null)//lấy list chưa đóng tiền
+            //         && ((b.CONTD_DATE_THU.Value - DateTime.Parse(ddlContractDay.SelectedValue)).Days <= 0)
+            //         && (b.CONTD_DATE_THU.Value.DayOfWeek == DateTime.Parse(ddlContractDay.SelectedValue).DayOfWeek)
+            //         && (a.CONT_NO.Contains(keyword) || keyword == null || keyword == "")
+            //         select new
+            //         {
+            //             a.EMP_TN,
+            //             //b.ID,
+            //             b.ID_CONT,
+            //             a.CONT_DEBT_PRICE,
+            //             CONTD_DATE_THU = ddlContractDay.SelectedValue
+            //         }).Distinct().OrderByDescending(n => n.ID_CONT).ToList();
 
-                     select new
-                     {
-                         a.EMP_TN,
-                         //b.ID,
-                         b.ID_CONT,
-                         a.CONT_DEBT_PRICE,
-                         CONTD_DATE_THU = ddlContractDay.SelectedValue
-                     }).Distinct().ToList();
+            //int z = 0; List<int> arr = new List<int>();
+            //foreach (var item in l)
+            //{
+            //    var detail = _ContractDetailRepo.GetListByContractId(Utils.CIntDef(item.ID_CONT));
+            //    decimal pricethu = 0;
+            //    if (detail != null)
+            //    {
+            //        pricethu = detail.Where(a => a.CONTD_PAY_PRICE != null).Sum(a => a.CONTD_PAY_PRICE.Value);
+            //        if (item.CONT_DEBT_PRICE <= pricethu)
+            //        {
+            //            //l.Remove(item);
+            //            arr.Add(z);
+            //        }
+            //    }
+            //    z++;
+            //}
+            //for (int i = 0; i < arr.Count; i++)
+            //{
+            //    l.RemoveAt(arr[i]);
+            //}   
+            //foreach (var item in l)
+            //{
+            //    if (Utils.CIntDef(item.EMP_TN) > 0)
+            //    {
+            //        BILL b = new BILL();
+            //        b.ID_CONT = Utils.CIntDef(item.ID_CONT);
+            //        b.ID_EMPLOY = Utils.CIntDef(item.EMP_TN);
+            //        b.BILL_DELI_DATE = DateTime.Now;
+            //        int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item.ID_CONT));
+            //        Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
+            //        if (lbDatethu != null)
+            //        {
+            //            b.CONTD_DATE_THU = DateTime.ParseExact(lbDatethu.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-            foreach (var item in l)
+            //            _BillRepo.Create(b);
+            //            //cập nhật trạng thái phiếu
+            //            CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(item.ID_CONT));
+            //            contract.BILL_STATUS = 1;
+            //            contract.EMP_TN = Utils.CIntDef(item.EMP_TN);
+            //            _ContractRepo.Update(contract);
+            //        }
+            //    }
+            //}
+            #endregion
+
+            ASPxGridView1_phatphieu.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            LoadContract_Canphatphieu();
+
+            for (int i = 0; i < ASPxGridView1_phatphieu.VisibleRowCount; i++)
             {
-                var detail = _ContractDetailRepo.GetListByContractId(Utils.CIntDef(item.ID_CONT));
-                decimal pricethu = 0;
-                if (detail != null)
+                HiddenField hddEmp_TN = ASPxGridView1_phatphieu.FindRowCellTemplateControl(i, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["EMP_TN"], "hddEmp_TN") as HiddenField;
+                HiddenField hddConID = ASPxGridView1_phatphieu.FindRowCellTemplateControl(i, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["EMP_TN"], "hddConID") as HiddenField;
+                if (Utils.CIntDef(hddEmp_TN.Value) > 0 && Utils.CIntDef(hddConID.Value) > 0)
                 {
-                    pricethu = detail.Where(a => a.CONTD_PAY_PRICE != null).Sum(a => a.CONTD_PAY_PRICE.Value);
-                    if (item.CONT_DEBT_PRICE <= pricethu)
+                    BILL b = new BILL();
+                    b.ID_CONT = Utils.CIntDef(hddConID.Value);
+                    b.ID_EMPLOY = Utils.CIntDef(hddEmp_TN.Value);
+                    b.BILL_DELI_DATE = DateTime.Now;
+                    //int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item.ID_CONT));
+                    Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(i, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
+                    if (lbDatethu != null)
                     {
-                        l.Remove(item);
+                        b.CONTD_DATE_THU = DateTime.ParseExact(lbDatethu.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+                        _BillRepo.Create(b);
+                        //cập nhật trạng thái phiếu
+                        CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(hddConID.Value));
+                        contract.BILL_STATUS = 1;
+                        contract.EMP_TN = Utils.CIntDef(hddEmp_TN.Value);
+                        _ContractRepo.Update(contract);
                     }
                 }
             }
-            foreach (var item in l)
-            {
-                if (Utils.CIntDef(item.EMP_TN) > 0)
-                {
-                    BILL b = new BILL();
-                    b.ID_CONT = Utils.CIntDef(item.ID_CONT);
-                    b.ID_EMPLOY = Utils.CIntDef(item.EMP_TN);
-                    b.BILL_DELI_DATE = DateTime.Now;
-                    int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item.ID_CONT));
-                    Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
-                    b.CONTD_DATE_THU = DateTime.ParseExact(lbDatethu.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-               
-                    _BillRepo.Create(b);
-                    //cập nhật trạng thái phiếu
-                    CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(item.ID_CONT));
-                    contract.BILL_STATUS = 1;
-                    contract.EMP_TN = Utils.CIntDef(item.EMP_TN);
-                    _ContractRepo.Update(contract);
-                }
-            }
-
+            ASPxGridView1_phatphieu.SettingsPager.Mode = GridViewPagerMode.ShowPager;
             LoadContract_Canphatphieu();
 
         }
@@ -300,7 +345,7 @@ namespace Appketoan.Pages
         public string getDateThu(object id, object ngaythu)
         {
             int idc = Utils.CIntDef(id);
-            var contractdetail =db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc && (a.CONTD_DATE_THU.Value-DateTime.Today).Days > 0).ToList();
+            var contractdetail =db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc && a.CONTD_DATE_THU != null && (a.CONTD_DATE_THU.Value-DateTime.Today).Days > 0).ToList();
             if (contractdetail != null && contractdetail.Count > 0)
             {
                 //var detail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc).OrderBy(a => a.ID).Take(1).ToList();
@@ -312,7 +357,7 @@ namespace Appketoan.Pages
             }
             else
             {
-                var detail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc).OrderByDescending(a => a.ID).Take(1);
+                var detail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc && a.CONTD_DATE_THU != null).OrderByDescending(a => a.ID).Take(1);
                 if (detail != null && detail.ToList().Count > 0)
                 {
                     return detail.ToList()[0].CONTD_DATE_THU.Value.ToString("dd/MM/yyyy");

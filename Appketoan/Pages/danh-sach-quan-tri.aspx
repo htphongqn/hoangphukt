@@ -85,11 +85,11 @@
                                 <%# Getnhom(Eval("GROUP_TYPE"))%>
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>--%>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Trạng thái">
+                        <%--<dx:GridViewDataTextColumn VisibleIndex="1" Caption="Trạng thái">
                             <DataItemTemplate>
                                 <%# Getactive(Eval("USER_ACTIVE"))%>
                             </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>
+                        </dx:GridViewDataTextColumn>--%>
                     </Columns>
                     <SettingsPager PageSize="100">
                     </SettingsPager>

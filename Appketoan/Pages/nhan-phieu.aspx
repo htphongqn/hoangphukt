@@ -61,8 +61,10 @@
         <tr>
             <td>
                 <dx:ASPxGridView ID="ASPxGridView1_nhanphieu" runat="server" AutoGenerateColumns="False"
-                    Width="100%" KeyFieldName="ID" Theme="Aqua" 
-                    onbeforecolumnsortinggrouping="ASPxGridView1_nhanphieu_BeforeColumnSortingGrouping">
+                    Width="100%" KeyFieldName="ID_CONT" Theme="Aqua" 
+                    
+                    onbeforecolumnsortinggrouping="ASPxGridView1_nhanphieu_BeforeColumnSortingGrouping" 
+                    onpageindexchanged="ASPxGridView1_nhanphieu_PageIndexChanged">
                     <Columns>
                         <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Width="25px">
                         </dx:GridViewCommandColumn>
@@ -82,6 +84,7 @@
                             <DataItemTemplate>
                                 <%--<asp:CheckBox ID="chkStatusPhieu" runat="server" Checked="true" />--%>
                                 <asp:TextBox ID="txtPayprice" runat="server" Text='<%# getTienthu(Eval("ID_CONT"))%>' class="text" CssClass="k-textbox textbox" onkeyup="FormatNumber(this);" onblur="FormatNumber(this);" Width="100"></asp:TextBox>
+                                <asp:HiddenField ID= "hddID" runat="server" Value='<%# Eval("ID")%>' />
                             </DataItemTemplate>
                             <CellStyle HorizontalAlign="Center">
                             </CellStyle>
@@ -117,7 +120,7 @@
                         </dx:GridViewDataTextColumn>--%>
                         
                     </Columns>
-                    <SettingsPager PageSize="100">
+                    <SettingsPager PageSize="30">
                     </SettingsPager>
                 </dx:ASPxGridView>
             </td>

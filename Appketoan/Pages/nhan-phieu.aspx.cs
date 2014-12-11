@@ -54,7 +54,7 @@ namespace Appketoan.Pages
                 }
             }
 
-            var lcontract_nhanphieu = lbill;
+            var lcontract_nhanphieu = lbill.OrderByDescending(n => n.ID_CONT);
 
             ASPxGridView1_nhanphieu.DataSource = lcontract_nhanphieu;
             ASPxGridView1_nhanphieu.DataBind();
@@ -62,109 +62,132 @@ namespace Appketoan.Pages
         
         protected void lbtnNhanphieu_Click(object sender, EventArgs e)
         {
-            List<object> fieldValues = ASPxGridView1_nhanphieu.GetSelectedFieldValues(new string[] { "ID" });
-            foreach (var item in fieldValues)
+            try
             {
-                BILL b = _BillRepo.GetById(Utils.CIntDef(item));
-                int index = ASPxGridView1_nhanphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item));
-                //CheckBox chkStatusPhieu = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "chkStatusPhieu") as CheckBox;
-                TextBox txtPayprice = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "txtPayprice") as TextBox;
-                decimal? price = null;
-                if(Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", "")) > 0)
-                    price = Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", ""));
-                b.BILL_STATUS = price != null ? 1 : 0;  //1 Phiếu tốt - 0 Phiếu rớt
-                b.BILLL_RECEIVER_DATE = DateTime.Now;
-                _BillRepo.Update(b);//cập nhật ngày nhận và trạng thái bill
-
-                CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetByContractIdAndDatethu(b.ID_CONT.Value, b.CONTD_DATE_THU.Value);
-                if (contractdetail != null)
+                List<object> fieldValues = ASPxGridView1_nhanphieu.GetSelectedFieldValues(new string[] { "ID_CONT" });
+                foreach (var item in fieldValues)
                 {
-                    var checklistdetail = db.CONTRACT_DETAILs.Where(a=>a.ID_CONT == contractdetail.ID_CONT && (a.CONTD_DATE_THU.Value - contractdetail.CONTD_DATE_THU.Value).Days >0).ToList();
-                    if (checklistdetail != null && checklistdetail.Count > 0)
+                    int index = ASPxGridView1_nhanphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item));
+                    HiddenField hddID = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "hddID") as HiddenField;
+                    BILL b = _BillRepo.GetById(Utils.CIntDef(hddID.Value));
+                    if (b != null)
                     {
-                        contractdetail.CONTD_PAY_PRICE = price;
-                        contractdetail.CONTD_DATE_THU_TT = DateTime.Now;
-                        _ContractDetailRepo.Update(contractdetail);
-                    }
-                    else
-                    {
-                        CONTRACT_DETAIL de = new CONTRACT_DETAIL();
-                        de.ID_CONT = contractdetail.ID_CONT;
-                        de.CONTD_PAY_PRICE = price;
-                        de.CONTD_DATE_THU_TT = DateTime.Now;
-                        _ContractDetailRepo.Create(de);
+                        TextBox txtPayprice = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "txtPayprice") as TextBox;
+                        decimal? price = null;
+                        if (txtPayprice != null && Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", "")) > 0)
+                            price = Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", ""));
+                        b.BILL_STATUS = price != null ? 1 : 0;  //1 Phiếu tốt - 0 Phiếu rớt
+                        b.BILLL_RECEIVER_DATE = DateTime.Now;
+                        _BillRepo.Update(b);//cập nhật ngày nhận và trạng thái bill
+
+                        CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetByContractIdAndDatethu(b.ID_CONT.Value, b.CONTD_DATE_THU.Value);
+                        if (contractdetail != null)
+                        {
+                            var checklistdetail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == contractdetail.ID_CONT && a.CONTD_DATE_THU != null && (a.CONTD_DATE_THU.Value - contractdetail.CONTD_DATE_THU.Value).Days >= 0).ToList();
+                            if (checklistdetail != null && checklistdetail.Count > 0)
+                            {
+                                contractdetail.CONTD_PAY_PRICE = price;
+                                contractdetail.CONTD_DATE_THU_TT = DateTime.Now;
+                                _ContractDetailRepo.Update(contractdetail);
+                            }
+                            else
+                            {
+                                CONTRACT_DETAIL de = new CONTRACT_DETAIL();
+                                de.ID_CONT = contractdetail.ID_CONT;
+                                de.CONTD_PAY_PRICE = price;
+                                de.CONTD_DATE_THU_TT = DateTime.Now;
+                                _ContractDetailRepo.Create(de);
+                            }
+                        }
+
+                        CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(b.ID_CONT));
+                        var detail = _ContractDetailRepo.GetListByContractId(Utils.CIntDef(contract.ID));
+                        decimal pricethu = 0;
+                        if (detail != null)
+                        {
+                            pricethu = detail.Where(a => a.CONTD_PAY_PRICE != null).Sum(a => a.CONTD_PAY_PRICE.Value);
+                            if (contract.CONT_DEBT_PRICE <= pricethu)
+                            {
+                                contract.CONT_STATUS = 3;
+                            }
+                        }
+                        //var l_nextrecept = db.CONTRACT_DETAILs.Where(a => a.CONTD_DATE_THU > contractdetail.CONTD_DATE_THU).ToList();//xem còn ngày thu tiếp theo không
+                        //var l_noprice = db.CONTRACT_DETAILs.Where(a => a.CONTD_PAY_PRICE == 0 || a.CONTD_PAY_PRICE == null).ToList();//check xem con kỳ nào chưa thanh toán
+                        //if (l_nextrecept.Count == 0 && l_noprice.Count == 0)
+                        //    contract.CONT_STATUS = 2;//hoàn tất hợp đồng
+                        contract.BILL_STATUS = 0;//cập nhật trạng thái phiếu
+                        _ContractRepo.Update(contract);
+
                     }
                 }
 
-                CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(b.ID_CONT));
-                var detail = _ContractDetailRepo.GetListByContractId(Utils.CIntDef(contract.ID));
-                decimal pricethu = 0;
-                if (detail != null)
-                {
-                    pricethu = detail.Where(a => a.CONTD_PAY_PRICE != null).Sum(a => a.CONTD_PAY_PRICE.Value);
-                    if (contract.CONT_DEBT_PRICE <= pricethu)
-                    {
-                        contract.CONT_STATUS = 3;
-                    }
-                }
-                //var l_nextrecept = db.CONTRACT_DETAILs.Where(a => a.CONTD_DATE_THU > contractdetail.CONTD_DATE_THU).ToList();//xem còn ngày thu tiếp theo không
-                //var l_noprice = db.CONTRACT_DETAILs.Where(a => a.CONTD_PAY_PRICE == 0 || a.CONTD_PAY_PRICE == null).ToList();//check xem con kỳ nào chưa thanh toán
-                //if (l_nextrecept.Count == 0 && l_noprice.Count == 0)
-                //    contract.CONT_STATUS = 2;//hoàn tất hợp đồng
-                contract.BILL_STATUS = 0;//cập nhật trạng thái phiếu
-                _ContractRepo.Update(contract);
 
-                
+            }
+            catch
+            {
+
             }
 
-            LoadContract_Cannhanphieu();
+            //LoadContract_Cannhanphieu();
+            Response.Redirect("~/Pages/nhan-phieu.aspx");
         }
         protected void lbtnMatphieu_Click(object sender, EventArgs e)
         {
-            List<object> fieldValues = ASPxGridView1_nhanphieu.GetSelectedFieldValues(new string[] { "ID" });
-            foreach (var item in fieldValues)
+            try
             {
-                BILL b = _BillRepo.GetById(Utils.CIntDef(item));
-                int index = ASPxGridView1_nhanphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item));
-                //CheckBox chkStatusPhieu = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "chkStatusPhieu") as CheckBox;
-                TextBox txtPayprice = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "txtPayprice") as TextBox;
-                decimal? price = null;
-                if (Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", "")) > 0)
-                    price = Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", ""));
-                b.BILL_STATUS = price != null ? 1 : 0;  //1 Phiếu tốt - 0 Phiếu rớt
-                _BillRepo.Update(b);//cập nhật ngày nhận và trạng thái bill
-
-                CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetByContractIdAndDatethu(b.ID_CONT.Value, b.CONTD_DATE_THU.Value);
-                if (contractdetail != null)
+                List<object> fieldValues = ASPxGridView1_nhanphieu.GetSelectedFieldValues(new string[] { "ID_CONT" });
+                foreach (var item in fieldValues)
                 {
-                    var checklistdetail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == contractdetail.ID_CONT && (a.CONTD_DATE_THU.Value - contractdetail.CONTD_DATE_THU.Value).Days > 0).ToList();
-                    if (checklistdetail != null && checklistdetail.Count > 0)
+                    int index = ASPxGridView1_nhanphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item));
+                    HiddenField hddID = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "hddID") as HiddenField;
+                    BILL b = _BillRepo.GetById(Utils.CIntDef(hddID.Value));
+                    if (b != null)
                     {
-                        contractdetail.CONTD_PAY_PRICE = price;
-                        contractdetail.CONTD_DATE_THU_TT = DateTime.Now;
-                        _ContractDetailRepo.Update(contractdetail);
-                    }
-                    else
-                    {
-                        CONTRACT_DETAIL de = new CONTRACT_DETAIL();
-                        de.ID_CONT = contractdetail.ID_CONT;
-                        de.CONTD_PAY_PRICE = price;
-                        de.CONTD_DATE_THU_TT = DateTime.Now;
-                        _ContractDetailRepo.Create(de);
+                        //CheckBox chkStatusPhieu = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "chkStatusPhieu") as CheckBox;
+                        TextBox txtPayprice = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "txtPayprice") as TextBox;
+                        decimal? price = null;
+                        if (txtPayprice != null && Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", "")) > 0)
+                            price = Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", ""));
+                        b.BILL_STATUS = price != null ? 1 : 0;  //1 Phiếu tốt - 0 Phiếu rớt
+                        _BillRepo.Update(b);//cập nhật ngày nhận và trạng thái bill
+
+                        CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetByContractIdAndDatethu(b.ID_CONT.Value, b.CONTD_DATE_THU.Value);
+                        if (contractdetail != null)
+                        {
+                            var checklistdetail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == contractdetail.ID_CONT && a.CONTD_DATE_THU != null && (a.CONTD_DATE_THU.Value - contractdetail.CONTD_DATE_THU.Value).Days >= 0).ToList();
+                            if (checklistdetail != null && checklistdetail.Count > 0)
+                            {
+                                contractdetail.CONTD_PAY_PRICE = price;
+                                contractdetail.CONTD_DATE_THU_TT = DateTime.Now;
+                                _ContractDetailRepo.Update(contractdetail);
+                            }
+                            else
+                            {
+                                CONTRACT_DETAIL de = new CONTRACT_DETAIL();
+                                de.ID_CONT = contractdetail.ID_CONT;
+                                de.CONTD_PAY_PRICE = price;
+                                de.CONTD_DATE_THU_TT = DateTime.Now;
+                                _ContractDetailRepo.Create(de);
+                            }
+                        }
+                        CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(b.ID_CONT));
+                        //var l_nextrecept = db.CONTRACT_DETAILs.Where(a => a.CONTD_DATE_THU > contractdetail.CONTD_DATE_THU).ToList();//xem còn ngày thu tiếp theo không
+                        //var l_noprice = db.CONTRACT_DETAILs.Where(a => a.CONTD_PAY_PRICE == 0 || a.CONTD_PAY_PRICE == null).ToList();//check xem con kỳ nào chưa thanh toán
+                        //if (l_nextrecept.Count == 0 && l_noprice.Count == 0)
+                        //    contract.CONT_STATUS = 2;//hoàn tất hợp đồng
+                        contract.BILL_STATUS = 0;//cập nhật trạng thái phiếu
+                        _ContractRepo.Update(contract);
+
                     }
                 }
-                CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(b.ID_CONT));
-                //var l_nextrecept = db.CONTRACT_DETAILs.Where(a => a.CONTD_DATE_THU > contractdetail.CONTD_DATE_THU).ToList();//xem còn ngày thu tiếp theo không
-                //var l_noprice = db.CONTRACT_DETAILs.Where(a => a.CONTD_PAY_PRICE == 0 || a.CONTD_PAY_PRICE == null).ToList();//check xem con kỳ nào chưa thanh toán
-                //if (l_nextrecept.Count == 0 && l_noprice.Count == 0)
-                //    contract.CONT_STATUS = 2;//hoàn tất hợp đồng
-                contract.BILL_STATUS = 0;//cập nhật trạng thái phiếu
-                _ContractRepo.Update(contract);
-
 
             }
+            catch
+            {
 
-            LoadContract_Cannhanphieu();
+            }
+            //LoadContract_Cannhanphieu();
+            Response.Redirect("~/Pages/nhan-phieu.aspx");
         }
 
         public int setOrder()
@@ -237,11 +260,15 @@ namespace Appketoan.Pages
 
         protected void ASPxGridView1_nhanphieu_BeforeColumnSortingGrouping(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewBeforeColumnGroupingSortingEventArgs e)
         {
-            _count = 0;
             LoadContract_Cannhanphieu();
         }
 
         protected void lbtnSearch_Click(object sender, EventArgs e)
+        {
+            LoadContract_Cannhanphieu();
+        }
+
+        protected void ASPxGridView1_nhanphieu_PageIndexChanged(object sender, EventArgs e)
         {
             LoadContract_Cannhanphieu();
         }

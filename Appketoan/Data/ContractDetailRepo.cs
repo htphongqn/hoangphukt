@@ -34,7 +34,19 @@ namespace Appketoan.Data
             }
             
         }
-        public virtual CONTRACT_DETAIL GetLastPayDateConveByContractId(int id, DateTime date)
+        public virtual CONTRACT_DETAIL GetLastPayByContractId(int id, DateTime date)
+        {
+            try
+            {
+                var detail = GetListByContractId(id).Where(a =>(a.CONTD_DATE_THU.Value - date).Days < 0).OrderByDescending(a => a.ID).Take(1).Single();
+                return detail;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public virtual CONTRACT_DETAIL GetNextPayDateConveByContractId(int id, DateTime date)
         {
             try
             {

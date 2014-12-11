@@ -134,7 +134,7 @@
                                                 </asp:DropDownList>
                                             </td>
                                         </tr>--%>
-                                        <tr>
+                                        <tr style="display:none">
                                             <td class="td_left" align="right" valign="top" nowrap="nowrap">
                                                 Kích hoạt
                                             </td>

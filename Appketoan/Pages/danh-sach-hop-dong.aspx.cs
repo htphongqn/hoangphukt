@@ -82,7 +82,7 @@ namespace Appketoan.Pages
                     ASPxGridView_contract.DataBind();
                 }
                 int count = list.Count;
-                lbtotalContract.Text = count + " Hợp đồng";
+
                 ltrPage.Text = result(count, sotin, _page);
 
             }
@@ -105,6 +105,7 @@ namespace Appketoan.Pages
                 _sotrang = (tongsotin / sotin);
             }
             LoadDDLPage(_sotrang);
+            lbtotalContract.Text = (sotin * _page - sotin + 1) + " đến " + (sotin * _page) + " của " + tongsotin + " Hợp đồng";
             if (_sotrang == 1)
             {
                 _re = "";
@@ -150,7 +151,7 @@ namespace Appketoan.Pages
                             _re += num.Length > 0 ? "&num=" + num : "";
                             _re += status > 0 ? "&status=" + status : "";
                             _re += cusid > 0 ? "&cusid=" + cusid : "";
-                            _re += "'> >> </a>";
+                            _re += "'> << </a>";
                         }
                         else
                         {

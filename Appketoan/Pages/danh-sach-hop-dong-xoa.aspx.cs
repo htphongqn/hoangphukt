@@ -64,19 +64,19 @@ namespace Appketoan.Pages
         }
         protected void ASPxGridView_contract_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e)
         {
-            var c = _ContractRepo.GetById(Utils.CIntDef(e.KeyValue));
-            if ( c!= null && c.CONT_STATUS == 2)
-            {
-                var l = db.CONTRACT_DETAILs.Where(n => n.ID_CONT == c.ID
-                && (n.CONTD_PAY_PRICE == null || n.CONTD_PAY_PRICE == 0)
-                && n.CONTD_DATE_THU < DateTime.Now.Date
-                ).ToList();
-                if (l != null && l.Count > 0)
-                {
-                    e.Row.ForeColor = Color.Red;
-                    e.Row.BackColor = Color.Yellow;
-                }
-            }
+            //var c = _ContractRepo.GetById(Utils.CIntDef(e.KeyValue));
+            //if ( c!= null && c.CONT_STATUS == 2)
+            //{
+            //    var l = db.CONTRACT_DETAILs.Where(n => n.ID_CONT == c.ID
+            //    && (n.CONTD_PAY_PRICE == null || n.CONTD_PAY_PRICE == 0)
+            //    && n.CONTD_DATE_THU < DateTime.Now.Date
+            //    ).ToList();
+            //    if (l != null && l.Count > 0)
+            //    {
+            //        e.Row.ForeColor = Color.Red;
+            //        e.Row.BackColor = Color.Yellow;
+            //    }
+            //}
         }
         #endregion
 

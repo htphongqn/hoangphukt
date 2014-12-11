@@ -153,7 +153,7 @@
         border: 1px solid #aecaf0">
         <tr>
             <td>
-                <dx:ASPxPageControl ID="ASPxPageControl2" runat="server" ActiveTabIndex="3" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
+                <dx:ASPxPageControl ID="ASPxPageControl2" runat="server" ActiveTabIndex="0" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
                     CssPostfix="Aqua" SpriteCssFilePath="~/App_Themes/Aqua/{0}/sprite.css" TabSpacing="3px"
                     Height="100%" Width="100%">
                     <TabPages>

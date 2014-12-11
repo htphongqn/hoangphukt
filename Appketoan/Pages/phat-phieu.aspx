@@ -105,6 +105,8 @@
                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Nhân viên thu ngân" FieldName="EMP_TN">
                             <DataItemTemplate>
                                     <%#getnameEmpTN(Eval("EMP_TN"))%>
+                                    <asp:HiddenField ID= "hddEmp_TN" runat="server" Value='<%# Eval("EMP_TN")%>' />
+                                    <asp:HiddenField ID= "hddConID" runat="server" Value='<%# Eval("ID_CONT")%>' />
                             </DataItemTemplate>
                             <CellStyle HorizontalAlign="Left">
                             </CellStyle>

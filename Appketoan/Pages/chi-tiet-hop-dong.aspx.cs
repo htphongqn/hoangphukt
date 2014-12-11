@@ -863,13 +863,17 @@ namespace Appketoan.Pages
             _ContractHistoryRepo.Create(cthis);
             //cập nhật lại kỳ thu chưa góp so với ngày chuyển đổi
             DateTime dtlastpay = contract.CONT_DELI_DATE.Value;
-            CONTRACT_DETAIL contractLastpay = _ContractDetailRepo.GetLastPayDateConveByContractId(id, pickdateconvert.returnDate);
-            if (contractLastpay == null)
+            CONTRACT_DETAIL contractNextpay = _ContractDetailRepo.GetNextPayDateConveByContractId(id, pickdateconvert.returnDate);
+            if (contractNextpay == null)
             {
                 MessageBox1.ShowMessage("Không thể chuyển đổi loại hợp đồng. Danh sách các kỳ chưa thu, không có ngày lớn hơn ngày chuyển đổi!", "Thông báo");
                 return;
             }
-            dtlastpay = contractLastpay.CONTD_DATE_THU.Value;
+            var contractLastpay = _ContractDetailRepo.GetLastPayByContractId(id, pickdateconvert.returnDate);//lấy ngày của kỳ trước đó
+            if (contractLastpay != null)
+            {
+                dtlastpay = contractLastpay.CONTD_DATE_THU.Value;
+            }
             var contractListpay = _ContractDetailRepo.GetListPayDateConveByContractId(id, pickdateconvert.returnDate);
             int j = 0;
             foreach (var item in contractListpay)
