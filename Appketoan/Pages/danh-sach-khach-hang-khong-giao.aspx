@@ -68,19 +68,32 @@
                 <dx:ASPxGridView ID="ASPxGridView1_Customer" runat="server" AutoGenerateColumns="False"
                     Width="100%" KeyFieldName="ID" Theme="Aqua">
                     <Columns>
-                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0">
+                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Width="45px">
                         </dx:GridViewCommandColumn>
                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Ngày FAX HĐ">
                             <DataItemTemplate>
                                 <%# getDate(Eval("CUS_FAX_DATE"))%>
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Tên đầy đủ" FieldName="CUS_FULLNAME">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Xử lý" Width="60px">
+                            <DataItemTemplate>
+                                <a href="<%# getlinkXLCus(Eval("ID")) %>" onclick="return confirm('Bạn có chắc chắn cập nhật khách hàng để thêm mới hợp đồng?')">
+                                    Cập nhật</a>
+                            </DataItemTemplate>
+                            <CellStyle HorizontalAlign="Left">
+                            </CellStyle>
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Tên đầy đủ" FieldName="CUS_FULLNAME" Width="250px">
                             <DataItemTemplate>
                                <a href="<%# getlink(Eval("ID")) %>" title='<%# Eval("CUS_FULLNAME")%>'>
                                     <%# getTitle(Eval("CUS_FULLNAME"), 40)%></a>
                             </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>                                                  
+                        </dx:GridViewDataTextColumn> 
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Khách hàng">
+                            <DataItemTemplate>
+                                <%#checkCus(Eval("Cus_ID"))%>
+                            </DataItemTemplate>
+                        </dx:GridViewDataTextColumn>                                                 
                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Số điện thoại" FieldName="CUS_PHONE" Width="200px">
                             <DataItemTemplate>
                             <span title='<%# Eval("CUS_PHONE")%>'>
@@ -115,26 +128,12 @@
                             <span title='<%# Eval("NOTE_XM")%>'>
                                 <%# getTitle(Eval("NOTE_XM"), 28)%></span>
                             </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Khách hàng">
-                            <DataItemTemplate>
-                                <%#checkCus(Eval("Cus_ID"))%>
-                            </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>                    
+                        </dx:GridViewDataTextColumn>                                           
                            
                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Tình trạng">
                             <DataItemTemplate>
                                 <%#getStatus(Eval("PROCESS_STATUS"))%>
                             </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>                     
-                                             
-                        <dx:GridViewDataTextColumn VisibleIndex="2" Caption="Xử lý" Width="60px">
-                            <DataItemTemplate>
-                                <a href="<%# getlinkXLCus(Eval("ID")) %>" onclick="return confirm('Bạn có chắc chắn cập nhật khách hàng để thêm mới hợp đồng?')">
-                                    Cập nhật</a>
-                            </DataItemTemplate>
-                            <CellStyle HorizontalAlign="Left">
-                            </CellStyle>
                         </dx:GridViewDataTextColumn>    
                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Người tạo">
                             <DataItemTemplate>
@@ -142,7 +141,10 @@
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>                    
                     </Columns>
-                    <SettingsPager PageSize="100">
+                    <Settings ShowHorizontalScrollBar="true" />
+                    <Settings VerticalScrollableHeight="350" />
+                    <Settings ShowVerticalScrollBar="true" />
+                    <SettingsPager PageSize="30">
                     </SettingsPager>
                 </dx:ASPxGridView>
             </td>

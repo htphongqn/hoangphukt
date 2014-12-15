@@ -89,8 +89,8 @@ namespace Appketoan.Pages
             var list = db.GROUPs.Where(n => fieldValues.Contains(n.GROUP_ID.ToString()));
             db.GROUPs.DeleteAllOnSubmit(list);
             db.SubmitChanges();
-            Loadgroup();
-
+            //Loadgroup();
+            Response.Redirect("danh-sach-nhom-quan-tri.aspx");
         }
         #endregion
     }

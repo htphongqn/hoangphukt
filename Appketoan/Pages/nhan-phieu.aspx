@@ -26,6 +26,13 @@
         eval(obj).value = (((sign) ? '' : '-') + num);
     }
 </script>
+      <link rel="stylesheet" href="../chosen/docsupport/style.css">
+    <link rel="stylesheet" href="../chosen/docsupport/prism.css">
+    <link rel="stylesheet" href="../chosen/chosen.css">
+    <style type="text/css" media="all">
+        /* fix rtl for demo */
+        .chosen-rtl .chosen-drop { left: -9000px; }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHMain" runat="server">
     <div id="header">
@@ -45,10 +52,14 @@
                             
                 </td>
                 <td>
+                <asp:DropDownList ID="ddlEmployerSearch" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
+                    </asp:DropDownList>
                 <asp:LinkButton CssClass="k-button" ID="lbtnSearch" ToolTip="Tìm kiếm" runat="server"
                             OnClick="lbtnSearch_Click"><span class="p-i-search"></span></asp:LinkButton>
                         <asp:LinkButton CssClass="k-button" ID="lbtnNhanphieu" ToolTip="Nhận phiếu" runat="server" ValidationGroup="G2"
                             OnClick="lbtnNhanphieu_Click" OnClientClick="return confirm('Nhận phiếu đã chọn?');">Nhận phiếu</asp:LinkButton>
+                            <asp:LinkButton CssClass="k-button" ID="lbtnNhanphieumacdinh" ToolTip="Nhận phiếu mặc định" runat="server" ValidationGroup="G2"
+                            OnClick="lbtnNhanphieumacdinh_Click" OnClientClick="return confirm('Nhận phiếu mặc định?');">Nhận phiếu mặc định</asp:LinkButton>
                             <asp:LinkButton CssClass="k-button" ID="LinkButton1" ToolTip="Mất phiếu" runat="server" ValidationGroup="G2"
                             OnClick="lbtnMatphieu_Click" OnClientClick="return confirm('Mất phiếu đã chọn?');">Mất phiếu</asp:LinkButton>
                     </td>                     
@@ -66,7 +77,7 @@
                     onbeforecolumnsortinggrouping="ASPxGridView1_nhanphieu_BeforeColumnSortingGrouping" 
                     onpageindexchanged="ASPxGridView1_nhanphieu_PageIndexChanged">
                     <Columns>
-                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Width="25px">
+                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Width="45px">
                         </dx:GridViewCommandColumn>
                         <%--<dx:GridViewDataTextColumn VisibleIndex="1" Caption="STT" Width="45px">
                             <DataItemTemplate>
@@ -75,7 +86,7 @@
                             <CellStyle HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>--%>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Tiền thu" Width="200px" FieldName="BILL_STATUS">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Tiền thu" Width="130px" FieldName="BILL_STATUS">
                             <HeaderTemplate>
                             Tiền thu
                             <%--<asp:CheckBox ID="CheckBox1" runat="server" Checked="true" Text="Phiếu tốt" />
@@ -89,7 +100,7 @@
                             <CellStyle HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Số hợp đồng" FieldName="ID_CONT">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Số hợp đồng" FieldName="ID_CONT"  Width="65px">
                             <DataItemTemplate>
                                     <a href="<%#getLink(Eval("ID_CONT")) %>">
                                 <%# getConNo(Eval("ID_CONT"))%></a>
@@ -120,10 +131,28 @@
                         </dx:GridViewDataTextColumn>--%>
                         
                     </Columns>
+                    <%--<Settings ShowHorizontalScrollBar="true" />--%>
+                    <Settings VerticalScrollableHeight="350" />
+                    <Settings ShowVerticalScrollBar="true" />
                     <SettingsPager PageSize="30">
                     </SettingsPager>
                 </dx:ASPxGridView>
             </td>
         </tr>
     </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+  <script src="../chosen/chosen.jquery.js" type="text/javascript"></script>
+  <script src="../chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+      var config = {
+          '.chosen-select': {},
+          '.chosen-select-deselect': { allow_single_deselect: true },
+          '.chosen-select-no-single': { disable_search_threshold: 10 },
+          '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+          '.chosen-select-width': { width: "95%" }
+      }
+      for (var selector in config) {
+          $(selector).chosen(config[selector]);
+      }
+  </script>
 </asp:Content>

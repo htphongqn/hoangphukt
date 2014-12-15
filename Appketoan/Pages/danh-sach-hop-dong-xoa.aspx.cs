@@ -87,7 +87,7 @@ namespace Appketoan.Pages
             var list = db.CONTRACTs.Where(n => fieldValues.Contains(n.ID));
             db.CONTRACTs.DeleteAllOnSubmit(list);
             db.SubmitChanges();
-            Load_listcontract();
+            //Load_listcontract();
         }
         #endregion
 
@@ -263,6 +263,7 @@ namespace Appketoan.Pages
         protected void lbtnDelete_Click1(object sender, EventArgs e)
         {
             delete_Contract();
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void lbtnRestore_Click(object sender, EventArgs e)
@@ -274,7 +275,8 @@ namespace Appketoan.Pages
                 i.IS_DELETE = false;
                 _ContractRepo.Update(i);
             }
-            Load_listcontract();
+            //Load_listcontract();
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

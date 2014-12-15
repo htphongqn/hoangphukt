@@ -40,10 +40,10 @@ namespace Appketoan.Pages
                 ASPxGridView1_Customer.DataBind();
 
             }
-            catch (Exception)
+            catch //(Exception)
             {
 
-                throw;
+                //throw;
             }
         }
 
@@ -60,7 +60,8 @@ namespace Appketoan.Pages
                 _CustomerRepo.Remove(Utils.CIntDef(item));
             }
 
-            LoadCustomer();
+            //LoadCustomer();
+            Response.Redirect("danh-sach-khach-hang.aspx");
         }
 
         protected void lbtnDeleteKeyword_Click(object sender, EventArgs e)

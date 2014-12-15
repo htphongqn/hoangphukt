@@ -53,7 +53,7 @@ namespace Appketoan.Pages
                                         && (n.CONT_STATUS == status || status == 0)
                                         && (n.ID_CUS == cusid || cusid == 0)
                                         && (n.IS_DELETE == false || n.IS_DELETE == null)
-                                            ).OrderByDescending(n => n.ID).ToList();
+                                            ).OrderByDescending(n => n.ID).OrderByDescending(n=>n.CONT_NO).ToList();
 
             //if (list.Count > 0)
             //{
@@ -227,7 +227,8 @@ namespace Appketoan.Pages
             }
             //db.CONTRACTs.DeleteAllOnSubmit(list);
             //db.SubmitChanges();
-            Load_listcontract();
+            //Load_listcontract();
+            Response.Redirect(Request.RawUrl);
         }
         #endregion
 

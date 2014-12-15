@@ -41,11 +41,11 @@ namespace Appketoan.Pages
 
             Load_customer();
             LoadEmployee();
-            Showinfo();
             if (!IsPostBack)
             {
                 pickdate_deli.returnDate = DateTime.Now;                
                 pickdateconvert.returnDate = DateTime.Now;
+                Showinfo();
                 if (id > 0)
                 {
                     getInfo_detail();

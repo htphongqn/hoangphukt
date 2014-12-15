@@ -61,7 +61,9 @@ namespace Appketoan.Pages
                 _CustomerNoDeliRepo.Remove(Utils.CIntDef(item));
             }
 
-            LoadCustomer();
+            //LoadCustomer();
+
+            Response.Redirect("danh-sach-khach-hang-khong-giao.aspx");
         }
 
         protected void lbtnDeleteKeyword_Click(object sender, EventArgs e)

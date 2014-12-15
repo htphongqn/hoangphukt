@@ -94,8 +94,8 @@ namespace Appketoan.Pages
                 db.MENU_PARENTs.DeleteAllOnSubmit(list);
                 db.SubmitChanges();
             }
-            Loadmenu();
-
+            //Loadmenu();
+            Response.Redirect("danh-sach-menu-cha.aspx");
         }
         #endregion
     }

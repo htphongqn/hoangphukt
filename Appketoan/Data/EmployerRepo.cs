@@ -22,7 +22,7 @@ namespace Appketoan.Data
         }
         public virtual List<EMPLOYER> GetListByName(string name)
         {
-            return this.db.EMPLOYERs.Where(n => (n.EMP_NAME.Contains(name) || name == "")).OrderByDescending(n => n.ID).ToList();
+            return this.db.EMPLOYERs.Where(n => (n.EMP_NAME.Contains(name) || name == "")).OrderBy(n => n.EMP_NAME).ToList();
         }
         public virtual EMPLOYER GetById(int id)
         {
@@ -50,9 +50,9 @@ namespace Appketoan.Data
                 this.db.EMPLOYERs.InsertOnSubmit(cus);
                 db.SubmitChanges();
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
-                throw new Exception(e.Message);
+                //throw new Exception(e.Message);
             }
         }
         public virtual void Update(EMPLOYER cus)
@@ -63,9 +63,9 @@ namespace Appketoan.Data
                 cusOld = cus;
                 db.SubmitChanges();
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
-                throw new Exception(e.Message);
+                //throw new Exception(e.Message);
             }
         }
 
@@ -77,9 +77,9 @@ namespace Appketoan.Data
                 EMPLOYER cus = this.GetById(id);
                 this.Remove(cus);
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
-                throw new Exception(e.Message);
+                //throw new Exception(e.Message);
             }
         }
         public virtual void Remove(EMPLOYER cus)
@@ -89,9 +89,9 @@ namespace Appketoan.Data
                 db.EMPLOYERs.DeleteOnSubmit(cus);
                 db.SubmitChanges();
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
-                throw new Exception(e.Message);
+                //throw new Exception(e.Message);
             }
         }
         public virtual int Delete(int id)

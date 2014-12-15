@@ -39,6 +39,8 @@
                             name="txtKeyword" type="text" runat="server" placeholder="Nhập số hợp đồng" />
                 </td>
                     <td align="left">
+                        <asp:DropDownList ID="ddlEmployerSearch" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
+                    </asp:DropDownList>
                         <asp:DropDownList ID="ddlContractDay" runat="server" CssClass="k-textbox textbox">
                         </asp:DropDownList>
                     
@@ -77,7 +79,7 @@
                     onbeforecolumnsortinggrouping="ASPxGridView1_phatphieu_BeforeColumnSortingGrouping" 
                     onpageindexchanged="ASPxGridView1_phatphieu_PageIndexChanged">
                     <Columns>
-                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Width="25px">
+                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Width="45px">
                         </dx:GridViewCommandColumn>
                         <%--<dx:GridViewDataTextColumn VisibleIndex="1" Caption="STT" Width="45px">
                             <DataItemTemplate>
@@ -86,7 +88,7 @@
                             <CellStyle HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>--%>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Số hợp đồng" FieldName="ID_CONT">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Số hợp đồng" FieldName="ID_CONT" Width="125px">
                             <DataItemTemplate>
                                     <a href="<%#getLink(Eval("ID_CONT")) %>">
                                 <%# getConNo(Eval("ID_CONT"))%></a>
@@ -98,6 +100,13 @@
                             <DataItemTemplate>
                                 <a href="<%#getLinkCus(Eval("ID_CONT")) %>">
                                     <%#getnameCus(Eval("ID_CONT"))%></a>
+                            </DataItemTemplate>
+                            <CellStyle HorizontalAlign="Left">
+                            </CellStyle>
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Địa chỉ" FieldName="ID_CONT">
+                            <DataItemTemplate>
+                                    <%#getaddressCus(Eval("ID_CONT"))%>
                             </DataItemTemplate>
                             <CellStyle HorizontalAlign="Left">
                             </CellStyle>
@@ -125,6 +134,9 @@
                         </dx:GridViewDataTextColumn>--%>
                         
                     </Columns>
+                    <%--<Settings ShowHorizontalScrollBar="true" />--%>
+                    <Settings VerticalScrollableHeight="350" />
+                    <Settings ShowVerticalScrollBar="true" />
                     <SettingsPager PageSize="30">
                     </SettingsPager>
                 </dx:ASPxGridView>

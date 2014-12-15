@@ -56,7 +56,8 @@ namespace Appketoan.Pages
                 _CustomerRepo.Remove(Utils.CIntDef(item));
             }
 
-            LoadCustomer();
+            //LoadCustomer();
+            Response.Redirect(Request.RawUrl);
         }
         #region Function
         public string getCustomerName(object id)

@@ -59,7 +59,7 @@
                 <dx:ASPxGridView ID="ASPxGridView1_Customer" runat="server" AutoGenerateColumns="False"
                     Width="100%" KeyFieldName="ID" Theme="Aqua">
                     <Columns>
-                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0">
+                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Width="45px">
                         </dx:GridViewCommandColumn>
                         <%--<dx:GridViewDataTextColumn VisibleIndex="1" Caption="STT" Width="45px">
                             <DataItemTemplate>
@@ -68,7 +68,7 @@
                             <CellStyle HorizontalAlign="Center">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>--%>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Tên đầy đủ" FieldName="CUS_FULLNAME">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Tên đầy đủ" FieldName="CUS_FULLNAME"  Width="250px">
                             <DataItemTemplate>
                                 <a href="<%# getlink(Eval("ID")) %>" title='<%# Eval("CUS_FULLNAME")%>'>
                                     <%# getTitle(Eval("CUS_FULLNAME"), 40)%></a>
@@ -96,18 +96,8 @@
                             <DataItemTemplate>
                                 <%# GetType(Eval("CUS_TYPE"))%>
                             </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Người tạo">
-                            <DataItemTemplate>
-                                <%#getUserName(Eval("USER_ID"))%>
-                            </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Ngày tạo">
-                            <DataItemTemplate>
-                                <%# getDate(Eval("CUS_CREATE_DATE"))%>
-                            </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="2" Caption="Hợp đồng" FieldName="ID">
+                        </dx:GridViewDataTextColumn>                        
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Hợp đồng" FieldName="ID">
                             <DataItemTemplate>
                                 <a href="<%# getlinkInsertContract(Eval("ID")) %>">
                                     Thêm mới</a>
@@ -117,7 +107,7 @@
                             <CellStyle HorizontalAlign="Left">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="2" Caption="Lịch sử" FieldName="ID">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Lịch sử" FieldName="ID">
                             <DataItemTemplate>
                                 <a href="<%# getlinkHistory(Eval("ID")) %>">
                                     Xem</a>
@@ -125,8 +115,21 @@
                             <CellStyle HorizontalAlign="Left">
                             </CellStyle>
                         </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Ngày tạo">
+                            <DataItemTemplate>
+                                <%# getDate(Eval("CUS_CREATE_DATE"))%>
+                            </DataItemTemplate>
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Người tạo">
+                            <DataItemTemplate>
+                                <%#getUserName(Eval("USER_ID"))%>
+                            </DataItemTemplate>
+                        </dx:GridViewDataTextColumn>
                     </Columns>
-                    <SettingsPager PageSize="100">
+                    <Settings ShowHorizontalScrollBar="true" />
+                    <Settings VerticalScrollableHeight="350" />
+                    <Settings ShowVerticalScrollBar="true" />
+                    <SettingsPager PageSize="30">
                     </SettingsPager>
                 </dx:ASPxGridView>
             </td>

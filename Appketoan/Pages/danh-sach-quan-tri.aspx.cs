@@ -102,8 +102,8 @@ namespace Appketoan.Pages
             var list = db.USERs.Where(n => fieldValues.Contains(n.USER_ID.ToString()));
             db.USERs.DeleteAllOnSubmit(list);
             db.SubmitChanges();
-            Loaduser();
-
+            //Loaduser();
+            Response.Redirect("danh-sach-quan-tri.aspx");
         }
         #endregion
     }

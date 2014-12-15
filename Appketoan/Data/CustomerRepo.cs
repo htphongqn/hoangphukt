@@ -62,9 +62,9 @@ namespace Appketoan.Data
                 this.db.CUSTOMERs.InsertOnSubmit(cus);
                 db.SubmitChanges();
             }
-            catch (Exception e)
+            catch// (Exception e)
             {
-                throw new Exception(e.Message);
+                //throw new Exception(e.Message);
             }
         }
         public virtual void Update(CUSTOMER cus)
@@ -75,9 +75,9 @@ namespace Appketoan.Data
                 cusOld = cus;
                 db.SubmitChanges();
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
-                throw new Exception(e.Message);
+                //throw new Exception(e.Message);
             }
         }
 
@@ -89,9 +89,9 @@ namespace Appketoan.Data
                 CUSTOMER cus = this.GetById(id);
                 this.Remove(cus);
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
-                throw new Exception(e.Message);
+                //throw new Exception(e.Message);
             }
         }
         public virtual void Remove(CUSTOMER cus)

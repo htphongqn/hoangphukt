@@ -39,10 +39,10 @@ namespace Appketoan.Pages
                 ASPxGridView1_employer.DataBind();
 
             }
-            catch (Exception)
+            catch //(Exception)
             {
 
-                throw;
+                //throw;
             }
         }
 
@@ -59,7 +59,8 @@ namespace Appketoan.Pages
                 _EmployerRepo.Remove(Utils.CIntDef(item));
             }
                        
-            LoadEmployer();
+            //LoadEmployer();
+            Response.Redirect("danh-sach-nhan-vien.aspx");
         }
 
         protected void lbtnDeleteKeyword_Click(object sender, EventArgs e)
