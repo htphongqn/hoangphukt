@@ -28,13 +28,13 @@ namespace Appketoan.Pages
             _count = 1;
             if (!IsPostBack)
             {
-                LoadContract_Cannhanphieu();
                 showEmployer();
+                LoadContract_Cannhanphieu();
             }
         }
         private void showEmployer()
         {
-            var list = _EmployerRepo.GetAllSortName();
+            var list = _EmployerRepo.GetListCtySortName();
             ddlEmployerSearch.DataValueField = "ID";
             ddlEmployerSearch.DataTextField = "EMP_NAME";
             ddlEmployerSearch.DataSource = list;
@@ -91,7 +91,7 @@ namespace Appketoan.Pages
                         if (txtPayprice != null && Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", "")) > 0)
                             price = Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", ""));
                         b.BILL_STATUS = price != null ? 1 : 0;  //1 Phiếu tốt - 0 Phiếu rớt
-                        b.BILLL_RECEIVER_DATE = DateTime.Now;
+                        b.BILLL_RECEIVER_DATE = pickdate_recei.returnDate;
                         _BillRepo.Update(b);//cập nhật ngày nhận và trạng thái bill
 
                         CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetByContractIdAndDatethu(b.ID_CONT.Value, b.CONTD_DATE_THU.Value);
@@ -101,7 +101,7 @@ namespace Appketoan.Pages
                             if (checklistdetail != null && checklistdetail.Count > 0)
                             {
                                 contractdetail.CONTD_PAY_PRICE = price;
-                                contractdetail.CONTD_DATE_THU_TT = DateTime.Now;
+                                contractdetail.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
                                 _ContractDetailRepo.Update(contractdetail);
                             }
                             else
@@ -109,7 +109,7 @@ namespace Appketoan.Pages
                                 CONTRACT_DETAIL de = new CONTRACT_DETAIL();
                                 de.ID_CONT = contractdetail.ID_CONT;
                                 de.CONTD_PAY_PRICE = price;
-                                de.CONTD_DATE_THU_TT = DateTime.Now;
+                                de.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
                                 _ContractDetailRepo.Create(de);
                             }
                         }
@@ -163,7 +163,7 @@ namespace Appketoan.Pages
                         if (txtPayprice != null && Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", "")) > 0)
                             price = Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", ""));
                         b.BILL_STATUS = price != null ? 1 : 0;  //1 Phiếu tốt - 0 Phiếu rớt
-                        b.BILLL_RECEIVER_DATE = DateTime.Now;
+                        b.BILLL_RECEIVER_DATE = pickdate_recei.returnDate;
                         _BillRepo.Update(b);//cập nhật ngày nhận và trạng thái bill
 
                         CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetByContractIdAndDatethu(b.ID_CONT.Value, b.CONTD_DATE_THU.Value);
@@ -173,7 +173,7 @@ namespace Appketoan.Pages
                             if (checklistdetail != null && checklistdetail.Count > 0)
                             {
                                 contractdetail.CONTD_PAY_PRICE = price;
-                                contractdetail.CONTD_DATE_THU_TT = DateTime.Now;
+                                contractdetail.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
                                 _ContractDetailRepo.Update(contractdetail);
                             }
                             else
@@ -181,7 +181,7 @@ namespace Appketoan.Pages
                                 CONTRACT_DETAIL de = new CONTRACT_DETAIL();
                                 de.ID_CONT = contractdetail.ID_CONT;
                                 de.CONTD_PAY_PRICE = price;
-                                de.CONTD_DATE_THU_TT = DateTime.Now;
+                                de.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
                                 _ContractDetailRepo.Create(de);
                             }
                         }
@@ -241,7 +241,7 @@ namespace Appketoan.Pages
                             if (checklistdetail != null && checklistdetail.Count > 0)
                             {
                                 contractdetail.CONTD_PAY_PRICE = price;
-                                contractdetail.CONTD_DATE_THU_TT = DateTime.Now;
+                                contractdetail.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
                                 _ContractDetailRepo.Update(contractdetail);
                             }
                             else
@@ -249,11 +249,21 @@ namespace Appketoan.Pages
                                 CONTRACT_DETAIL de = new CONTRACT_DETAIL();
                                 de.ID_CONT = contractdetail.ID_CONT;
                                 de.CONTD_PAY_PRICE = price;
-                                de.CONTD_DATE_THU_TT = DateTime.Now;
+                                de.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
                                 _ContractDetailRepo.Create(de);
                             }
                         }
                         CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(b.ID_CONT));
+                        var detail = _ContractDetailRepo.GetListByContractId(Utils.CIntDef(contract.ID));
+                        decimal pricethu = 0;
+                        if (detail != null)
+                        {
+                            pricethu = detail.Where(a => a.CONTD_PAY_PRICE != null).Sum(a => a.CONTD_PAY_PRICE.Value);
+                            if (contract.CONT_DEBT_PRICE <= pricethu)
+                            {
+                                contract.CONT_STATUS = 3;
+                            }
+                        }
                         //var l_nextrecept = db.CONTRACT_DETAILs.Where(a => a.CONTD_DATE_THU > contractdetail.CONTD_DATE_THU).ToList();//xem còn ngày thu tiếp theo không
                         //var l_noprice = db.CONTRACT_DETAILs.Where(a => a.CONTD_PAY_PRICE == 0 || a.CONTD_PAY_PRICE == null).ToList();//check xem con kỳ nào chưa thanh toán
                         //if (l_nextrecept.Count == 0 && l_noprice.Count == 0)
@@ -288,6 +298,19 @@ namespace Appketoan.Pages
             if (contract != null)
             {
                 return contract.CONT_NO;
+            }
+            return "";
+        }
+        public string getPriceconlai(object id)
+        {
+            int _id = Utils.CIntDef(id);
+            var contract = _ContractRepo.GetById(_id);
+            if (contract != null)
+            {
+                decimal thu = Utils.CDecDef(db.CONTRACT_DETAILs.Where(n => n.ID_CONT == _id).Sum(n => n.CONTD_PAY_PRICE));
+                decimal _total = Utils.CDecDef(contract.CONT_DEBT_PRICE) - thu;
+                _total = _total - Utils.CDecDef(contract.CONT_WEEK_PRICE);//kỳ này
+                return fm.FormatMoney(_total) ;
             }
             return "";
         }

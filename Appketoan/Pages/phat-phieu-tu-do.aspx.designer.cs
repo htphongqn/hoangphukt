@@ -10,43 +10,34 @@
 namespace Appketoan.Pages {
     
     
-    public partial class doanh_so_nhan_vien {
+    public partial class phat_phieu_tu_do {
         
         /// <summary>
-        /// ddlEmployer control.
+        /// txtKeyword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEmployer;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtKeyword;
         
         /// <summary>
-        /// ddlDay control.
+        /// ddlEmployerSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDay;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmployerSearch;
         
         /// <summary>
-        /// ddlMonth control.
+        /// ddlContractDay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
-        
-        /// <summary>
-        /// ddlYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
+        protected global::System.Web.UI.WebControls.DropDownList ddlContractDay;
         
         /// <summary>
         /// lbtnSearch control.
@@ -58,39 +49,57 @@ namespace Appketoan.Pages {
         protected global::System.Web.UI.WebControls.LinkButton lbtnSearch;
         
         /// <summary>
-        /// lbBanhang control.
+        /// ddlEmployer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbBanhang;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmployer;
         
         /// <summary>
-        /// lbXacminh control.
+        /// RequiredFieldValidator5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbXacminh;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
-        /// lbGiaohang control.
+        /// lbtnPhatphieu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGiaohang;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnPhatphieu;
         
         /// <summary>
-        /// lbThungan control.
+        /// lbtnPhatphieudachon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbThungan;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnPhatphieudachon;
+        
+        /// <summary>
+        /// lbtnPhatphieumacdinh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnPhatphieumacdinh;
+        
+        /// <summary>
+        /// ASPxGridView1_phatphieu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView.ASPxGridView ASPxGridView1_phatphieu;
     }
 }

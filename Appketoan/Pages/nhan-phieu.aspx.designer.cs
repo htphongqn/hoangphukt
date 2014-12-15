@@ -49,6 +49,15 @@ namespace Appketoan.Pages {
         protected global::System.Web.UI.WebControls.LinkButton lbtnNhanphieu;
         
         /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        
+        /// <summary>
         /// lbtnNhanphieumacdinh control.
         /// </summary>
         /// <remarks>
@@ -58,13 +67,13 @@ namespace Appketoan.Pages {
         protected global::System.Web.UI.WebControls.LinkButton lbtnNhanphieumacdinh;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// pickdate_recei control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::vpro.eshop.cpanel.Calendar.pickerAndCalendar pickdate_recei;
         
         /// <summary>
         /// ASPxGridView1_nhanphieu control.

@@ -12,7 +12,7 @@ using DevExpress.Web.ASPxGridView;
 
 namespace Appketoan.Pages
 {
-    public partial class phat_phieu : System.Web.UI.Page
+    public partial class phat_phieu_tu_do : System.Web.UI.Page
     {
         #region Declare
         private AppketoanDataContext db = new AppketoanDataContext();

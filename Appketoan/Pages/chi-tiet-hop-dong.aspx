@@ -524,7 +524,7 @@
                                                                 <%# getNameemployer(Eval("ID_EMPLOY"))%>
                                                             </DataItemTemplate>
                                                         </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Ngày giao phiếu">
+                                                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Ngày phát phiếu">
                                                             <DataItemTemplate>
                                                                 <%# getDate(Eval("BILL_DELI_DATE"))%>
                                                             </DataItemTemplate>
@@ -533,6 +533,11 @@
                                                             <DataItemTemplate>
                                                                     <%--<asp:TextBox ID="txtdate_receiver_phieu" runat="server" Width="100" Text='<%# getDate(Eval("BILLL_RECEIVER_DATE"))%>'></asp:TextBox>--%>
                                                 <%# getDate(Eval("BILLL_RECEIVER_DATE"))%>
+                                                            </DataItemTemplate>
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn VisibleIndex="1" FieldName="CONTD_DATE_THU" Caption="Ngày thu">
+                                                            <DataItemTemplate>
+                                                <%# getDate(Eval("CONTD_DATE_THU"))%>
                                                             </DataItemTemplate>
                                                         </dx:GridViewDataTextColumn>
                                                         <dx:GridViewDataTextColumn VisibleIndex="1" FieldName="BILL_STATUS"  Caption="Trạng thái phiếu">

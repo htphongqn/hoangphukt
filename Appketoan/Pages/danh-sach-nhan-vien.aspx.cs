@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Appketoan.Data;
 using vpro.functions;
+using Appketoan.Components;
 
 namespace Appketoan.Pages
 {
@@ -90,6 +91,22 @@ namespace Appketoan.Pages
                 return user.USER_NAME;
             }
             return "";
+        }
+        public string getEmpChucvu(object idChucvu)
+        {
+            int idcv = Utils.CIntDef(idChucvu);
+            switch (idcv)
+            {
+                case Cost.EMP_CONGTY:
+                    return Cost.EMP_CONGTY_STR;
+                    break;
+                case Cost.EMP_TIEPTHI:
+                    return Cost.EMP_TIEPTHI_STR;
+                    break;
+                default:
+                    return "";
+                    break;
+            }
         }
         #endregion
     }

@@ -63,17 +63,6 @@
       <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.EMPLOYER" Member="EMPLOYERs">
-    <Type Name="EMPLOYER">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EMP_NAME" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="EMP_CHUCVU" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="EMP_PHONE" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="EMP_ADDRESS" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="EMP_DATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
-      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.CONTRACT" Member="CONTRACTs">
     <Type Name="CONTRACT">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -157,6 +146,17 @@
       <Column Name="PROCESS_STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CUS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EMPLOYER" Member="EMPLOYERs">
+    <Type Name="EMPLOYER">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EMP_NAME" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EMP_CHUCVU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EMP_PHONE" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="EMP_ADDRESS" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="EMP_DATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.converdate" Method="converdate" IsComposable="true">

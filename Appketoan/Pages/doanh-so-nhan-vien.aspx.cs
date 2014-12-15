@@ -23,6 +23,7 @@ namespace Appketoan.Pages
         {
             if (!IsPostBack)
             {
+                LoadDay();
                 LoadMonth();
                 LoadYear();
                 showEmployer();
@@ -32,7 +33,7 @@ namespace Appketoan.Pages
         }
         private void showEmployer()
         {
-            var list = _EmployerRepo.GetAll();
+            var list = _EmployerRepo.GetAllSortName();
             ddlEmployer.DataValueField = "ID";
             ddlEmployer.DataTextField = "EMP_NAME";
             ddlEmployer.DataSource = list;
@@ -40,6 +41,15 @@ namespace Appketoan.Pages
             ListItem l = new ListItem("--- Chọn nhân viên ---", "0");
             l.Selected = true;
             ddlEmployer.Items.Insert(0, l);
+        }
+        private void LoadDay()
+        {
+            ddlDay.Items.Add(new ListItem("--Ngày--", "0"));
+            for (int i = 1; i <= 31; i++)
+            {
+                ddlDay.Items.Add(new ListItem(i.ToString(), i.ToString()));
+            }
+            ddlDay.SelectedValue = DateTime.Now.Day.ToString();
         }
         private void LoadMonth()
         {
@@ -63,12 +73,13 @@ namespace Appketoan.Pages
         protected void lbtnSearch_Click(object sender, EventArgs e)
         {
             string stremploye = Utils.CStrDef(ddlEmployer.SelectedValue);
+            int idday = Utils.CIntDef(ddlDay.SelectedValue);
             int idmonth = Utils.CIntDef(ddlMonth.SelectedValue);
             int idyear = Utils.CIntDef(ddlYear.SelectedValue);
             //bán hàng
             var list = db.CONTRACTs.Where(n => n.EMP_BH != null && (n.EMP_BH.Contains(stremploye + ",") || stremploye == "0")
                 //.Where(row => row.Values.Any(s=>s.Value == searchValue));
-
+                && (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
                 && (n.CONT_DELI_DATE.Value.Month == idmonth || idmonth == 0)
                 && (n.CONT_DELI_DATE.Value.Year == idyear || idyear == 0)
                 ).ToList();
@@ -76,7 +87,7 @@ namespace Appketoan.Pages
             //xác minh
             var listxm = db.CONTRACTs.Where(n => n.EMP_XM != null && (n.EMP_XM.Contains(stremploye + ",") || stremploye == "0")
                 //.Where(row => row.Values.Any(s=>s.Value == searchValue));
-
+                && (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
                 && (n.CONT_DELI_DATE.Value.Month == idmonth || idmonth == 0)
                 && (n.CONT_DELI_DATE.Value.Year == idyear || idyear == 0)
                 ).ToList();
@@ -84,7 +95,7 @@ namespace Appketoan.Pages
             //giao hàng
             var listgh = db.CONTRACTs.Where(n => n.EMP_GH != null && (n.EMP_GH.Contains(stremploye + ",") || stremploye == "0")
                 //.Where(row => row.Values.Any(s=>s.Value == searchValue));
-
+                && (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
                 && (n.CONT_DELI_DATE.Value.Month == idmonth || idmonth == 0)
                 && (n.CONT_DELI_DATE.Value.Year == idyear || idyear == 0)
                 ).ToList();
@@ -93,7 +104,7 @@ namespace Appketoan.Pages
             int idEmp =Utils.CIntDef(stremploye);
             var listtn = db.BILLs.Where(n => n.ID_EMPLOY != null && (n.ID_EMPLOY == idEmp || stremploye == "0")
                 //.Where(row => row.Values.Any(s=>s.Value == searchValue));
-
+                && (n.BILLL_RECEIVER_DATE.Value.Day == idday || idday == 0)
                 && (n.BILLL_RECEIVER_DATE.Value.Month == idmonth || idmonth == 0)
                 && (n.BILLL_RECEIVER_DATE.Value.Year == idyear || idyear == 0)
                 ).ToList();

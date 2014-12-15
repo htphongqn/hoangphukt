@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Appketoan.Components;
 
 namespace Appketoan.Data
 {
@@ -42,6 +43,14 @@ namespace Appketoan.Data
         public virtual List<EMPLOYER> GetAllSortName()
         {
             return this.db.EMPLOYERs.OrderBy(n => n.EMP_NAME).ToList();
+        }
+        public virtual List<EMPLOYER> GetListCtySortName()
+        {
+            return this.db.EMPLOYERs.Where(n=>n.EMP_CHUCVU == Cost.EMP_CONGTY).OrderBy(n => n.EMP_NAME).ToList();
+        }
+        public virtual List<EMPLOYER> GetListTthiSortName()
+        {
+            return this.db.EMPLOYERs.Where(n => n.EMP_CHUCVU == Cost.EMP_TIEPTHI).OrderBy(n => n.EMP_NAME).ToList();
         }
         public virtual void Create(EMPLOYER cus)
         {

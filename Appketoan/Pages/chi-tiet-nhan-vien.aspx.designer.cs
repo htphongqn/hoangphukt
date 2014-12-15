@@ -103,13 +103,13 @@ namespace Appketoan.Pages {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
-        /// Txtchucvu control.
+        /// ddlChucvu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txtchucvu;
+        protected global::System.Web.UI.WebControls.DropDownList ddlChucvu;
         
         /// <summary>
         /// Txtphone control.

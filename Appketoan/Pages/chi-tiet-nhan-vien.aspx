@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHMain" runat="server">
-<style type="text/css">
+    <style type="text/css">
         .td_left
         {
             width: 30%;
@@ -72,7 +72,8 @@
                                                 <span style="color: Red;"></span>&nbsp;Chức vụ
                                             </td>
                                             <td align="left" nowrap="nowrap">
-                                                <asp:TextBox ID="Txtchucvu" runat="server" class="text" CssClass="k-textbox textbox"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlChucvu" runat="server" CssClass="k-textbox textbox" Width="405px">
+                    </asp:DropDownList>
                                             </td>
                                         </tr>
                                        

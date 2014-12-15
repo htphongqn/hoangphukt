@@ -48,9 +48,6 @@ namespace Appketoan
     partial void InsertCUSTOMER_HISTORY(CUSTOMER_HISTORY instance);
     partial void UpdateCUSTOMER_HISTORY(CUSTOMER_HISTORY instance);
     partial void DeleteCUSTOMER_HISTORY(CUSTOMER_HISTORY instance);
-    partial void InsertEMPLOYER(EMPLOYER instance);
-    partial void UpdateEMPLOYER(EMPLOYER instance);
-    partial void DeleteEMPLOYER(EMPLOYER instance);
     partial void InsertCONTRACT(CONTRACT instance);
     partial void UpdateCONTRACT(CONTRACT instance);
     partial void DeleteCONTRACT(CONTRACT instance);
@@ -66,6 +63,9 @@ namespace Appketoan
     partial void InsertCUSTOMER_NODELI(CUSTOMER_NODELI instance);
     partial void UpdateCUSTOMER_NODELI(CUSTOMER_NODELI instance);
     partial void DeleteCUSTOMER_NODELI(CUSTOMER_NODELI instance);
+    partial void InsertEMPLOYER(EMPLOYER instance);
+    partial void UpdateEMPLOYER(EMPLOYER instance);
+    partial void DeleteEMPLOYER(EMPLOYER instance);
     #endregion
 		
 		public AppketoanDataContext() : 
@@ -146,14 +146,6 @@ namespace Appketoan
 			}
 		}
 		
-		public System.Data.Linq.Table<EMPLOYER> EMPLOYERs
-		{
-			get
-			{
-				return this.GetTable<EMPLOYER>();
-			}
-		}
-		
 		public System.Data.Linq.Table<CONTRACT> CONTRACTs
 		{
 			get
@@ -191,6 +183,14 @@ namespace Appketoan
 			get
 			{
 				return this.GetTable<CUSTOMER_NODELI>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EMPLOYER> EMPLOYERs
+		{
+			get
+			{
+				return this.GetTable<EMPLOYER>();
 			}
 		}
 		
@@ -1327,212 +1327,6 @@ namespace Appketoan
 					this._CUSHIS_TYPE = value;
 					this.SendPropertyChanged("CUSHIS_TYPE");
 					this.OnCUSHIS_TYPEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int")]
-		public System.Nullable<int> USER_ID
-		{
-			get
-			{
-				return this._USER_ID;
-			}
-			set
-			{
-				if ((this._USER_ID != value))
-				{
-					this.OnUSER_IDChanging(value);
-					this.SendPropertyChanging();
-					this._USER_ID = value;
-					this.SendPropertyChanged("USER_ID");
-					this.OnUSER_IDChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EMPLOYER")]
-	public partial class EMPLOYER : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _EMP_NAME;
-		
-		private string _EMP_CHUCVU;
-		
-		private string _EMP_PHONE;
-		
-		private string _EMP_ADDRESS;
-		
-		private System.DateTime _EMP_DATE;
-		
-		private System.Nullable<int> _USER_ID;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnEMP_NAMEChanging(string value);
-    partial void OnEMP_NAMEChanged();
-    partial void OnEMP_CHUCVUChanging(string value);
-    partial void OnEMP_CHUCVUChanged();
-    partial void OnEMP_PHONEChanging(string value);
-    partial void OnEMP_PHONEChanged();
-    partial void OnEMP_ADDRESSChanging(string value);
-    partial void OnEMP_ADDRESSChanged();
-    partial void OnEMP_DATEChanging(System.DateTime value);
-    partial void OnEMP_DATEChanged();
-    partial void OnUSER_IDChanging(System.Nullable<int> value);
-    partial void OnUSER_IDChanged();
-    #endregion
-		
-		public EMPLOYER()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_NAME", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string EMP_NAME
-		{
-			get
-			{
-				return this._EMP_NAME;
-			}
-			set
-			{
-				if ((this._EMP_NAME != value))
-				{
-					this.OnEMP_NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_NAME = value;
-					this.SendPropertyChanged("EMP_NAME");
-					this.OnEMP_NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_CHUCVU", DbType="NVarChar(100)")]
-		public string EMP_CHUCVU
-		{
-			get
-			{
-				return this._EMP_CHUCVU;
-			}
-			set
-			{
-				if ((this._EMP_CHUCVU != value))
-				{
-					this.OnEMP_CHUCVUChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_CHUCVU = value;
-					this.SendPropertyChanged("EMP_CHUCVU");
-					this.OnEMP_CHUCVUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_PHONE", DbType="NVarChar(100)")]
-		public string EMP_PHONE
-		{
-			get
-			{
-				return this._EMP_PHONE;
-			}
-			set
-			{
-				if ((this._EMP_PHONE != value))
-				{
-					this.OnEMP_PHONEChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_PHONE = value;
-					this.SendPropertyChanged("EMP_PHONE");
-					this.OnEMP_PHONEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_ADDRESS", DbType="NVarChar(500)")]
-		public string EMP_ADDRESS
-		{
-			get
-			{
-				return this._EMP_ADDRESS;
-			}
-			set
-			{
-				if ((this._EMP_ADDRESS != value))
-				{
-					this.OnEMP_ADDRESSChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_ADDRESS = value;
-					this.SendPropertyChanged("EMP_ADDRESS");
-					this.OnEMP_ADDRESSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_DATE", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime EMP_DATE
-		{
-			get
-			{
-				return this._EMP_DATE;
-			}
-			set
-			{
-				if ((this._EMP_DATE != value))
-				{
-					this.OnEMP_DATEChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_DATE = value;
-					this.SendPropertyChanged("EMP_DATE");
-					this.OnEMP_DATEChanged();
 				}
 			}
 		}
@@ -3303,6 +3097,212 @@ namespace Appketoan
 					this._CUS_ID = value;
 					this.SendPropertyChanged("CUS_ID");
 					this.OnCUS_IDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EMPLOYER")]
+	public partial class EMPLOYER : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _EMP_NAME;
+		
+		private System.Nullable<int> _EMP_CHUCVU;
+		
+		private string _EMP_PHONE;
+		
+		private string _EMP_ADDRESS;
+		
+		private System.DateTime _EMP_DATE;
+		
+		private System.Nullable<int> _USER_ID;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnEMP_NAMEChanging(string value);
+    partial void OnEMP_NAMEChanged();
+    partial void OnEMP_CHUCVUChanging(System.Nullable<int> value);
+    partial void OnEMP_CHUCVUChanged();
+    partial void OnEMP_PHONEChanging(string value);
+    partial void OnEMP_PHONEChanged();
+    partial void OnEMP_ADDRESSChanging(string value);
+    partial void OnEMP_ADDRESSChanged();
+    partial void OnEMP_DATEChanging(System.DateTime value);
+    partial void OnEMP_DATEChanged();
+    partial void OnUSER_IDChanging(System.Nullable<int> value);
+    partial void OnUSER_IDChanged();
+    #endregion
+		
+		public EMPLOYER()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_NAME", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string EMP_NAME
+		{
+			get
+			{
+				return this._EMP_NAME;
+			}
+			set
+			{
+				if ((this._EMP_NAME != value))
+				{
+					this.OnEMP_NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_NAME = value;
+					this.SendPropertyChanged("EMP_NAME");
+					this.OnEMP_NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_CHUCVU", DbType="Int")]
+		public System.Nullable<int> EMP_CHUCVU
+		{
+			get
+			{
+				return this._EMP_CHUCVU;
+			}
+			set
+			{
+				if ((this._EMP_CHUCVU != value))
+				{
+					this.OnEMP_CHUCVUChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_CHUCVU = value;
+					this.SendPropertyChanged("EMP_CHUCVU");
+					this.OnEMP_CHUCVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_PHONE", DbType="NVarChar(100)")]
+		public string EMP_PHONE
+		{
+			get
+			{
+				return this._EMP_PHONE;
+			}
+			set
+			{
+				if ((this._EMP_PHONE != value))
+				{
+					this.OnEMP_PHONEChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_PHONE = value;
+					this.SendPropertyChanged("EMP_PHONE");
+					this.OnEMP_PHONEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_ADDRESS", DbType="NVarChar(500)")]
+		public string EMP_ADDRESS
+		{
+			get
+			{
+				return this._EMP_ADDRESS;
+			}
+			set
+			{
+				if ((this._EMP_ADDRESS != value))
+				{
+					this.OnEMP_ADDRESSChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_ADDRESS = value;
+					this.SendPropertyChanged("EMP_ADDRESS");
+					this.OnEMP_ADDRESSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_DATE", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime EMP_DATE
+		{
+			get
+			{
+				return this._EMP_DATE;
+			}
+			set
+			{
+				if ((this._EMP_DATE != value))
+				{
+					this.OnEMP_DATEChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_DATE = value;
+					this.SendPropertyChanged("EMP_DATE");
+					this.OnEMP_DATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int")]
+		public System.Nullable<int> USER_ID
+		{
+			get
+			{
+				return this._USER_ID;
+			}
+			set
+			{
+				if ((this._USER_ID != value))
+				{
+					this.OnUSER_IDChanging(value);
+					this.SendPropertyChanging();
+					this._USER_ID = value;
+					this.SendPropertyChanged("USER_ID");
+					this.OnUSER_IDChanged();
 				}
 			}
 		}

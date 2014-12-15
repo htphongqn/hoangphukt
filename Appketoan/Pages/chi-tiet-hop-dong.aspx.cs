@@ -115,10 +115,11 @@ namespace Appketoan.Pages
         private void LoadEmployee()
         {
             var list = _EmployerRepo.GetAllSortName();
+            ddlEmployeeBH.DataSource = list;//tiep thj + nv cty
+            var list2 = _EmployerRepo.GetListCtySortName();
+            ddlEmployeeXM.DataSource = list2;//nv cty
+            ddlEmployeeGH.DataSource = list2;//nv cty
 
-            ddlEmployeeBH.DataSource = list;
-            ddlEmployeeXM.DataSource = list;
-            ddlEmployeeGH.DataSource = list;
             ddlEmployeeBH.DataBind();
             ddlEmployeeXM.DataBind();
             ddlEmployeeGH.DataBind();

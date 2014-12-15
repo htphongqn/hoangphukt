@@ -30,6 +30,8 @@
                     <td align="left">
                         <asp:DropDownList ID="ddlEmployer" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
                     </asp:DropDownList>
+                        <asp:DropDownList ID="ddlDay" runat="server" CssClass="k-textbox textbox" Width="70px">
+                        </asp:DropDownList>
                         <asp:DropDownList ID="ddlMonth" runat="server" CssClass="k-textbox textbox" Width="70px">
                         </asp:DropDownList>
                         <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*"

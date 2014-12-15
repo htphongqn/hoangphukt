@@ -77,8 +77,10 @@
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Chức vụ" FieldName="EMP_CHUCVU">
+                            <CellStyle HorizontalAlign="Left" VerticalAlign="Middle">
+                            </CellStyle>
                             <DataItemTemplate>
-                                <%# Eval("EMP_CHUCVU")%>
+                                <%# getEmpChucvu(Eval("EMP_CHUCVU"))%>
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Số điện thoại" FieldName="EMP_PHONE">
@@ -102,7 +104,7 @@
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>
                     </Columns>
-                    <SettingsPager PageSize="100">
+                    <SettingsPager PageSize="30">
                     </SettingsPager>
                 </dx:ASPxGridView>
             </td>

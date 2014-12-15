@@ -13,6 +13,24 @@ namespace Appketoan.Pages {
     public partial class doanh_thu_trong_thang_nam {
         
         /// <summary>
+        /// ddlEmployer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmployer;
+        
+        /// <summary>
+        /// ddlDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDay;
+        
+        /// <summary>
         /// ddlMonth control.
         /// </summary>
         /// <remarks>

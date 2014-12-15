@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using vpro.functions;
 using Appketoan.Data;
-
+using Appketoan.Components;
 namespace Appketoan.Pages
 {
     public partial class chi_tiet_nhan_vien : System.Web.UI.Page
@@ -21,8 +21,14 @@ namespace Appketoan.Pages
             id = Utils.CIntDef(Request.QueryString["id"], 0);
             if (!IsPostBack)
             {
+                LoadChucvu();
                 Getinfo();
             }
+        }
+        private void LoadChucvu()
+        {
+            ddlChucvu.Items.Add(new ListItem(Cost.EMP_CONGTY_STR,Cost.EMP_CONGTY.ToString()));
+            ddlChucvu.Items.Add(new ListItem(Cost.EMP_TIEPTHI_STR, Cost.EMP_TIEPTHI.ToString()));
         }
         #region Getinfo
         private void Getinfo()
@@ -33,7 +39,7 @@ namespace Appketoan.Pages
                 if (Employer != null)
                 {
                     Txtname.Text = Employer.EMP_NAME;
-                    Txtchucvu.Text = Employer.EMP_CHUCVU;
+                    ddlChucvu.SelectedValue = Utils.CStrDef(Employer.EMP_CHUCVU);
                     Txtphone.Text = Employer.EMP_PHONE;
                     Txtaddress.Text = Employer.EMP_ADDRESS;
                 }
@@ -56,7 +62,7 @@ namespace Appketoan.Pages
                 {
                     var Employer = _EmployerRepo.GetById(id);
                     Employer.EMP_NAME = Txtname.Text;
-                    Employer.EMP_CHUCVU = Txtchucvu.Text;
+                    Employer.EMP_CHUCVU = Utils.CIntDef(ddlChucvu.SelectedItem.Value);
                     Employer.EMP_PHONE = Txtphone.Text;
                     Employer.EMP_ADDRESS = Txtaddress.Text;
                     _EmployerRepo.Update(Employer);
@@ -67,7 +73,7 @@ namespace Appketoan.Pages
                 {
                     EMPLOYER Employer = new EMPLOYER();
                     Employer.EMP_NAME = Txtname.Text;
-                    Employer.EMP_CHUCVU = Txtchucvu.Text;
+                    Employer.EMP_CHUCVU = Utils.CIntDef(ddlChucvu.SelectedItem.Value);
                     Employer.EMP_PHONE = Txtphone.Text;
                     Employer.EMP_ADDRESS = Txtaddress.Text;
                     Employer.USER_ID = Utils.CIntDef(Session["Userid"]);
