@@ -153,7 +153,7 @@
         border: 1px solid #aecaf0">
         <tr>
             <td>
-                <dx:ASPxPageControl ID="ASPxPageControl2" runat="server" ActiveTabIndex="0" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
+                <dx:ASPxPageControl ID="ASPxPageControl2" runat="server" ActiveTabIndex="3" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
                     CssPostfix="Aqua" SpriteCssFilePath="~/App_Themes/Aqua/{0}/sprite.css" TabSpacing="3px"
                     Height="100%" Width="100%">
                     <TabPages>
@@ -326,7 +326,8 @@
                                                 <asp:RadioButtonList ID="Rdstatuscontract" runat="server" RepeatColumns="3">
                                                     <asp:ListItem Value="2" Selected="True" Text="Còn góp"></asp:ListItem>
                                                     <asp:ListItem Value="3" Text="Thanh lý"></asp:ListItem>
-                                                    <asp:ListItem Value="4" Text="Dựt nợ"></asp:ListItem>
+                                                    <asp:ListItem Value="4" Text="Xử lý"></asp:ListItem>
+                                                    <asp:ListItem Value="5" Text="Chết"></asp:ListItem>
                                                 </asp:RadioButtonList>
                                             </td>
                                         </tr>
@@ -710,6 +711,58 @@
                                                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Loại hợp đồng">
                                                             <DataItemTemplate>
                                                                 <%# getstatusContrachis(Eval("CONTHIS_TYPE"))%>
+                                                            </DataItemTemplate>
+                                                        </dx:GridViewDataTextColumn>
+                                                    </Columns>
+                                                    <SettingsPager PageSize="100">
+                                                    </SettingsPager>
+                                                </dx:ASPxGridView>
+                                            </td>
+                                        </tr>
+                                        <tr id="trday1" runat="server" visible="false">
+                                            <td class="td_left" align="right" valign="top" nowrap="nowrap">
+                                                <span style="color: Red;">*</span>&nbsp;Ngày chuyển đổi
+                                            </td>
+                                            <td align="left" nowrap="nowrap">
+                                                <uc1:pickerAndCalendar ID="pickconvertday" runat="server" />
+                                            </td>
+                                        </tr>
+                                        <tr id="trday2" runat="server" visible="false">
+                                            <td class="td_left" align="right" valign="top" nowrap="nowrap">
+                                                <span style="color: Red;">*</span>&nbsp;Thứ đi thu
+                                            </td>
+                                            <td align="left" nowrap="nowrap">
+                                                <asp:DropDownList ID="ddlContractDay" runat="server" 
+                                                    CssClass="k-textbox textbox" Width="100px">
+                                                </asp:DropDownList>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" 
+                                                    ErrorMessage="*" ControlToValidate="ddlContractDay" ForeColor="Red" 
+                                                    InitialValue="0" ValidationGroup="G6">*</asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr id="trday3" runat="server" visible="false">
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <asp:LinkButton ID="lbConvertDay" ToolTip="Lưu và thêm mới" CssClass="k-button" runat="server"
+                                                    ValidationGroup="G6" OnClick="lbConvertDay_Click"><img alt="Lưu thông tin" src="../Images/icon-32-save-new.png" /></asp:LinkButton>                                               
+                                            </td>
+                                        </tr>
+                                        <tr id="trday4" runat="server" visible="false">
+                                            <td colspan="2">
+                                                <dx:ASPxGridView ID="ASPxGridViewDay" runat="server" AutoGenerateColumns="False"
+                                                    Width="100%" KeyFieldName="ID" Theme="Aqua">
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0" Visible="false">
+                                                        </dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Ngày chuyển đổi" Width="200px">
+                                                            <DataItemTemplate>
+                                                                    <%# getDate(Eval("CONTHIS_TRANSFER_DATE"))%>
+                                                            </DataItemTemplate>
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Thứ đi thu">
+                                                            <DataItemTemplate>
+                                                                <%# getstatusContrachisWeek(Eval("CONTHIS_WEEK"))%>
                                                             </DataItemTemplate>
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>

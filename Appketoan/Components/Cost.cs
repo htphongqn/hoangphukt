@@ -16,7 +16,8 @@ namespace Appketoan.Components
         public const int HD_CANGIAO = 1;
         public const int HD_CONGOP = 2;
         public const int HD_THANHLY = 3;
-        public const int HD_DUTNO = 4;
+        public const int HD_XULY = 4;
+        public const int HD_CHET = 5;
 
         //EMP_TYPE
         public const int EMP_TIEPTHI = 1;

@@ -324,7 +324,8 @@ namespace Appketoan.Pages
             {
                 case 2: return "Còn góp";
                 case 3: return "Thanh lý";
-                case 4: return "Dựt nợ";
+                case 4: return "Xử lý";
+                case 5: return "Chết";
             }
             return "";
         }

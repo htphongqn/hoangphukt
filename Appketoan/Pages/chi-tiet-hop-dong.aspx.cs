@@ -21,6 +21,7 @@ namespace Appketoan.Pages
         private EmployerRepo _EmployerRepo = new EmployerRepo();
         private ContractRepo _ContractRepo = new ContractRepo();
         private ContractHistoryRepo _ContractHistoryRepo = new ContractHistoryRepo();
+        private ContractHistoryWeekRepo _ContractHistoryWeekRepo = new ContractHistoryWeekRepo();
         private ContractDetailRepo _ContractDetailRepo = new ContractDetailRepo();
         private CustomerRepo _CustomerRepo = new CustomerRepo();
         private BillRepo _BillRepo = new BillRepo();
@@ -29,7 +30,6 @@ namespace Appketoan.Pages
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
-            _count = 1; _count1 = 1;
             _gtype = Utils.CIntDef(Session["Grouptype"]);
             id = Utils.CIntDef(Request.QueryString["id"]);
             cusid = Utils.CIntDef(Request.QueryString["cusid"]);
@@ -39,16 +39,19 @@ namespace Appketoan.Pages
             iduser = Utils.CIntDef(Session["Userid"]);
             activetab = Utils.CIntDef(Request.QueryString["activetab"]);
 
-            Load_customer();
-            LoadEmployee();
             if (!IsPostBack)
             {
                 pickdate_deli.returnDate = DateTime.Now;                
                 pickdateconvert.returnDate = DateTime.Now;
+                loadWeek();
+                Load_customer();
+                LoadEmployee();
                 Showinfo();
+
                 if (id > 0)
                 {
-                    getInfo_detail();
+                    Loadlist_historyweek();
+                    //getInfo_detail();
                     load_list_detail();
                     //bill
                     //showEmployer();
@@ -97,8 +100,257 @@ namespace Appketoan.Pages
 
             }
         }
+        
+        private void loadWeek()
+        {
+            ddlContractDay.Items.Add(new ListItem("", "0"));
+            ddlContractDay.Items.Add(new ListItem("Thứ hai", DayOfWeek.Monday.ToString()));
+            ddlContractDay.Items.Add(new ListItem("Thứ ba", DayOfWeek.Tuesday.ToString()));
+            ddlContractDay.Items.Add(new ListItem("Thứ tư", DayOfWeek.Wednesday.ToString()));
+            ddlContractDay.Items.Add(new ListItem("Thứ năm", DayOfWeek.Thursday.ToString()));
+            ddlContractDay.Items.Add(new ListItem("Thứ sáu", DayOfWeek.Friday.ToString()));
+            ddlContractDay.Items.Add(new ListItem("Thứ bảy", DayOfWeek.Saturday.ToString()));
+            ddlContractDay.Items.Add(new ListItem("Chủ nhật", DayOfWeek.Sunday.ToString()));
+        }
+        private DayOfWeek GetDayOfWeek(int index)
+        {
+            DayOfWeek d = DayOfWeek.Monday;
+            switch (index)
+            {
+                case 1:
+                    d = DayOfWeek.Monday;
+                    break;
+                case 2:
+                    d = DayOfWeek.Tuesday;
+                    break;
+                case 3:
+                    d = DayOfWeek.Wednesday;
+                    break;
+                case 4:
+                    d = DayOfWeek.Thursday;
+                    break;
+                case 5:
+                    d = DayOfWeek.Friday;
+                    break;
+                case 6:
+                    d = DayOfWeek.Saturday;
+                    break;
+                case 7:
+                    d = DayOfWeek.Sunday;
+                    break;
+                default:
+                    break;
+            }
+            return d;
+        }
+        private int OperationTwoWeek(DayOfWeek d1, DayOfWeek d2)//d1 hiện tại, d2 cần chuyển đổi
+        {
+            int op = 0;
+            switch (d1)
+            {
+                case DayOfWeek.Monday:
+                switch (d2)
+	            {
+                    case DayOfWeek.Monday:
+                        op = 0;
+                        break;
+                    case DayOfWeek.Tuesday:
+                        op = 1;
+                        break;
+                    case DayOfWeek.Wednesday:
+                        op = 2;
+                        break;
+                    case DayOfWeek.Thursday:
+                        op = 3;
+                        break;
+                    case DayOfWeek.Friday:
+                        op = 4;
+                        break;
+                    case DayOfWeek.Saturday:
+                        op = 5;
+                        break;
+                    case DayOfWeek.Sunday:
+                        op = 6;
+                        break;
+                    default:
+                        break;
+	            }
+                break;
+                case DayOfWeek.Tuesday:
+                switch (d2)
+	            {
+                    case DayOfWeek.Monday:
+                        op = -1;
+                        break;
+                    case DayOfWeek.Tuesday:
+                        op = 0;
+                        break;
+                    case DayOfWeek.Wednesday:
+                        op = 1;
+                        break;
+                    case DayOfWeek.Thursday:
+                        op = 2;
+                        break;
+                    case DayOfWeek.Friday:
+                        op = 3;
+                        break;
+                    case DayOfWeek.Saturday:
+                        op = 4;
+                        break;
+                    case DayOfWeek.Sunday:
+                        op = 5;
+                        break;
+                    default:
+                        break;
+	            }
+                break;
+                case DayOfWeek.Wednesday:
+                    switch (d2)
+	                {
+                        case DayOfWeek.Monday:
+                            op = -2;
+                            break;
+                        case DayOfWeek.Tuesday:
+                            op = -1;
+                            break;
+                        case DayOfWeek.Wednesday:
+                            op = 0;
+                            break;
+                        case DayOfWeek.Thursday:
+                            op = 1;
+                            break;
+                        case DayOfWeek.Friday:
+                            op = 2;
+                            break;
+                        case DayOfWeek.Saturday:
+                            op = 3;
+                            break;
+                        case DayOfWeek.Sunday:
+                            op = 4;
+                            break;
+                        default:
+                            break;
+	                }
+                    break;
+                case DayOfWeek.Thursday:
+                    switch (d2)
+	                {
+                        case DayOfWeek.Monday:
+                            op = -3;
+                            break;
+                        case DayOfWeek.Tuesday:
+                            op = -2;
+                            break;
+                        case DayOfWeek.Wednesday:
+                            op = -1;
+                            break;
+                        case DayOfWeek.Thursday:
+                            op = 0;
+                            break;
+                        case DayOfWeek.Friday:
+                            op = 1;
+                            break;
+                        case DayOfWeek.Saturday:
+                            op = 2;
+                            break;
+                        case DayOfWeek.Sunday:
+                            op = 3;
+                            break;
+                        default:
+                            break;
+	                }
+                    break;
+                case DayOfWeek.Friday:
+                    switch (d2)
+	                {
+                        case DayOfWeek.Monday:
+                            op = -4;
+                            break;
+                        case DayOfWeek.Tuesday:
+                            op = -3;
+                            break;
+                        case DayOfWeek.Wednesday:
+                            op = -2;
+                            break;
+                        case DayOfWeek.Thursday:
+                            op = -1;
+                            break;
+                        case DayOfWeek.Friday:
+                            op = 0;
+                            break;
+                        case DayOfWeek.Saturday:
+                            op = 1;
+                            break;
+                        case DayOfWeek.Sunday:
+                            op = 2;
+                            break;
+                        default:
+                            break;
+	                }
+                    break;
+                case DayOfWeek.Saturday:
+                    switch (d2)
+	                {
+                        case DayOfWeek.Monday:
+                            op = -5;
+                            break;
+                        case DayOfWeek.Tuesday:
+                            op = -4;
+                            break;
+                        case DayOfWeek.Wednesday:
+                            op = -3;
+                            break;
+                        case DayOfWeek.Thursday:
+                            op = -2;
+                            break;
+                        case DayOfWeek.Friday:
+                            op = -1;
+                            break;
+                        case DayOfWeek.Saturday:
+                            op = 0;
+                            break;
+                        case DayOfWeek.Sunday:
+                            op = 1;
+                            break;
+                        default:
+                            break;
+	                }
+                    break;
+                case DayOfWeek.Sunday:
+                    switch (d2)
+	                {
+                        case DayOfWeek.Monday:
+                            op = -6;
+                            break;
+                        case DayOfWeek.Tuesday:
+                            op = -5;
+                            break;
+                        case DayOfWeek.Wednesday:
+                            op = -4;
+                            break;
+                        case DayOfWeek.Thursday:
+                            op = -3;
+                            break;
+                        case DayOfWeek.Friday:
+                            op = -2;
+                            break;
+                        case DayOfWeek.Saturday:
+                            op = -1;
+                            break;
+                        case DayOfWeek.Sunday:
+                            op = 0;
+                            break;
+                        default:
+                            break;
+	                }
+                    break;
+                default:
+                    break;
+            }
+            return op;
+        }
+        
         #region Info
-
         private void Load_customer()
         {
             var list = _CustomerRepo.GetAll();
@@ -599,10 +851,17 @@ namespace Appketoan.Pages
         }
         private void load_list_detail()
         {
-            var list = db.CONTRACT_DETAILs.Where(n => n.ID_CONT == id);
+            var list = db.CONTRACT_DETAILs.Where(n => n.ID_CONT == id).OrderBy(n=>n.CONTD_DATE_THU_TT).OrderBy(n=>n.CONTD_DATE_THU);
             HttpContext.Current.Session["dienmay.listctdetail"] = list;
             ASPxGridView_contractdetail.DataSource = list;
             ASPxGridView_contractdetail.DataBind();
+            if(list.ToList().Count > 0)
+            {
+                trday1.Visible =true;
+                trday2.Visible =true;
+                trday3.Visible =true;
+                trday4.Visible =true;
+            }
         }
         private decimal getno()
         {
@@ -819,6 +1078,13 @@ namespace Appketoan.Pages
             ASPxGridView_historyConvert.DataSource = list;
             ASPxGridView_historyConvert.DataBind();
         }
+        private void Loadlist_historyweek()
+        {
+            var list = _ContractHistoryWeekRepo.GetListByContractID(id);
+            HttpContext.Current.Session["dienmay.listhistoryWeek"] = list;
+            ASPxGridViewDay.DataSource = list;
+            ASPxGridViewDay.DataBind();
+        }
         private int getTypeContract()
         {
             var list = db.CONTRACTs.Where(n => n.ID == id).ToList();
@@ -842,6 +1108,12 @@ namespace Appketoan.Pages
         }
         private void Save_history()
         {
+            CONTRACT_DETAIL contractNextpay = _ContractDetailRepo.GetNextPayDateConveByContractId(id, pickdateconvert.returnDate);
+            if (contractNextpay == null)
+            {
+                MessageBox1.ShowMessage("Không thể chuyển đổi loại hợp đồng. Danh sách các kỳ chưa thu, không có ngày lớn hơn ngày chuyển đổi!", "Thông báo");
+                return;
+            }
             var contract = _ContractRepo.GetById(id);
             //check với loại hiên tại
             if (contract.CONT_TYPE == Utils.CIntDef(Rdtypecont_convert.SelectedValue))
@@ -864,12 +1136,7 @@ namespace Appketoan.Pages
             _ContractHistoryRepo.Create(cthis);
             //cập nhật lại kỳ thu chưa góp so với ngày chuyển đổi
             DateTime dtlastpay = contract.CONT_DELI_DATE.Value;
-            CONTRACT_DETAIL contractNextpay = _ContractDetailRepo.GetNextPayDateConveByContractId(id, pickdateconvert.returnDate);
-            if (contractNextpay == null)
-            {
-                MessageBox1.ShowMessage("Không thể chuyển đổi loại hợp đồng. Danh sách các kỳ chưa thu, không có ngày lớn hơn ngày chuyển đổi!", "Thông báo");
-                return;
-            }
+
             var contractLastpay = _ContractDetailRepo.GetLastPayByContractId(id, pickdateconvert.returnDate);//lấy ngày của kỳ trước đó
             if (contractLastpay != null)
             {
@@ -894,6 +1161,57 @@ namespace Appketoan.Pages
                 }
                 _ContractDetailRepo.Update(item);
             }
+
+            Response.Redirect("chi-tiet-hop-dong.aspx?id=" + id + "&activetab=3");
+        }
+        private void Save_historyweek()
+        {
+            CONTRACT_DETAIL contractNextpay = _ContractDetailRepo.GetNextPayDateConveByContractId(id, pickconvertday.returnDate);
+            if (contractNextpay == null)
+            {
+                MessageBox1.ShowMessage("Không thể chuyển đổi thứ đi thu. Danh sách các kỳ chưa thu, không có ngày lớn hơn ngày chuyển đổi!", "Thông báo");
+                return;
+            }
+            //check với thứ hiên tại
+            DayOfWeek WCurrent = contractNextpay.CONTD_DATE_THU.Value.DayOfWeek;
+            DayOfWeek WSelect = GetDayOfWeek(ddlContractDay.SelectedIndex);
+            if (WCurrent == WSelect)
+            {
+                MessageBox1.ShowMessage("Thứ đi thu trùng với thứ hiện tại!", "Thông báo");
+                return;
+            }
+            int op = OperationTwoWeek(WCurrent, WSelect);
+            contractNextpay.CONTD_DATE_THU = contractNextpay.CONTD_DATE_THU.Value.AddDays(op);
+            _ContractDetailRepo.Update(contractNextpay);
+            //cập nhật lại kỳ thu chưa góp so với ngày chuyển đổi
+            var contract = _ContractRepo.GetById(id);
+            var contractListpay = _ContractDetailRepo.GetListPayDateConveByContractId(id, pickconvertday.returnDate);
+            
+            for (int i = 1; i < contractListpay.Count; i++)
+			{
+                if (contract.CONT_TYPE == 3)
+                {
+                    contractListpay[i].CONTD_DATE_THU = contractNextpay.CONTD_DATE_THU.Value.AddMonths(i);
+                }
+                else if (contract.CONT_TYPE == 2)
+                {
+                    contractListpay[i].CONTD_DATE_THU = contractNextpay.CONTD_DATE_THU.Value.AddDays(i * 2 * 7);
+                }
+                else if (contract.CONT_TYPE == 1)
+                {
+                    contractListpay[i].CONTD_DATE_THU = contractNextpay.CONTD_DATE_THU.Value.AddDays(i * 7);
+                }
+                _ContractDetailRepo.Update(contractListpay[i]);
+                
+            }
+
+            //ghi lịch sử
+            CONTRACT_HISTORYWEEK cthis = new CONTRACT_HISTORYWEEK();
+            cthis.ID_CONT = id;
+            cthis.CONTHIS_WEEK = Utils.CIntDef(ddlContractDay.SelectedIndex + 1);
+            cthis.CONTHIS_TRANSFER_DATE = pickconvertday.returnDate;
+            cthis.USER_ID = Utils.CIntDef(Session["Userid"]);
+            _ContractHistoryWeekRepo.Create(cthis);
             Response.Redirect("chi-tiet-hop-dong.aspx?id=" + id + "&activetab=3");
         }
         private int getTypecontractLast()
@@ -925,6 +1243,29 @@ namespace Appketoan.Pages
                 case 1: return "1 Tuần";
                 case 2: return "2 Tuần";
                 case 3: return "1 Tháng";
+            }
+            return "";
+        }
+        public string getstatusContrachisWeek(object sta)
+        {
+            switch (Utils.CIntDef(sta))
+            {
+                case 2:
+                    return "Thứ 2";                    
+                case 3:
+                    return "Thứ 3";
+                case 4:
+                    return "Thứ 4";
+                case 5:
+                    return "Thứ 5";
+                case 6:
+                    return "Thứ 6";
+                case 7:
+                    return "Thứ 7";
+                case 8:
+                    return "Chủ nhật";
+                default:
+                    break;
             }
             return "";
         }
@@ -1035,6 +1376,11 @@ namespace Appketoan.Pages
             Delete_history();
             
         }
+        protected void lbConvertDay_Click(object sender, EventArgs e)
+        {
+            Save_historyweek();
+        }
+
 
     }
 }

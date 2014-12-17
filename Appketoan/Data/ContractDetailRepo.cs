@@ -56,7 +56,7 @@ namespace Appketoan.Data
                 //    return detail;
                 //}
                 //return GetListByContractId(id).Where(a => a.CONTD_PAY_PRICE != null && a.CONTD_PAY_PRICE != 0 && (detail.CONTD_DATE_THU.Value - DateTime.Today).Days < 0).OrderByDescending(a => a.ID).Take(1).Single();
-                var detail = GetListByContractId(id).Where(a => (a.CONTD_PAY_PRICE == null || a.CONTD_PAY_PRICE == 0) && (a.CONTD_DATE_THU.Value - date).Days >= 0).OrderBy(a => a.ID).Take(1).Single();
+                var detail = GetListByContractId(id).Where(a => (a.CONTD_PAY_PRICE == null || a.CONTD_PAY_PRICE == 0) && (a.CONTD_DATE_THU.Value - date).Days >= 0).OrderBy(a => a.ID).OrderBy(n => n.CONTD_DATE_THU_TT).OrderBy(n => n.CONTD_DATE_THU).Take(1).Single();
                 return detail;
             }
             catch
@@ -66,7 +66,7 @@ namespace Appketoan.Data
         }
         public virtual List<CONTRACT_DETAIL> GetListPayDateConveByContractId(int id, DateTime date)
         {
-            return GetListByContractId(id).Where(a => (a.CONTD_PAY_PRICE == null || a.CONTD_PAY_PRICE == 0) && (a.CONTD_DATE_THU.Value - date).Days >= 0).OrderBy(a => a.ID).ToList();
+            return GetListByContractId(id).Where(a => (a.CONTD_PAY_PRICE == null || a.CONTD_PAY_PRICE == 0) && (a.CONTD_DATE_THU.Value - date).Days >= 0).OrderBy(a => a.ID).OrderBy(n=>n.CONTD_DATE_THU_TT).OrderBy(n=>n.CONTD_DATE_THU).ToList();
         }
         public virtual List<CONTRACT_DETAIL> GetListNoPriceByContractId(int id)
         {

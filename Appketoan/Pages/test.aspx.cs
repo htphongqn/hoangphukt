@@ -11,14 +11,15 @@ namespace Appketoan.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            bool b = null == 1;
+            bool b = (null == 1);
             string[] empBHIds = "123,23,".Split(',');
             string[] empBH2Ids = "123,".Split(',');
             string[] empBH3Ids = "123,34".Split(',');
 
             DateTime t = DateTime.Today;
             DateTime n = DateTime.Now;
-            DayOfWeek dow = DateTime.Now.DayOfWeek;            
+            DayOfWeek dow = DateTime.Now.DayOfWeek;
+            string thu2 = DayOfWeek.Monday.ToString();
         }
     }
 }

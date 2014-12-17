@@ -1,68 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="vpro_dienmayhoangphu" Class="AppketoanDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=172.28.248.1;Initial Catalog=vpro_dienmayhoangphu;Persist Security Info=True;User ID=hoangphu" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="vpro_dienmayhoangphuConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.[USER]" Member="USERs">
-    <Type Name="USER">
-      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="USER_NAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="USER_UN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="USER_PW" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="USER_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SALT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
-      <Column Name="USER_ADDRESS" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
-      <Column Name="USER_PHONE" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
-      <Column Name="USER_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="GROUP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="USER_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="USER_THEM" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="USER_SUA" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="USER_XOA" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="USER_CAPNHAT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.[GROUP]" Member="GROUPs">
-    <Type Name="GROUP">
-      <Column Name="GROUP_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="GROUP_NAME" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
-      <Column Name="GROUP_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.GROUP_MENU" Member="GROUP_MENUs">
-    <Type Name="GROUP_MENU">
-      <Column Name="GROUP_MENU_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MENU_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GROUP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="[ORDER]" Member="ORDER" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.MENU_PARENT" Member="MENU_PARENTs">
-    <Type Name="MENU_PARENT">
-      <Column Name="MENU_PAR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MENU_NAME" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
-      <Column Name="MENU_PAR_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MENU_RANK" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MENU_PARENT" Member="MENU_PARENT1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MENU_PARENT_LINK" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CONTRACT_HISTORY" Member="CONTRACT_HISTORies">
-    <Type Name="CONTRACT_HISTORY">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_CONT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CONTHIS_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CONTHIS_TRANSFER_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CUSTOMER_HISTORY" Member="CUSTOMER_HISTORies">
-    <Type Name="CUSTOMER_HISTORY">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_CUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CUSHIS_DATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
-      <Column Name="CUSHIS_TYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.CONTRACT" Member="CONTRACTs">
     <Type Name="CONTRACT">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -94,17 +31,10 @@
       <Column Name="CUS_GT" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
       <Column Name="CONT_NOTE_DELI" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
       <Column Name="CONT_NOTE_XM" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.BILL" Member="BILLs">
-    <Type Name="BILL">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_CONT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BILL_STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ID_EMPLOY" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BILL_DELI_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="BILLL_RECEIVER_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="CONTD_DATE_THU" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Association Name="CONTRACT_CONTRACT_DETAIL" Member="CONTRACT_DETAILs" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_DETAIL" />
+      <Association Name="CONTRACT_CONTRACT_HISTORY" Member="CONTRACT_HISTORies" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_HISTORY" />
+      <Association Name="CONTRACT_BILL" Member="BILLs" ThisKey="ID" OtherKey="ID_CONT" Type="BILL" />
+      <Association Name="CONTRACT_CONTRACT_HISTORYWEEK" Member="CONTRACT_HISTORYWEEKs" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_HISTORYWEEK" />
     </Type>
   </Table>
   <Table Name="dbo.CONTRACT_DETAIL" Member="CONTRACT_DETAILs">
@@ -116,6 +46,39 @@
       <Column Name="CONTD_PAY_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="CONTD_DEBT_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="CONTD_DEBT_PRICE_TT" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="CONTRACT_CONTRACT_DETAIL" Member="CONTRACT" ThisKey="ID_CONT" OtherKey="ID" Type="CONTRACT" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CONTRACT_HISTORY" Member="CONTRACT_HISTORies">
+    <Type Name="CONTRACT_HISTORY">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_CONT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONTHIS_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONTHIS_TRANSFER_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CONTRACT_CONTRACT_HISTORY" Member="CONTRACT" ThisKey="ID_CONT" OtherKey="ID" Type="CONTRACT" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BILL" Member="BILLs">
+    <Type Name="BILL">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_CONT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BILL_STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_EMPLOY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BILL_DELI_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="BILLL_RECEIVER_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CONTD_DATE_THU" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Association Name="CONTRACT_BILL" Member="CONTRACT" ThisKey="ID_CONT" OtherKey="ID" Type="CONTRACT" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CONTRACT_HISTORYWEEK" Member="CONTRACT_HISTORYWEEKs">
+    <Type Name="CONTRACT_HISTORYWEEK">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_CONT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONTHIS_WEEK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONTHIS_TRANSFER_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CONTRACT_CONTRACT_HISTORYWEEK" Member="CONTRACT" ThisKey="ID_CONT" OtherKey="ID" Type="CONTRACT" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.CUSTOMER" Member="CUSTOMERs">
@@ -129,6 +92,17 @@
       <Column Name="CUS_CREATE_DATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
       <Column Name="CUS_UPDATE_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
       <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CUSTOMER_CUSTOMER_HISTORY" Member="CUSTOMER_HISTORies" ThisKey="ID" OtherKey="ID_CUS" Type="CUSTOMER_HISTORY" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CUSTOMER_HISTORY" Member="CUSTOMER_HISTORies">
+    <Type Name="CUSTOMER_HISTORY">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_CUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CUSHIS_DATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CUSHIS_TYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CUSTOMER_CUSTOMER_HISTORY" Member="CUSTOMER" ThisKey="ID_CUS" OtherKey="ID" Type="CUSTOMER" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.CUSTOMER_NODELI" Member="CUSTOMER_NODELIs">
@@ -157,6 +131,51 @@
       <Column Name="EMP_ADDRESS" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="EMP_DATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
       <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[GROUP]" Member="GROUPs">
+    <Type Name="GROUP">
+      <Column Name="GROUP_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GROUP_NAME" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="GROUP_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GROUP_MENU" Member="GROUP_MENUs">
+    <Type Name="GROUP_MENU">
+      <Column Name="GROUP_MENU_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MENU_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GROUP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[ORDER]" Member="ORDER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MENU_PARENT" Member="MENU_PARENTs">
+    <Type Name="MENU_PARENT">
+      <Column Name="MENU_PAR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MENU_NAME" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="MENU_PAR_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MENU_RANK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MENU_PARENT" Member="MENU_PARENT1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MENU_PARENT_LINK" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[USER]" Member="USERs">
+    <Type Name="USER">
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USER_NAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="USER_UN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="USER_PW" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="USER_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SALT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="USER_EMAIL" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="USER_ADDRESS" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="USER_PHONE" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="USER_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="GROUP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USER_ACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USER_THEM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USER_SUA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USER_XOA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USER_CAPNHAT" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.converdate" Method="converdate" IsComposable="true">
