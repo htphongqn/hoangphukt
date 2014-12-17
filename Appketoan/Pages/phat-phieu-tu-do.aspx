@@ -41,9 +41,7 @@
                     <td align="left">
                         <asp:DropDownList ID="ddlEmployerSearch" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
                     </asp:DropDownList>
-                        <asp:DropDownList ID="ddlContractDay" runat="server" CssClass="k-textbox textbox">
-                        </asp:DropDownList>
-                    
+                                           
                         <asp:LinkButton CssClass="k-button" ID="lbtnSearch" ToolTip="Tìm kiếm" runat="server"
                             OnClick="lbtnSearch_Click"><span class="p-i-search"></span></asp:LinkButton>
                     </td>
@@ -57,10 +55,7 @@
                     <asp:LinkButton CssClass="k-button" ID="lbtnPhatphieu" ToolTip="Phát phiếu" runat="server" ValidationGroup="G2" OnClientClick="return confirm('Phát phiếu đã chọn cho nhân viên?');"
                             OnClick="lbtnPhatphieu_Click">Phát phiếu</asp:LinkButton>
                     <asp:LinkButton CssClass="k-button" ID="lbtnPhatphieudachon" ToolTip="Phát phiếu đã chọn" runat="server" OnClientClick="return confirm('Phát phiếu đã chọn?');"
-                            OnClick="lbtnPhatphieudachon_Click">Phát phiếu đã chọn</asp:LinkButton>
-                <asp:LinkButton CssClass="k-button" ID="lbtnPhatphieumacdinh" 
-                             ToolTip="Phát phiếu mặc định" runat="server" onclick="lbtnPhatphieumacdinh_Click" OnClientClick="return confirm('Phát tất cả các phiếu mặc định cho nhân viên?');"
-                            >Phát phiếu mặc định</asp:LinkButton>
+                            OnClick="lbtnPhatphieudachon_Click">Phát phiếu đã chọn</asp:LinkButton>                
                     </div>
                     
                 
@@ -128,13 +123,7 @@
                             <DataItemTemplate>
                             <asp:Label ID="lbDatethu" runat="server" Text='<%# getDateThu(Eval("ID_CONT"),Eval("CONTD_DATE_THU"))%>'></asp:Label>
                             </DataItemTemplate>
-                        </dx:GridViewDataDateColumn>
-                        <%--<dx:GridViewDataTextColumn VisibleIndex="1" Caption="Kỳ thu" FieldName="EMP_PHONE">
-                            <DataItemTemplate>
-                                <%# Eval("EMP_PHONE")%>
-                            </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>--%>
-                        
+                        </dx:GridViewDataDateColumn>                        
                     </Columns>
                     <%--<Settings ShowHorizontalScrollBar="true" />--%>
                     <Settings VerticalScrollableHeight="350" />

@@ -795,26 +795,26 @@ namespace Appketoan.Pages
                 i.DATE_STATUS = DateTime.Now;
                 _ContractRepo.Create(i);
 
-                //tạo details các kỳ thu dựa vào ngày giao hàng và loại hợp đồng
-                for (int j = 1; j <= i.CONT_WEEK_COUNT; j++)
-                {
-                    CONTRACT_DETAIL cd = new CONTRACT_DETAIL();
-                    cd.ID_CONT = i.ID;
-                    if (i.CONT_TYPE == 3)
-                    {
-                        cd.CONTD_DATE_THU = i.CONT_DELI_DATE.Value.AddMonths(j);
-                    }
-                    else if (i.CONT_TYPE == 2)
-                    {
-                        cd.CONTD_DATE_THU = i.CONT_DELI_DATE.Value.AddDays(j * 2 * 7);
-                    }
-                    else if (i.CONT_TYPE == 1)
-                    {
-                        cd.CONTD_DATE_THU = i.CONT_DELI_DATE.Value.AddDays(j * 7);
-                    }
-                    cd.CONTD_DEBT_PRICE = i.CONT_DEBT_PRICE - (i.CONT_WEEK_PRICE * j);
-                    _ContractDetailRepo.Create(cd);
-                }
+                ////tạo details các kỳ thu dựa vào ngày giao hàng và loại hợp đồng
+                //for (int j = 1; j <= i.CONT_WEEK_COUNT; j++)
+                //{
+                //    CONTRACT_DETAIL cd = new CONTRACT_DETAIL();
+                //    cd.ID_CONT = i.ID;
+                //    if (i.CONT_TYPE == 3)
+                //    {
+                //        cd.CONTD_DATE_THU = i.CONT_DELI_DATE.Value.AddMonths(j);
+                //    }
+                //    else if (i.CONT_TYPE == 2)
+                //    {
+                //        cd.CONTD_DATE_THU = i.CONT_DELI_DATE.Value.AddDays(j * 2 * 7);
+                //    }
+                //    else if (i.CONT_TYPE == 1)
+                //    {
+                //        cd.CONTD_DATE_THU = i.CONT_DELI_DATE.Value.AddDays(j * 7);
+                //    }
+                //    cd.CONTD_DEBT_PRICE = i.CONT_DEBT_PRICE - (i.CONT_WEEK_PRICE * j);
+                //    _ContractDetailRepo.Create(cd);
+                //}
                 //tạo lịch sử chuyển đổi đầu tiên
                 CONTRACT_HISTORY ch = new CONTRACT_HISTORY();
                 ch.ID_CONT = i.ID;
@@ -1111,7 +1111,13 @@ namespace Appketoan.Pages
             CONTRACT_DETAIL contractNextpay = _ContractDetailRepo.GetNextPayDateConveByContractId(id, pickdateconvert.returnDate);
             if (contractNextpay == null)
             {
-                MessageBox1.ShowMessage("Không thể chuyển đổi loại hợp đồng. Danh sách các kỳ chưa thu, không có ngày lớn hơn ngày chuyển đổi!", "Thông báo");
+                MessageBox1.ShowMessage("Ngày chuyển đổi không được lớn hơn danh sách các kỳ chưa thu!", "Thông báo");
+                return;
+            }
+            var contractList = _ContractDetailRepo.GetListByContractId(id);
+            if (contractList != null && contractList.Count > 0 && contractList[0].CONTD_DATE_THU.Value >= pickdateconvert.returnDate)
+            {
+                MessageBox1.ShowMessage("Ngày chuyển đổi phải lớn hơn ngày thu đầu tiên!", "Thông báo");
                 return;
             }
             var contract = _ContractRepo.GetById(id);
@@ -1169,7 +1175,13 @@ namespace Appketoan.Pages
             CONTRACT_DETAIL contractNextpay = _ContractDetailRepo.GetNextPayDateConveByContractId(id, pickconvertday.returnDate);
             if (contractNextpay == null)
             {
-                MessageBox1.ShowMessage("Không thể chuyển đổi thứ đi thu. Danh sách các kỳ chưa thu, không có ngày lớn hơn ngày chuyển đổi!", "Thông báo");
+                MessageBox1.ShowMessage("Ngày chuyển đổi không được lớn hơn danh sách các kỳ chưa thu!", "Thông báo");
+                return;
+            }
+            var contractList = _ContractDetailRepo.GetListByContractId(id);
+            if (contractList != null && contractList.Count > 0 && contractList[0].CONTD_DATE_THU.Value >= pickconvertday.returnDate)
+            {
+                MessageBox1.ShowMessage("Ngày chuyển đổi phải lớn hơn ngày thu đầu tiên!", "Thông báo");
                 return;
             }
             //check với thứ hiên tại
@@ -1269,6 +1281,7 @@ namespace Appketoan.Pages
             }
             return "";
         }
+        
         public string getLinkConvert(object idhis)
         {
             return "chi-tiet-hop-dong.aspx?id=" + id + "&idhistory=" + idhis;

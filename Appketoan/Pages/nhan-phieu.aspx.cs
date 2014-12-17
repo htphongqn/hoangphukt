@@ -97,21 +97,34 @@ namespace Appketoan.Pages
                         CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetByContractIdAndDatethu(b.ID_CONT.Value, b.CONTD_DATE_THU.Value);
                         if (contractdetail != null)
                         {
-                            var checklistdetail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == contractdetail.ID_CONT && a.CONTD_DATE_THU != null && (a.CONTD_DATE_THU.Value - contractdetail.CONTD_DATE_THU.Value).Days >= 0).ToList();
-                            if (checklistdetail != null && checklistdetail.Count > 0)
-                            {
-                                contractdetail.CONTD_PAY_PRICE = price;
-                                contractdetail.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
-                                _ContractDetailRepo.Update(contractdetail);
-                            }
-                            else
-                            {
-                                CONTRACT_DETAIL de = new CONTRACT_DETAIL();
-                                de.ID_CONT = contractdetail.ID_CONT;
-                                de.CONTD_PAY_PRICE = price;
-                                de.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
-                                _ContractDetailRepo.Create(de);
-                            }
+                            //var checklistdetail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == contractdetail.ID_CONT && a.CONTD_DATE_THU != null && (a.CONTD_DATE_THU.Value - contractdetail.CONTD_DATE_THU.Value).Days >= 0).ToList();
+                            //if (checklistdetail != null && checklistdetail.Count > 0)
+                            //{
+                                if (Utils.CDecDef(contractdetail.CONTD_PAY_PRICE) == 0)
+                                {
+                                    contractdetail.CONTD_PAY_PRICE = price;
+                                    contractdetail.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
+                                    _ContractDetailRepo.Update(contractdetail);
+                                }
+                                else
+                                {
+                                    CONTRACT_DETAIL contractde = new CONTRACT_DETAIL();
+                                    contractde.CONTD_DATE_THU = contractdetail.CONTD_DATE_THU;
+                                    contractde.ID_CONT = contractdetail.ID_CONT;
+                                    contractde.CONTD_PAY_PRICE = price;
+                                    contractde.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
+                                    _ContractDetailRepo.Create(contractde);
+                                }
+                            //}
+                            //else
+                            //{
+                            //    CONTRACT_DETAIL de = new CONTRACT_DETAIL();
+                            //    de.CONTD_DATE_THU = contractdetail.CONTD_DATE_THU;
+                            //    de.ID_CONT = contractdetail.ID_CONT;
+                            //    de.CONTD_PAY_PRICE = price;
+                            //    de.CONTD_DATE_THU_TT = pickdate_recei.returnDate;
+                            //    _ContractDetailRepo.Create(de);
+                            //}
                         }
 
                         CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(b.ID_CONT));

@@ -19,6 +19,7 @@ namespace Appketoan.Pages
         private EmployerRepo _EmployerRepo = new EmployerRepo();
         private ContractRepo _ContractRepo = new ContractRepo();
         private ContractDetailRepo _ContractDetailRepo = new ContractDetailRepo();
+        private ContractHistoryWeekRepo _ContractHistoryWeekRepo = new ContractHistoryWeekRepo();
         private CustomerRepo _CustomerRepo = new CustomerRepo();
         private BillRepo _BillRepo = new BillRepo();
         #endregion
@@ -27,88 +28,10 @@ namespace Appketoan.Pages
             if (!IsPostBack)
             {
                 showEmployer();
-                loadDateInWeek();
-                LoadContract_Canphatphieu();                
+                LoadLandau();                
             }
         }
-        private void loadDateInWeek()
-        {
-            switch (DateTime.Today.DayOfWeek)
-            {
-                case DayOfWeek.Monday:
-                    ddlContractDay.Items.Add(new ListItem("Thứ hai", DateTime.Today.AddDays(0).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ ba", DateTime.Today.AddDays(1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ tư", DateTime.Today.AddDays(2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ năm", DateTime.Today.AddDays(3).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ sáu", DateTime.Today.AddDays(4).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ bảy", DateTime.Today.AddDays(5).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Chủ nhật", DateTime.Today.AddDays(6).ToString("yyyy/MM/dd")));
-                    ddlContractDay.SelectedValue = DateTime.Today.AddDays(0).ToString("yyyy/MM/dd");
-                    break;
-                case DayOfWeek.Tuesday:
-                    ddlContractDay.Items.Add(new ListItem("Thứ hai", DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ ba", DateTime.Today.AddDays(0).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ tư", DateTime.Today.AddDays(1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ năm", DateTime.Today.AddDays(2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ sáu", DateTime.Today.AddDays(3).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ bảy", DateTime.Today.AddDays(4).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Chủ nhật", DateTime.Today.AddDays(5).ToString("yyyy/MM/dd")));
-                    ddlContractDay.SelectedValue = DateTime.Today.AddDays(0).ToString("yyyy/MM/dd");
-                    break;
-                case DayOfWeek.Wednesday:
-                    ddlContractDay.Items.Add(new ListItem("Thứ hai", DateTime.Today.AddDays(-2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ ba", DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ tư", DateTime.Today.AddDays(0).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ năm", DateTime.Today.AddDays(1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ sáu", DateTime.Today.AddDays(2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ bảy", DateTime.Today.AddDays(3).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Chủ nhật", DateTime.Today.AddDays(4).ToString("yyyy/MM/dd")));
-                    ddlContractDay.SelectedValue = DateTime.Today.AddDays(0).ToString("yyyy/MM/dd");
-                    break;
-                case DayOfWeek.Thursday:
-                    ddlContractDay.Items.Add(new ListItem("Thứ hai", DateTime.Today.AddDays(-3).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ ba", DateTime.Today.AddDays(-2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ tư", DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ năm", DateTime.Today.AddDays(0).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ sáu", DateTime.Today.AddDays(1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ bảy", DateTime.Today.AddDays(2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Chủ nhật", DateTime.Today.AddDays(3).ToString("yyyy/MM/dd")));
-                    ddlContractDay.SelectedValue = DateTime.Today.AddDays(0).ToString("yyyy/MM/dd");
-                    break;
-                case DayOfWeek.Friday:
-                    ddlContractDay.Items.Add(new ListItem("Thứ hai", DateTime.Today.AddDays(-4).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ ba", DateTime.Today.AddDays(-3).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ tư", DateTime.Today.AddDays(-2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ năm", DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ sáu", DateTime.Today.AddDays(0).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ bảy", DateTime.Today.AddDays(1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Chủ nhật", DateTime.Today.AddDays(2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.SelectedValue = DateTime.Today.AddDays(0).ToString("yyyy/MM/dd");
-                    break;
-                case DayOfWeek.Saturday:
-                    ddlContractDay.Items.Add(new ListItem("Thứ hai", DateTime.Today.AddDays(-5).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ ba", DateTime.Today.AddDays(-4).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ tư", DateTime.Today.AddDays(-3).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ năm", DateTime.Today.AddDays(-2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ sáu", DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ bảy", DateTime.Today.AddDays(0).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Chủ nhật", DateTime.Today.AddDays(1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.SelectedValue = DateTime.Today.AddDays(0).ToString("yyyy/MM/dd");
-                    break;
-                case DayOfWeek.Sunday:
-                    ddlContractDay.Items.Add(new ListItem("Thứ hai", DateTime.Today.AddDays(-6).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ ba", DateTime.Today.AddDays(-5).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ tư", DateTime.Today.AddDays(-4).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ năm", DateTime.Today.AddDays(-3).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ sáu", DateTime.Today.AddDays(-2).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Thứ bảy", DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd")));
-                    ddlContractDay.Items.Add(new ListItem("Chủ nhật", DateTime.Today.AddDays(0).ToString("yyyy/MM/dd")));
-                    ddlContractDay.SelectedValue = DateTime.Today.AddDays(0).ToString("yyyy/MM/dd");
-                    break;
-                default:
-                    break;
-            }
-        }
+        
         protected void lbtnSearch_Click(object sender, EventArgs e)
         {
             LoadContract_Canphatphieu();
@@ -132,6 +55,25 @@ namespace Appketoan.Pages
             ls.Selected = true;
             ddlEmployerSearch.Items.Insert(0, ls);
         }
+        private void LoadLandau()
+        {
+            var l = (from a in db.CONTRACTs
+                     where a.CONT_STATUS == Cost.HD_CONGOP //hợp đồng còn góp
+                     && (a.BILL_STATUS != 1 || a.BILL_STATUS == null) //chưa giao phiếu
+                     && (a.EMP_TN == null)
+                     && (a.IS_DELETE == false || a.IS_DELETE == null)
+                     select new
+                     {
+                         ID_CONT = a.ID,
+                         a.CONT_NO,
+                         a.EMP_TN,
+                         a.CONT_DEBT_PRICE,
+                         CONTD_DATE_THU = DateTime.Today
+                     }).OrderByDescending(n => n.CONT_NO).ToList();
+            Session["listtudo"] = l;
+            ASPxGridView1_phatphieu.DataSource = l;
+            ASPxGridView1_phatphieu.DataBind();
+        }
         private void LoadContract_Canphatphieu()
         {
             string keyword = txtKeyword.Value;
@@ -141,18 +83,15 @@ namespace Appketoan.Pages
                      where a.CONT_STATUS == Cost.HD_CONGOP //hợp đồng còn góp
                      && (a.BILL_STATUS != 1 || a.BILL_STATUS == null) //chưa giao phiếu
                      && (b.CONTD_PAY_PRICE == 0 || b.CONTD_PAY_PRICE == null)//lấy list chưa đóng tiền
-                     && b.CONTD_DATE_THU != null
-                     && ((b.CONTD_DATE_THU.Value - DateTime.Parse(ddlContractDay.SelectedValue)).Days <= 0)  
-                     && (b.CONTD_DATE_THU.Value.DayOfWeek == DateTime.Parse(ddlContractDay.SelectedValue).DayOfWeek)
                      && (a.CONT_NO.Contains(keyword) || keyword == null || keyword == "")
                      && (a.EMP_TN == EmpTNId || EmpTNId == 0)
+                     && (a.IS_DELETE == false || a.IS_DELETE == null)
                      select new
                      {                         
                          a.EMP_TN,
-                         //b.ID,
                          b.ID_CONT,
                          a.CONT_DEBT_PRICE,
-                         CONTD_DATE_THU = ddlContractDay.SelectedValue
+                         CONTD_DATE_THU = DateTime.Today
                      }).Distinct().OrderByDescending(n=>n.ID_CONT).ToList();
 
             int z = 0; List<int> arr = new List<int>();
@@ -176,10 +115,11 @@ namespace Appketoan.Pages
             {
                 l.RemoveAt(arr[i]);
             }
-
+            Session["listtudo"] = l;
             ASPxGridView1_phatphieu.DataSource = l;
             ASPxGridView1_phatphieu.DataBind();
         }
+
         protected void lbtnPhatphieu_Click(object sender, EventArgs e)
         {
             try
@@ -199,21 +139,48 @@ namespace Appketoan.Pages
                         _BillRepo.Create(b);
                         //cập nhật trạng thái phiếu
                         CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(item));
+                        if (contract.EMP_TN == null)
+                        {
+                            //tạo details các kỳ thu dựa vào ngày hom nay(ngay giao lan dau) và loại hợp đồng
+                            for (int j = 0; j <= contract.CONT_WEEK_COUNT; j++)
+                            {
+                                CONTRACT_DETAIL cd = new CONTRACT_DETAIL();
+                                cd.ID_CONT = contract.ID;
+                                if (contract.CONT_TYPE == 3)
+                                {
+                                    cd.CONTD_DATE_THU = b.CONTD_DATE_THU.Value.AddMonths(j);
+                                }
+                                else if (contract.CONT_TYPE == 2)
+                                {
+                                    cd.CONTD_DATE_THU = b.CONTD_DATE_THU.Value.AddDays(j * 2 * 7);
+                                }
+                                else if (contract.CONT_TYPE == 1)
+                                {
+                                    cd.CONTD_DATE_THU = b.CONTD_DATE_THU.Value.AddDays(j * 7);
+                                }                               
+                                _ContractDetailRepo.Create(cd);
+                            }
+                            //ghi lịch sử
+                            CONTRACT_HISTORYWEEK cthis = new CONTRACT_HISTORYWEEK();
+                            cthis.ID_CONT = contract.ID;
+                            cthis.CONTHIS_WEEK = gettypeContrachisWeek(b.CONTD_DATE_THU.Value.DayOfWeek);
+                            cthis.CONTHIS_TRANSFER_DATE = DateTime.Now;
+                            cthis.USER_ID = Utils.CIntDef(Session["Userid"]);
+                            _ContractHistoryWeekRepo.Create(cthis);
+                        }
                         contract.BILL_STATUS = 1;
                         contract.EMP_TN = Utils.CIntDef(ddlEmployer.SelectedValue);
                         _ContractRepo.Update(contract);
+
                     }
                 }
             }
             catch
             {
-
-
             }
             //LoadContract_Canphatphieu();
-            Response.Redirect("~/Pages/phat-phieu.aspx");
+            Response.Redirect("~/Pages/phat-phieu-tu-do.aspx");
         }
-
         protected void lbtnPhatphieudachon_Click(object sender, EventArgs e)
         {
             try
@@ -248,115 +215,30 @@ namespace Appketoan.Pages
 
             }
             //LoadContract_Canphatphieu();
-            Response.Redirect("~/Pages/phat-phieu.aspx");
+            Response.Redirect("~/Pages/phat-phieu-tu-do.aspx");
         }
-        protected void lbtnPhatphieumacdinh_Click(object sender, EventArgs e)
+        public int gettypeContrachisWeek(DayOfWeek sta)
         {
-            #region a
-            //string keyword = txtKeyword.Value;
-            //var l = (from a in db.CONTRACTs
-            //         join b in db.CONTRACT_DETAILs on a.ID equals b.ID_CONT
-            //         where a.CONT_STATUS == Cost.HD_CONGOP //hợp đồng còn góp
-            //         && (a.BILL_STATUS != 1 || a.BILL_STATUS == null) //chưa giao phiếu
-            //         && (b.CONTD_PAY_PRICE == 0 || b.CONTD_PAY_PRICE == null)//lấy list chưa đóng tiền
-            //         && ((b.CONTD_DATE_THU.Value - DateTime.Parse(ddlContractDay.SelectedValue)).Days <= 0)
-            //         && (b.CONTD_DATE_THU.Value.DayOfWeek == DateTime.Parse(ddlContractDay.SelectedValue).DayOfWeek)
-            //         && (a.CONT_NO.Contains(keyword) || keyword == null || keyword == "")
-            //         select new
-            //         {
-            //             a.EMP_TN,
-            //             //b.ID,
-            //             b.ID_CONT,
-            //             a.CONT_DEBT_PRICE,
-            //             CONTD_DATE_THU = ddlContractDay.SelectedValue
-            //         }).Distinct().OrderByDescending(n => n.ID_CONT).ToList();
-
-            //int z = 0; List<int> arr = new List<int>();
-            //foreach (var item in l)
-            //{
-            //    var detail = _ContractDetailRepo.GetListByContractId(Utils.CIntDef(item.ID_CONT));
-            //    decimal pricethu = 0;
-            //    if (detail != null)
-            //    {
-            //        pricethu = detail.Where(a => a.CONTD_PAY_PRICE != null).Sum(a => a.CONTD_PAY_PRICE.Value);
-            //        if (item.CONT_DEBT_PRICE <= pricethu)
-            //        {
-            //            //l.Remove(item);
-            //            arr.Add(z);
-            //        }
-            //    }
-            //    z++;
-            //}
-            //for (int i = 0; i < arr.Count; i++)
-            //{
-            //    l.RemoveAt(arr[i]);
-            //}   
-            //foreach (var item in l)
-            //{
-            //    if (Utils.CIntDef(item.EMP_TN) > 0)
-            //    {
-            //        BILL b = new BILL();
-            //        b.ID_CONT = Utils.CIntDef(item.ID_CONT);
-            //        b.ID_EMPLOY = Utils.CIntDef(item.EMP_TN);
-            //        b.BILL_DELI_DATE = DateTime.Now;
-            //        int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item.ID_CONT));
-            //        Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
-            //        if (lbDatethu != null)
-            //        {
-            //            b.CONTD_DATE_THU = DateTime.ParseExact(lbDatethu.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-            //            _BillRepo.Create(b);
-            //            //cập nhật trạng thái phiếu
-            //            CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(item.ID_CONT));
-            //            contract.BILL_STATUS = 1;
-            //            contract.EMP_TN = Utils.CIntDef(item.EMP_TN);
-            //            _ContractRepo.Update(contract);
-            //        }
-            //    }
-            //}
-            #endregion
-            try
+            switch (sta)
             {
-                ASPxGridView1_phatphieu.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
-                LoadContract_Canphatphieu();
-
-                for (int i = 0; i < ASPxGridView1_phatphieu.VisibleRowCount; i++)
-                {
-                    HiddenField hddEmp_TN = ASPxGridView1_phatphieu.FindRowCellTemplateControl(i, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["EMP_TN"], "hddEmp_TN") as HiddenField;
-                    HiddenField hddConID = ASPxGridView1_phatphieu.FindRowCellTemplateControl(i, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["EMP_TN"], "hddConID") as HiddenField;
-                    if (Utils.CIntDef(hddEmp_TN.Value) > 0 && Utils.CIntDef(hddConID.Value) > 0)
-                    {
-                        BILL b = new BILL();
-                        b.ID_CONT = Utils.CIntDef(hddConID.Value);
-                        b.ID_EMPLOY = Utils.CIntDef(hddEmp_TN.Value);
-                        b.BILL_DELI_DATE = DateTime.Now;
-                        //int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item.ID_CONT));
-                        Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(i, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
-                        if (lbDatethu != null)
-                        {
-                            b.CONTD_DATE_THU = DateTime.ParseExact(lbDatethu.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-                            _BillRepo.Create(b);
-                            //cập nhật trạng thái phiếu
-                            CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(hddConID.Value));
-                            contract.BILL_STATUS = 1;
-                            contract.EMP_TN = Utils.CIntDef(hddEmp_TN.Value);
-                            _ContractRepo.Update(contract);
-                        }
-                    }
-                }
-                ASPxGridView1_phatphieu.SettingsPager.Mode = GridViewPagerMode.ShowPager;
-                //LoadContract_Canphatphieu();
-
+                case DayOfWeek.Monday:
+                    return 2;
+                case DayOfWeek.Tuesday:
+                    return 3;
+                case DayOfWeek.Wednesday:
+                    return 4;
+                case DayOfWeek.Thursday:
+                    return 5;
+                case DayOfWeek.Friday:
+                    return 6;
+                case DayOfWeek.Saturday:
+                    return 7;
+                case DayOfWeek.Sunday:
+                    return 8;
+                default:
+                    return 2;
             }
-            catch
-            {
-
-            }
-            Response.Redirect("~/Pages/phat-phieu.aspx");
-
         }
-
         public string getLink(object id)
         {
             return "chi-tiet-hop-dong.aspx?id=" + id;
@@ -423,34 +305,35 @@ namespace Appketoan.Pages
         public string getDateThu(object id, object ngaythu)
         {
             int idc = Utils.CIntDef(id);
-            var contractdetail =db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc && a.CONTD_DATE_THU != null && (a.CONTD_DATE_THU.Value-DateTime.Today).Days > 0).ToList();
+            var contractdetail =db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc && a.CONTD_DATE_THU != null && (a.CONTD_DATE_THU.Value-DateTime.Today).Days > 0).ToList();//nếu ko bị trể
             if (contractdetail != null && contractdetail.Count > 0)
             {
-                //var detail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc).OrderBy(a => a.ID).Take(1).ToList();
-                //if (detail != null && detail.ToList().Count > 0 && (detail[0].CONTD_DATE_THU.Value - DateTime.Parse(Utils.CStrDef(ngaythu))).Days >= 0)
-                //{
-                //    return detail[0].CONTD_DATE_THU.Value.ToString("dd/MM/yyyy");
-                //}
-                return DateTime.Parse(Utils.CStrDef(ngaythu)).ToString("dd/MM/yyyy");
+                var contractdetailPre = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc && a.CONTD_DATE_THU != null && (a.CONTD_DATE_THU.Value - DateTime.Today).Days <= 0).OrderByDescending(n=>n.CONTD_DATE_THU).ToList();
+                if (contractdetailPre != null && contractdetailPre.Count > 0)
+                {
+                    return DateTime.Parse(Utils.CStrDef(contractdetailPre[0].CONTD_DATE_THU)).ToString("dd/MM/yyyy");//? lấy kỳ trước hiện tại hay kỳ sau đó=>lay gần và nhỏ với ngày htai 
+                }
             }
             else
             {
-                var detail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc && a.CONTD_DATE_THU != null).OrderByDescending(a => a.ID).Take(1);
+                var detail = db.CONTRACT_DETAILs.Where(a => a.ID_CONT == idc && a.CONTD_DATE_THU != null).OrderByDescending(a => a.CONTD_DATE_THU).Take(1);//trể, lấy ngày thu cuối
                 if (detail != null && detail.ToList().Count > 0)
                 {
                     return detail.ToList()[0].CONTD_DATE_THU.Value.ToString("dd/MM/yyyy");
                 }
             }
-            return "";
+            return DateTime.Now.ToString("dd/MM/yyyy");
         }
         protected void ASPxGridView1_phatphieu_BeforeColumnSortingGrouping(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewBeforeColumnGroupingSortingEventArgs e)
         {
-            LoadContract_Canphatphieu();
+            ASPxGridView1_phatphieu.DataSource = Session["listtudo"];
+            ASPxGridView1_phatphieu.DataBind();
         }
 
         protected void ASPxGridView1_phatphieu_PageIndexChanged(object sender, EventArgs e)
         {
-            LoadContract_Canphatphieu();
+            ASPxGridView1_phatphieu.DataSource = Session["listtudo"];
+            ASPxGridView1_phatphieu.DataBind();
         }
 
 

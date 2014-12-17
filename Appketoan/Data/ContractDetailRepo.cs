@@ -74,7 +74,7 @@ namespace Appketoan.Data
         }
         public virtual List<CONTRACT_DETAIL> GetListByContractId(int id)
         {
-            return this.db.CONTRACT_DETAILs.Where(a=>a.ID_CONT == id).OrderBy(n => n.ID).ToList();
+            return this.db.CONTRACT_DETAILs.Where(a=>a.ID_CONT == id).OrderBy(n => n.ID).OrderBy(n=>n.CONTD_DATE_THU).ToList();
         }
         public virtual CONTRACT_DETAIL GetLastPayPriceByContractId(int id)
         {

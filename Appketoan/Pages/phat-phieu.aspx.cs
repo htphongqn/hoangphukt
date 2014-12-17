@@ -141,6 +141,8 @@ namespace Appketoan.Pages
                      where a.CONT_STATUS == Cost.HD_CONGOP //hợp đồng còn góp
                      && (a.BILL_STATUS != 1 || a.BILL_STATUS == null) //chưa giao phiếu
                      && (b.CONTD_PAY_PRICE == 0 || b.CONTD_PAY_PRICE == null)//lấy list chưa đóng tiền
+                     && (a.IS_DELETE == false || a.IS_DELETE == null)
+                     && a.EMP_TN != null
                      && b.CONTD_DATE_THU != null
                      && ((b.CONTD_DATE_THU.Value - DateTime.Parse(ddlContractDay.SelectedValue)).Days <= 0)  
                      && (b.CONTD_DATE_THU.Value.DayOfWeek == DateTime.Parse(ddlContractDay.SelectedValue).DayOfWeek)

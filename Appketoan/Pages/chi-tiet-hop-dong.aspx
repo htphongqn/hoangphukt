@@ -153,7 +153,7 @@
         border: 1px solid #aecaf0">
         <tr>
             <td>
-                <dx:ASPxPageControl ID="ASPxPageControl2" runat="server" ActiveTabIndex="3" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
+                <dx:ASPxPageControl ID="ASPxPageControl2" runat="server" ActiveTabIndex="1" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
                     CssPostfix="Aqua" SpriteCssFilePath="~/App_Themes/Aqua/{0}/sprite.css" TabSpacing="3px"
                     Height="100%" Width="100%">
                     <TabPages>
@@ -536,11 +536,7 @@
                                                 <%# getDate(Eval("BILLL_RECEIVER_DATE"))%>
                                                             </DataItemTemplate>
                                                         </dx:GridViewDataTextColumn>
-                                                        <dx:GridViewDataTextColumn VisibleIndex="1" FieldName="CONTD_DATE_THU" Caption="Ngày thu">
-                                                            <DataItemTemplate>
-                                                <%# getDate(Eval("CONTD_DATE_THU"))%>
-                                                            </DataItemTemplate>
-                                                        </dx:GridViewDataTextColumn>
+                                                        
                                                         <dx:GridViewDataTextColumn VisibleIndex="1" FieldName="BILL_STATUS"  Caption="Trạng thái phiếu">
                                                         <%--<HeaderTemplate>
                                                         Tình trạng(<asp:CheckBox ID="CheckBox1" runat="server" Checked="true" Text="Phiếu tốt" />
@@ -552,6 +548,11 @@
                                                             </DataItemTemplate>
                                                             <CellStyle HorizontalAlign="Left">
                                                             </CellStyle>
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn VisibleIndex="1" FieldName="CONTD_DATE_THU" Caption="Ngày thu">
+                                                            <DataItemTemplate>
+                                                <%# getDate(Eval("CONTD_DATE_THU"))%>
+                                                            </DataItemTemplate>
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                     <SettingsPager PageSize="100">
