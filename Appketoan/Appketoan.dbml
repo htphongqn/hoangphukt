@@ -1,42 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="vpro_dienmayhoangphu" Class="AppketoanDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=172.28.248.1;Initial Catalog=vpro_dienmayhoangphu;Persist Security Info=True;User ID=hoangphu" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="vpro_dienmayhoangphuConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.CONTRACT" Member="CONTRACTs">
-    <Type Name="CONTRACT">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_CUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CONT_NO" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="CONT_PRODUCT_NAME" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
-      <Column Name="CONT_PRODUCT_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CONT_TOTAL_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CONT_PREPAY_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CONT_DEBT_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CONT_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CONT_STATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CONT_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="CONT_LOST_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CONT_NOTE" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
-      <Column Name="CONT_NOTE_TRACK" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
-      <Column Name="CONT_DELI_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="CONT_DELI_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CONT_WEEK_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CONT_WEEK_COUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BILL_STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DATE_STATUS" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="IS_DELETE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EMP_BH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="EMP_XM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="EMP_GH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="EMP_TN" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CUS_GT" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
-      <Column Name="CONT_NOTE_DELI" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
-      <Column Name="CONT_NOTE_XM" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Association Name="CONTRACT_CONTRACT_DETAIL" Member="CONTRACT_DETAILs" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_DETAIL" />
-      <Association Name="CONTRACT_CONTRACT_HISTORY" Member="CONTRACT_HISTORies" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_HISTORY" />
-      <Association Name="CONTRACT_BILL" Member="BILLs" ThisKey="ID" OtherKey="ID_CONT" Type="BILL" />
-      <Association Name="CONTRACT_CONTRACT_HISTORYWEEK" Member="CONTRACT_HISTORYWEEKs" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_HISTORYWEEK" />
-    </Type>
-  </Table>
   <Table Name="dbo.CONTRACT_DETAIL" Member="CONTRACT_DETAILs">
     <Type Name="CONTRACT_DETAIL">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -176,6 +139,54 @@
       <Column Name="USER_SUA" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="USER_XOA" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="USER_CAPNHAT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CONTRACT" Member="CONTRACTs">
+    <Type Name="CONTRACT">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_CUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONT_NO" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="CONT_PRODUCT_NAME" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="CONT_PRODUCT_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CONT_TOTAL_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CONT_PREPAY_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CONT_DEBT_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CONT_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CONT_STATUS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CONT_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CONT_LOST_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CONT_NOTE" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="CONT_NOTE_TRACK" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="CONT_DELI_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="CONT_DELI_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CONT_WEEK_PRICE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CONT_WEEK_COUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BILL_STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DATE_STATUS" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="IS_DELETE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EMP_BH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMP_XM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMP_GH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="COMPANY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMP_TN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CUS_GT" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="CONT_NOTE_DELI" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="CONT_NOTE_XM" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Association Name="CONTRACT_CONTRACT_DETAIL" Member="CONTRACT_DETAILs" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_DETAIL" />
+      <Association Name="CONTRACT_CONTRACT_HISTORY" Member="CONTRACT_HISTORies" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_HISTORY" />
+      <Association Name="CONTRACT_BILL" Member="BILLs" ThisKey="ID" OtherKey="ID_CONT" Type="BILL" />
+      <Association Name="CONTRACT_CONTRACT_HISTORYWEEK" Member="CONTRACT_HISTORYWEEKs" ThisKey="ID" OtherKey="ID_CONT" Type="CONTRACT_HISTORYWEEK" />
+    </Type>
+  </Table>
+  <Table Name="dbo.COMPANY" Member="COMPANies">
+    <Type Name="COMPANY">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="COM_NAME" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="COM_PHONE" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="COM_ADDRESS" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="COM_DATE" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.converdate" Method="converdate" IsComposable="true">

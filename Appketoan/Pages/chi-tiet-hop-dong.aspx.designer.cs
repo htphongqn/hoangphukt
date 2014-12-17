@@ -490,6 +490,33 @@ namespace Appketoan.Pages {
         protected global::System.Web.UI.WebControls.HiddenField HiddenEmployeeGH;
         
         /// <summary>
+        /// ddlCompany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCompany;
+        
+        /// <summary>
+        /// lbCompany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCompany;
+        
+        /// <summary>
+        /// HiddenCompany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenCompany;
+        
+        /// <summary>
         /// txtCus_gt control.
         /// </summary>
         /// <remarks>

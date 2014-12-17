@@ -103,9 +103,9 @@ namespace Appketoan.Pages
                         _CustomerNoDeliRepo.Update(cus_nodeli);
                     }
                 }
-                if (id > 0)
-                {
-                    var Customer = _CustomerRepo.GetById(id);
+                var Customer = _CustomerRepo.GetById(id);
+                if (id > 0 && Customer != null)
+                {                    
                     Customer.CUS_FULLNAME = Txtname.Text;
                     Customer.CUS_CMND = Txtcmnd.Text;
                     Customer.CUS_PHONE = Txtphone.Text;
@@ -123,7 +123,7 @@ namespace Appketoan.Pages
                 }
                 else
                 {
-                    CUSTOMER Customer = new CUSTOMER();
+                    Customer = new CUSTOMER();
                     Customer.CUS_FULLNAME = Txtname.Text;
                     Customer.CUS_CMND = Txtcmnd.Text;
                     Customer.CUS_PHONE = Txtphone.Text;

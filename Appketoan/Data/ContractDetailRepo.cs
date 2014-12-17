@@ -26,7 +26,7 @@ namespace Appketoan.Data
         {
             try
             {
-                return GetListByContractId(id).Where(a => a.CONTD_PAY_PRICE == null || a.CONTD_PAY_PRICE == 0).OrderBy(a => a.ID).Take(1).Single();
+                return GetListByContractId(id).Where(a => (a.CONTD_PAY_PRICE == null || a.CONTD_PAY_PRICE == 0) && a.CONTD_DATE_THU_TT == null).OrderBy(a => a.ID).Take(1).Single();
             }
             catch
             {

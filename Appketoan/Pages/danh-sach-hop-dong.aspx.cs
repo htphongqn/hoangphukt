@@ -21,6 +21,7 @@ namespace Appketoan.Pages
         private int _page = 0;
         private string num = "";
         private UserRepo _UserRepo = new UserRepo();
+        private CompanyRepo _CompanyRepo = new CompanyRepo();
         private ContractRepo _ContractRepo = new ContractRepo();
         private EmployerRepo _EmployerRepo = new EmployerRepo();
         #endregion
@@ -253,6 +254,22 @@ namespace Appketoan.Pages
                 {
                     name += emp.EMP_NAME + ",";
                 }                
+            }
+            if (name.Length > 0)
+                name = name.Substring(0, name.Length - 1);
+            return name;
+        }
+        public string getCompany(object comIds)
+        {
+            string name = "";
+            string[] empIdsArr = Utils.CStrDef(comIds).Split(',');
+            foreach (var item in empIdsArr)
+            {
+                COMPANY com = _CompanyRepo.GetById(Utils.CIntDef(item));
+                if (com != null)
+                {
+                    name += com.COM_NAME + ",";
+                }
             }
             if (name.Length > 0)
                 name = name.Substring(0, name.Length - 1);

@@ -20,6 +20,7 @@ namespace Appketoan.Pages
         private AppketoanDataContext db = new AppketoanDataContext();
         private EmployerRepo _EmployerRepo = new EmployerRepo();
         private ContractRepo _ContractRepo = new ContractRepo();
+        private CompanyRepo _CompanyRepo = new CompanyRepo();
         private ContractHistoryRepo _ContractHistoryRepo = new ContractHistoryRepo();
         private ContractHistoryWeekRepo _ContractHistoryWeekRepo = new ContractHistoryWeekRepo();
         private ContractDetailRepo _ContractDetailRepo = new ContractDetailRepo();
@@ -46,6 +47,7 @@ namespace Appketoan.Pages
                 loadWeek();
                 Load_customer();
                 LoadEmployee();
+                LoadCompany();
                 Showinfo();
 
                 if (id > 0)
@@ -376,6 +378,12 @@ namespace Appketoan.Pages
             ddlEmployeeXM.DataBind();
             ddlEmployeeGH.DataBind();
         }
+        private void LoadCompany()
+        {
+            var list = _CompanyRepo.GetAllSortName();
+            ddlCompany.DataSource = list;
+            ddlCompany.DataBind();
+        }
         private void Showinfo()
         {
             var item = _ContractRepo.GetById(id);
@@ -505,6 +513,20 @@ namespace Appketoan.Pages
                 if (lbEmployeeGH.Text.Length > 0)
                     lbEmployeeGH.Text = lbEmployeeGH.Text.Substring(0, lbEmployeeGH.Text.Length - 1);
 
+                ddlCompany.Visible = false;
+                lbCompany.Visible = true;
+                string[] comIds = Utils.CStrDef(item.COMPANY).Split(',');
+                lbCompany.Text = "";
+                foreach (var comId in comIds)
+                {
+                    COMPANY com = _CompanyRepo.GetById(Utils.CIntDef(comId));
+                    if (com != null)
+                    {
+                        lbCompany.Text += com.COM_NAME + ",";
+                    }
+                }
+                if (lbCompany.Text.Length > 0)
+                    lbCompany.Text = lbCompany.Text.Substring(0, lbCompany.Text.Length - 1);
 
 
                 txtCus_gt.Text = item.CUS_GT;
@@ -550,6 +572,9 @@ namespace Appketoan.Pages
 
                 ddlEmployeeGH.Visible = true;
                 lbEmployeeGH.Visible = false;
+
+                ddlCompany.Visible = true;
+                lbCompany.Visible = false;
             }
         }
         #endregion
@@ -787,6 +812,7 @@ namespace Appketoan.Pages
                 i.EMP_BH = HiddenEmployeeBH.Value;
                 i.EMP_XM = HiddenEmployeeXM.Value;
                 i.EMP_GH = HiddenEmployeeGH.Value;
+                i.COMPANY = HiddenCompany.Value;
                 i.CUS_GT = txtCus_gt.Text;
                 i.CONT_NOTE_DELI = txtNote_deli.Text;
                 i.CONT_NOTE_XM = txtNoteXM.Text;

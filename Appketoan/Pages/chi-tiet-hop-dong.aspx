@@ -153,7 +153,7 @@
         border: 1px solid #aecaf0">
         <tr>
             <td>
-                <dx:ASPxPageControl ID="ASPxPageControl2" runat="server" ActiveTabIndex="1" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
+                <dx:ASPxPageControl ID="ASPxPageControl2" runat="server" ActiveTabIndex="0" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
                     CssPostfix="Aqua" SpriteCssFilePath="~/App_Themes/Aqua/{0}/sprite.css" TabSpacing="3px"
                     Height="100%" Width="100%">
                     <TabPages>
@@ -323,7 +323,7 @@
                                                 <span style="color: Red;">*</span>&nbsp;Tình trạng hợp đồng
                                             </td>
                                             <td align="left" nowrap="nowrap">
-                                                <asp:RadioButtonList ID="Rdstatuscontract" runat="server" RepeatColumns="3">
+                                                <asp:RadioButtonList ID="Rdstatuscontract" runat="server" RepeatColumns="4">
                                                     <asp:ListItem Value="2" Selected="True" Text="Còn góp"></asp:ListItem>
                                                     <asp:ListItem Value="3" Text="Thanh lý"></asp:ListItem>
                                                     <asp:ListItem Value="4" Text="Xử lý"></asp:ListItem>
@@ -436,6 +436,18 @@
                                                 </asp:DropDownList>
                                                 <asp:Label ID="lbEmployeeGH" runat="server"></asp:Label>   
                                                 <asp:HiddenField ID="HiddenEmployeeGH" runat="server" />  
+                         
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td_left" align="right" valign="top" nowrap="nowrap">
+                                                <span style="color: Red;"></span>&nbsp;Công ty
+                                            </td>
+                                            <td align="left" nowrap="nowrap">
+                                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="chosen-select k-textbox textbox" DataTextField="Com_Name" DataValueField="Id" data-placeholder="--- Chọn công ty ---" class="chosen-select" multiple>
+                                                </asp:DropDownList>
+                                                <asp:Label ID="lbCompany" runat="server"></asp:Label>   
+                                                <asp:HiddenField ID="HiddenCompany" runat="server" />  
                          
                                             </td>
                                         </tr>
@@ -834,6 +846,13 @@
             //    console.log(arr)
             var empGH = document.getElementById("<%=HiddenEmployeeGH.ClientID %>");
             empGH.value = arr;
+            //alert(empGH.value);
+        })
+        $("#<%=ddlCompany.ClientID %>").change(function () {
+            var arr = $(this).val();
+            //    console.log(arr)
+            var company = document.getElementById("<%=HiddenCompany.ClientID %>");
+            company.value = arr;
             //alert(empGH.value);
         })
 

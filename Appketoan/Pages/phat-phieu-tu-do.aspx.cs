@@ -142,7 +142,7 @@ namespace Appketoan.Pages
                         if (contract.EMP_TN == null)
                         {
                             //tạo details các kỳ thu dựa vào ngày hom nay(ngay giao lan dau) và loại hợp đồng
-                            for (int j = 0; j <= contract.CONT_WEEK_COUNT; j++)
+                            for (int j = 0; j < contract.CONT_WEEK_COUNT; j++)
                             {
                                 CONTRACT_DETAIL cd = new CONTRACT_DETAIL();
                                 cd.ID_CONT = contract.ID;

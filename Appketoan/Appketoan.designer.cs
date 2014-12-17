@@ -30,9 +30,6 @@ namespace Appketoan
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCONTRACT(CONTRACT instance);
-    partial void UpdateCONTRACT(CONTRACT instance);
-    partial void DeleteCONTRACT(CONTRACT instance);
     partial void InsertCONTRACT_DETAIL(CONTRACT_DETAIL instance);
     partial void UpdateCONTRACT_DETAIL(CONTRACT_DETAIL instance);
     partial void DeleteCONTRACT_DETAIL(CONTRACT_DETAIL instance);
@@ -69,6 +66,12 @@ namespace Appketoan
     partial void InsertUSER(USER instance);
     partial void UpdateUSER(USER instance);
     partial void DeleteUSER(USER instance);
+    partial void InsertCONTRACT(CONTRACT instance);
+    partial void UpdateCONTRACT(CONTRACT instance);
+    partial void DeleteCONTRACT(CONTRACT instance);
+    partial void InsertCOMPANY(COMPANY instance);
+    partial void UpdateCOMPANY(COMPANY instance);
+    partial void DeleteCOMPANY(COMPANY instance);
     #endregion
 		
 		public AppketoanDataContext() : 
@@ -99,14 +102,6 @@ namespace Appketoan
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<CONTRACT> CONTRACTs
-		{
-			get
-			{
-				return this.GetTable<CONTRACT>();
-			}
 		}
 		
 		public System.Data.Linq.Table<CONTRACT_DETAIL> CONTRACT_DETAILs
@@ -205,6 +200,22 @@ namespace Appketoan
 			}
 		}
 		
+		public System.Data.Linq.Table<CONTRACT> CONTRACTs
+		{
+			get
+			{
+				return this.GetTable<CONTRACT>();
+			}
+		}
+		
+		public System.Data.Linq.Table<COMPANY> COMPANies
+		{
+			get
+			{
+				return this.GetTable<COMPANY>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.converdate", IsComposable=true)]
 		public System.Nullable<int> converdate([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="SmallDateTime")] System.Nullable<System.DateTime> datetimeval, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="SmallDateTime")] System.Nullable<System.DateTime> datetimenow)
 		{
@@ -216,852 +227,6 @@ namespace Appketoan
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((int)(result.ReturnValue));
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CONTRACT")]
-	public partial class CONTRACT : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Nullable<int> _ID_CUS;
-		
-		private string _CONT_NO;
-		
-		private string _CONT_PRODUCT_NAME;
-		
-		private System.Nullable<decimal> _CONT_PRODUCT_PRICE;
-		
-		private System.Nullable<decimal> _CONT_TOTAL_PRICE;
-		
-		private System.Nullable<decimal> _CONT_PREPAY_PRICE;
-		
-		private System.Nullable<decimal> _CONT_DEBT_PRICE;
-		
-		private System.Nullable<int> _CONT_TYPE;
-		
-		private int _CONT_STATUS;
-		
-		private System.Nullable<System.DateTime> _CONT_DATE;
-		
-		private System.Nullable<decimal> _CONT_LOST_PRICE;
-		
-		private string _CONT_NOTE;
-		
-		private string _CONT_NOTE_TRACK;
-		
-		private System.Nullable<System.DateTime> _CONT_DELI_DATE;
-		
-		private System.Nullable<decimal> _CONT_DELI_PRICE;
-		
-		private System.Nullable<decimal> _CONT_WEEK_PRICE;
-		
-		private System.Nullable<int> _CONT_WEEK_COUNT;
-		
-		private System.Nullable<int> _USER_ID;
-		
-		private System.Nullable<int> _BILL_STATUS;
-		
-		private System.Nullable<System.DateTime> _DATE_STATUS;
-		
-		private System.Nullable<bool> _IS_DELETE;
-		
-		private string _EMP_BH;
-		
-		private string _EMP_XM;
-		
-		private string _EMP_GH;
-		
-		private System.Nullable<int> _EMP_TN;
-		
-		private string _CUS_GT;
-		
-		private string _CONT_NOTE_DELI;
-		
-		private string _CONT_NOTE_XM;
-		
-		private EntitySet<CONTRACT_DETAIL> _CONTRACT_DETAILs;
-		
-		private EntitySet<CONTRACT_HISTORY> _CONTRACT_HISTORies;
-		
-		private EntitySet<BILL> _BILLs;
-		
-		private EntitySet<CONTRACT_HISTORYWEEK> _CONTRACT_HISTORYWEEKs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnID_CUSChanging(System.Nullable<int> value);
-    partial void OnID_CUSChanged();
-    partial void OnCONT_NOChanging(string value);
-    partial void OnCONT_NOChanged();
-    partial void OnCONT_PRODUCT_NAMEChanging(string value);
-    partial void OnCONT_PRODUCT_NAMEChanged();
-    partial void OnCONT_PRODUCT_PRICEChanging(System.Nullable<decimal> value);
-    partial void OnCONT_PRODUCT_PRICEChanged();
-    partial void OnCONT_TOTAL_PRICEChanging(System.Nullable<decimal> value);
-    partial void OnCONT_TOTAL_PRICEChanged();
-    partial void OnCONT_PREPAY_PRICEChanging(System.Nullable<decimal> value);
-    partial void OnCONT_PREPAY_PRICEChanged();
-    partial void OnCONT_DEBT_PRICEChanging(System.Nullable<decimal> value);
-    partial void OnCONT_DEBT_PRICEChanged();
-    partial void OnCONT_TYPEChanging(System.Nullable<int> value);
-    partial void OnCONT_TYPEChanged();
-    partial void OnCONT_STATUSChanging(int value);
-    partial void OnCONT_STATUSChanged();
-    partial void OnCONT_DATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnCONT_DATEChanged();
-    partial void OnCONT_LOST_PRICEChanging(System.Nullable<decimal> value);
-    partial void OnCONT_LOST_PRICEChanged();
-    partial void OnCONT_NOTEChanging(string value);
-    partial void OnCONT_NOTEChanged();
-    partial void OnCONT_NOTE_TRACKChanging(string value);
-    partial void OnCONT_NOTE_TRACKChanged();
-    partial void OnCONT_DELI_DATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnCONT_DELI_DATEChanged();
-    partial void OnCONT_DELI_PRICEChanging(System.Nullable<decimal> value);
-    partial void OnCONT_DELI_PRICEChanged();
-    partial void OnCONT_WEEK_PRICEChanging(System.Nullable<decimal> value);
-    partial void OnCONT_WEEK_PRICEChanged();
-    partial void OnCONT_WEEK_COUNTChanging(System.Nullable<int> value);
-    partial void OnCONT_WEEK_COUNTChanged();
-    partial void OnUSER_IDChanging(System.Nullable<int> value);
-    partial void OnUSER_IDChanged();
-    partial void OnBILL_STATUSChanging(System.Nullable<int> value);
-    partial void OnBILL_STATUSChanged();
-    partial void OnDATE_STATUSChanging(System.Nullable<System.DateTime> value);
-    partial void OnDATE_STATUSChanged();
-    partial void OnIS_DELETEChanging(System.Nullable<bool> value);
-    partial void OnIS_DELETEChanged();
-    partial void OnEMP_BHChanging(string value);
-    partial void OnEMP_BHChanged();
-    partial void OnEMP_XMChanging(string value);
-    partial void OnEMP_XMChanged();
-    partial void OnEMP_GHChanging(string value);
-    partial void OnEMP_GHChanged();
-    partial void OnEMP_TNChanging(System.Nullable<int> value);
-    partial void OnEMP_TNChanged();
-    partial void OnCUS_GTChanging(string value);
-    partial void OnCUS_GTChanged();
-    partial void OnCONT_NOTE_DELIChanging(string value);
-    partial void OnCONT_NOTE_DELIChanged();
-    partial void OnCONT_NOTE_XMChanging(string value);
-    partial void OnCONT_NOTE_XMChanged();
-    #endregion
-		
-		public CONTRACT()
-		{
-			this._CONTRACT_DETAILs = new EntitySet<CONTRACT_DETAIL>(new Action<CONTRACT_DETAIL>(this.attach_CONTRACT_DETAILs), new Action<CONTRACT_DETAIL>(this.detach_CONTRACT_DETAILs));
-			this._CONTRACT_HISTORies = new EntitySet<CONTRACT_HISTORY>(new Action<CONTRACT_HISTORY>(this.attach_CONTRACT_HISTORies), new Action<CONTRACT_HISTORY>(this.detach_CONTRACT_HISTORies));
-			this._BILLs = new EntitySet<BILL>(new Action<BILL>(this.attach_BILLs), new Action<BILL>(this.detach_BILLs));
-			this._CONTRACT_HISTORYWEEKs = new EntitySet<CONTRACT_HISTORYWEEK>(new Action<CONTRACT_HISTORYWEEK>(this.attach_CONTRACT_HISTORYWEEKs), new Action<CONTRACT_HISTORYWEEK>(this.detach_CONTRACT_HISTORYWEEKs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CUS", DbType="Int")]
-		public System.Nullable<int> ID_CUS
-		{
-			get
-			{
-				return this._ID_CUS;
-			}
-			set
-			{
-				if ((this._ID_CUS != value))
-				{
-					this.OnID_CUSChanging(value);
-					this.SendPropertyChanging();
-					this._ID_CUS = value;
-					this.SendPropertyChanged("ID_CUS");
-					this.OnID_CUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NO", DbType="NVarChar(150)")]
-		public string CONT_NO
-		{
-			get
-			{
-				return this._CONT_NO;
-			}
-			set
-			{
-				if ((this._CONT_NO != value))
-				{
-					this.OnCONT_NOChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_NO = value;
-					this.SendPropertyChanged("CONT_NO");
-					this.OnCONT_NOChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_PRODUCT_NAME", DbType="NVarChar(550)")]
-		public string CONT_PRODUCT_NAME
-		{
-			get
-			{
-				return this._CONT_PRODUCT_NAME;
-			}
-			set
-			{
-				if ((this._CONT_PRODUCT_NAME != value))
-				{
-					this.OnCONT_PRODUCT_NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_PRODUCT_NAME = value;
-					this.SendPropertyChanged("CONT_PRODUCT_NAME");
-					this.OnCONT_PRODUCT_NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_PRODUCT_PRICE", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> CONT_PRODUCT_PRICE
-		{
-			get
-			{
-				return this._CONT_PRODUCT_PRICE;
-			}
-			set
-			{
-				if ((this._CONT_PRODUCT_PRICE != value))
-				{
-					this.OnCONT_PRODUCT_PRICEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_PRODUCT_PRICE = value;
-					this.SendPropertyChanged("CONT_PRODUCT_PRICE");
-					this.OnCONT_PRODUCT_PRICEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_TOTAL_PRICE", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> CONT_TOTAL_PRICE
-		{
-			get
-			{
-				return this._CONT_TOTAL_PRICE;
-			}
-			set
-			{
-				if ((this._CONT_TOTAL_PRICE != value))
-				{
-					this.OnCONT_TOTAL_PRICEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_TOTAL_PRICE = value;
-					this.SendPropertyChanged("CONT_TOTAL_PRICE");
-					this.OnCONT_TOTAL_PRICEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_PREPAY_PRICE", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> CONT_PREPAY_PRICE
-		{
-			get
-			{
-				return this._CONT_PREPAY_PRICE;
-			}
-			set
-			{
-				if ((this._CONT_PREPAY_PRICE != value))
-				{
-					this.OnCONT_PREPAY_PRICEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_PREPAY_PRICE = value;
-					this.SendPropertyChanged("CONT_PREPAY_PRICE");
-					this.OnCONT_PREPAY_PRICEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_DEBT_PRICE", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> CONT_DEBT_PRICE
-		{
-			get
-			{
-				return this._CONT_DEBT_PRICE;
-			}
-			set
-			{
-				if ((this._CONT_DEBT_PRICE != value))
-				{
-					this.OnCONT_DEBT_PRICEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_DEBT_PRICE = value;
-					this.SendPropertyChanged("CONT_DEBT_PRICE");
-					this.OnCONT_DEBT_PRICEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_TYPE", DbType="Int")]
-		public System.Nullable<int> CONT_TYPE
-		{
-			get
-			{
-				return this._CONT_TYPE;
-			}
-			set
-			{
-				if ((this._CONT_TYPE != value))
-				{
-					this.OnCONT_TYPEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_TYPE = value;
-					this.SendPropertyChanged("CONT_TYPE");
-					this.OnCONT_TYPEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_STATUS", DbType="Int NOT NULL")]
-		public int CONT_STATUS
-		{
-			get
-			{
-				return this._CONT_STATUS;
-			}
-			set
-			{
-				if ((this._CONT_STATUS != value))
-				{
-					this.OnCONT_STATUSChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_STATUS = value;
-					this.SendPropertyChanged("CONT_STATUS");
-					this.OnCONT_STATUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_DATE", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> CONT_DATE
-		{
-			get
-			{
-				return this._CONT_DATE;
-			}
-			set
-			{
-				if ((this._CONT_DATE != value))
-				{
-					this.OnCONT_DATEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_DATE = value;
-					this.SendPropertyChanged("CONT_DATE");
-					this.OnCONT_DATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_LOST_PRICE", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> CONT_LOST_PRICE
-		{
-			get
-			{
-				return this._CONT_LOST_PRICE;
-			}
-			set
-			{
-				if ((this._CONT_LOST_PRICE != value))
-				{
-					this.OnCONT_LOST_PRICEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_LOST_PRICE = value;
-					this.SendPropertyChanged("CONT_LOST_PRICE");
-					this.OnCONT_LOST_PRICEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NOTE", DbType="NVarChar(550)")]
-		public string CONT_NOTE
-		{
-			get
-			{
-				return this._CONT_NOTE;
-			}
-			set
-			{
-				if ((this._CONT_NOTE != value))
-				{
-					this.OnCONT_NOTEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_NOTE = value;
-					this.SendPropertyChanged("CONT_NOTE");
-					this.OnCONT_NOTEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NOTE_TRACK", DbType="NVarChar(550)")]
-		public string CONT_NOTE_TRACK
-		{
-			get
-			{
-				return this._CONT_NOTE_TRACK;
-			}
-			set
-			{
-				if ((this._CONT_NOTE_TRACK != value))
-				{
-					this.OnCONT_NOTE_TRACKChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_NOTE_TRACK = value;
-					this.SendPropertyChanged("CONT_NOTE_TRACK");
-					this.OnCONT_NOTE_TRACKChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_DELI_DATE", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> CONT_DELI_DATE
-		{
-			get
-			{
-				return this._CONT_DELI_DATE;
-			}
-			set
-			{
-				if ((this._CONT_DELI_DATE != value))
-				{
-					this.OnCONT_DELI_DATEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_DELI_DATE = value;
-					this.SendPropertyChanged("CONT_DELI_DATE");
-					this.OnCONT_DELI_DATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_DELI_PRICE", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> CONT_DELI_PRICE
-		{
-			get
-			{
-				return this._CONT_DELI_PRICE;
-			}
-			set
-			{
-				if ((this._CONT_DELI_PRICE != value))
-				{
-					this.OnCONT_DELI_PRICEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_DELI_PRICE = value;
-					this.SendPropertyChanged("CONT_DELI_PRICE");
-					this.OnCONT_DELI_PRICEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_WEEK_PRICE", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> CONT_WEEK_PRICE
-		{
-			get
-			{
-				return this._CONT_WEEK_PRICE;
-			}
-			set
-			{
-				if ((this._CONT_WEEK_PRICE != value))
-				{
-					this.OnCONT_WEEK_PRICEChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_WEEK_PRICE = value;
-					this.SendPropertyChanged("CONT_WEEK_PRICE");
-					this.OnCONT_WEEK_PRICEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_WEEK_COUNT", DbType="Int")]
-		public System.Nullable<int> CONT_WEEK_COUNT
-		{
-			get
-			{
-				return this._CONT_WEEK_COUNT;
-			}
-			set
-			{
-				if ((this._CONT_WEEK_COUNT != value))
-				{
-					this.OnCONT_WEEK_COUNTChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_WEEK_COUNT = value;
-					this.SendPropertyChanged("CONT_WEEK_COUNT");
-					this.OnCONT_WEEK_COUNTChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int")]
-		public System.Nullable<int> USER_ID
-		{
-			get
-			{
-				return this._USER_ID;
-			}
-			set
-			{
-				if ((this._USER_ID != value))
-				{
-					this.OnUSER_IDChanging(value);
-					this.SendPropertyChanging();
-					this._USER_ID = value;
-					this.SendPropertyChanged("USER_ID");
-					this.OnUSER_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BILL_STATUS", DbType="Int")]
-		public System.Nullable<int> BILL_STATUS
-		{
-			get
-			{
-				return this._BILL_STATUS;
-			}
-			set
-			{
-				if ((this._BILL_STATUS != value))
-				{
-					this.OnBILL_STATUSChanging(value);
-					this.SendPropertyChanging();
-					this._BILL_STATUS = value;
-					this.SendPropertyChanged("BILL_STATUS");
-					this.OnBILL_STATUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_STATUS", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> DATE_STATUS
-		{
-			get
-			{
-				return this._DATE_STATUS;
-			}
-			set
-			{
-				if ((this._DATE_STATUS != value))
-				{
-					this.OnDATE_STATUSChanging(value);
-					this.SendPropertyChanging();
-					this._DATE_STATUS = value;
-					this.SendPropertyChanged("DATE_STATUS");
-					this.OnDATE_STATUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IS_DELETE", DbType="Bit")]
-		public System.Nullable<bool> IS_DELETE
-		{
-			get
-			{
-				return this._IS_DELETE;
-			}
-			set
-			{
-				if ((this._IS_DELETE != value))
-				{
-					this.OnIS_DELETEChanging(value);
-					this.SendPropertyChanging();
-					this._IS_DELETE = value;
-					this.SendPropertyChanged("IS_DELETE");
-					this.OnIS_DELETEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_BH", DbType="VarChar(50)")]
-		public string EMP_BH
-		{
-			get
-			{
-				return this._EMP_BH;
-			}
-			set
-			{
-				if ((this._EMP_BH != value))
-				{
-					this.OnEMP_BHChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_BH = value;
-					this.SendPropertyChanged("EMP_BH");
-					this.OnEMP_BHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_XM", DbType="VarChar(50)")]
-		public string EMP_XM
-		{
-			get
-			{
-				return this._EMP_XM;
-			}
-			set
-			{
-				if ((this._EMP_XM != value))
-				{
-					this.OnEMP_XMChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_XM = value;
-					this.SendPropertyChanged("EMP_XM");
-					this.OnEMP_XMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_GH", DbType="VarChar(50)")]
-		public string EMP_GH
-		{
-			get
-			{
-				return this._EMP_GH;
-			}
-			set
-			{
-				if ((this._EMP_GH != value))
-				{
-					this.OnEMP_GHChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_GH = value;
-					this.SendPropertyChanged("EMP_GH");
-					this.OnEMP_GHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_TN", DbType="Int")]
-		public System.Nullable<int> EMP_TN
-		{
-			get
-			{
-				return this._EMP_TN;
-			}
-			set
-			{
-				if ((this._EMP_TN != value))
-				{
-					this.OnEMP_TNChanging(value);
-					this.SendPropertyChanging();
-					this._EMP_TN = value;
-					this.SendPropertyChanged("EMP_TN");
-					this.OnEMP_TNChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CUS_GT", DbType="NVarChar(550)")]
-		public string CUS_GT
-		{
-			get
-			{
-				return this._CUS_GT;
-			}
-			set
-			{
-				if ((this._CUS_GT != value))
-				{
-					this.OnCUS_GTChanging(value);
-					this.SendPropertyChanging();
-					this._CUS_GT = value;
-					this.SendPropertyChanged("CUS_GT");
-					this.OnCUS_GTChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NOTE_DELI", DbType="NVarChar(550)")]
-		public string CONT_NOTE_DELI
-		{
-			get
-			{
-				return this._CONT_NOTE_DELI;
-			}
-			set
-			{
-				if ((this._CONT_NOTE_DELI != value))
-				{
-					this.OnCONT_NOTE_DELIChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_NOTE_DELI = value;
-					this.SendPropertyChanged("CONT_NOTE_DELI");
-					this.OnCONT_NOTE_DELIChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NOTE_XM", DbType="NVarChar(1000)")]
-		public string CONT_NOTE_XM
-		{
-			get
-			{
-				return this._CONT_NOTE_XM;
-			}
-			set
-			{
-				if ((this._CONT_NOTE_XM != value))
-				{
-					this.OnCONT_NOTE_XMChanging(value);
-					this.SendPropertyChanging();
-					this._CONT_NOTE_XM = value;
-					this.SendPropertyChanged("CONT_NOTE_XM");
-					this.OnCONT_NOTE_XMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CONTRACT_CONTRACT_DETAIL", Storage="_CONTRACT_DETAILs", ThisKey="ID", OtherKey="ID_CONT")]
-		public EntitySet<CONTRACT_DETAIL> CONTRACT_DETAILs
-		{
-			get
-			{
-				return this._CONTRACT_DETAILs;
-			}
-			set
-			{
-				this._CONTRACT_DETAILs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CONTRACT_CONTRACT_HISTORY", Storage="_CONTRACT_HISTORies", ThisKey="ID", OtherKey="ID_CONT")]
-		public EntitySet<CONTRACT_HISTORY> CONTRACT_HISTORies
-		{
-			get
-			{
-				return this._CONTRACT_HISTORies;
-			}
-			set
-			{
-				this._CONTRACT_HISTORies.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CONTRACT_BILL", Storage="_BILLs", ThisKey="ID", OtherKey="ID_CONT")]
-		public EntitySet<BILL> BILLs
-		{
-			get
-			{
-				return this._BILLs;
-			}
-			set
-			{
-				this._BILLs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CONTRACT_CONTRACT_HISTORYWEEK", Storage="_CONTRACT_HISTORYWEEKs", ThisKey="ID", OtherKey="ID_CONT")]
-		public EntitySet<CONTRACT_HISTORYWEEK> CONTRACT_HISTORYWEEKs
-		{
-			get
-			{
-				return this._CONTRACT_HISTORYWEEKs;
-			}
-			set
-			{
-				this._CONTRACT_HISTORYWEEKs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_CONTRACT_DETAILs(CONTRACT_DETAIL entity)
-		{
-			this.SendPropertyChanging();
-			entity.CONTRACT = this;
-		}
-		
-		private void detach_CONTRACT_DETAILs(CONTRACT_DETAIL entity)
-		{
-			this.SendPropertyChanging();
-			entity.CONTRACT = null;
-		}
-		
-		private void attach_CONTRACT_HISTORies(CONTRACT_HISTORY entity)
-		{
-			this.SendPropertyChanging();
-			entity.CONTRACT = this;
-		}
-		
-		private void detach_CONTRACT_HISTORies(CONTRACT_HISTORY entity)
-		{
-			this.SendPropertyChanging();
-			entity.CONTRACT = null;
-		}
-		
-		private void attach_BILLs(BILL entity)
-		{
-			this.SendPropertyChanging();
-			entity.CONTRACT = this;
-		}
-		
-		private void detach_BILLs(BILL entity)
-		{
-			this.SendPropertyChanging();
-			entity.CONTRACT = null;
-		}
-		
-		private void attach_CONTRACT_HISTORYWEEKs(CONTRACT_HISTORYWEEK entity)
-		{
-			this.SendPropertyChanging();
-			entity.CONTRACT = this;
-		}
-		
-		private void detach_CONTRACT_HISTORYWEEKs(CONTRACT_HISTORYWEEK entity)
-		{
-			this.SendPropertyChanging();
-			entity.CONTRACT = null;
 		}
 	}
 	
@@ -3817,6 +2982,1058 @@ namespace Appketoan
 					this._USER_CAPNHAT = value;
 					this.SendPropertyChanged("USER_CAPNHAT");
 					this.OnUSER_CAPNHATChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CONTRACT")]
+	public partial class CONTRACT : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _ID_CUS;
+		
+		private string _CONT_NO;
+		
+		private string _CONT_PRODUCT_NAME;
+		
+		private System.Nullable<decimal> _CONT_PRODUCT_PRICE;
+		
+		private System.Nullable<decimal> _CONT_TOTAL_PRICE;
+		
+		private System.Nullable<decimal> _CONT_PREPAY_PRICE;
+		
+		private System.Nullable<decimal> _CONT_DEBT_PRICE;
+		
+		private System.Nullable<int> _CONT_TYPE;
+		
+		private int _CONT_STATUS;
+		
+		private System.Nullable<System.DateTime> _CONT_DATE;
+		
+		private System.Nullable<decimal> _CONT_LOST_PRICE;
+		
+		private string _CONT_NOTE;
+		
+		private string _CONT_NOTE_TRACK;
+		
+		private System.Nullable<System.DateTime> _CONT_DELI_DATE;
+		
+		private System.Nullable<decimal> _CONT_DELI_PRICE;
+		
+		private System.Nullable<decimal> _CONT_WEEK_PRICE;
+		
+		private System.Nullable<int> _CONT_WEEK_COUNT;
+		
+		private System.Nullable<int> _USER_ID;
+		
+		private System.Nullable<int> _BILL_STATUS;
+		
+		private System.Nullable<System.DateTime> _DATE_STATUS;
+		
+		private System.Nullable<bool> _IS_DELETE;
+		
+		private string _EMP_BH;
+		
+		private string _EMP_XM;
+		
+		private string _EMP_GH;
+		
+		private string _COMPANY;
+		
+		private System.Nullable<int> _EMP_TN;
+		
+		private string _CUS_GT;
+		
+		private string _CONT_NOTE_DELI;
+		
+		private string _CONT_NOTE_XM;
+		
+		private EntitySet<CONTRACT_DETAIL> _CONTRACT_DETAILs;
+		
+		private EntitySet<CONTRACT_HISTORY> _CONTRACT_HISTORies;
+		
+		private EntitySet<BILL> _BILLs;
+		
+		private EntitySet<CONTRACT_HISTORYWEEK> _CONTRACT_HISTORYWEEKs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnID_CUSChanging(System.Nullable<int> value);
+    partial void OnID_CUSChanged();
+    partial void OnCONT_NOChanging(string value);
+    partial void OnCONT_NOChanged();
+    partial void OnCONT_PRODUCT_NAMEChanging(string value);
+    partial void OnCONT_PRODUCT_NAMEChanged();
+    partial void OnCONT_PRODUCT_PRICEChanging(System.Nullable<decimal> value);
+    partial void OnCONT_PRODUCT_PRICEChanged();
+    partial void OnCONT_TOTAL_PRICEChanging(System.Nullable<decimal> value);
+    partial void OnCONT_TOTAL_PRICEChanged();
+    partial void OnCONT_PREPAY_PRICEChanging(System.Nullable<decimal> value);
+    partial void OnCONT_PREPAY_PRICEChanged();
+    partial void OnCONT_DEBT_PRICEChanging(System.Nullable<decimal> value);
+    partial void OnCONT_DEBT_PRICEChanged();
+    partial void OnCONT_TYPEChanging(System.Nullable<int> value);
+    partial void OnCONT_TYPEChanged();
+    partial void OnCONT_STATUSChanging(int value);
+    partial void OnCONT_STATUSChanged();
+    partial void OnCONT_DATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnCONT_DATEChanged();
+    partial void OnCONT_LOST_PRICEChanging(System.Nullable<decimal> value);
+    partial void OnCONT_LOST_PRICEChanged();
+    partial void OnCONT_NOTEChanging(string value);
+    partial void OnCONT_NOTEChanged();
+    partial void OnCONT_NOTE_TRACKChanging(string value);
+    partial void OnCONT_NOTE_TRACKChanged();
+    partial void OnCONT_DELI_DATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnCONT_DELI_DATEChanged();
+    partial void OnCONT_DELI_PRICEChanging(System.Nullable<decimal> value);
+    partial void OnCONT_DELI_PRICEChanged();
+    partial void OnCONT_WEEK_PRICEChanging(System.Nullable<decimal> value);
+    partial void OnCONT_WEEK_PRICEChanged();
+    partial void OnCONT_WEEK_COUNTChanging(System.Nullable<int> value);
+    partial void OnCONT_WEEK_COUNTChanged();
+    partial void OnUSER_IDChanging(System.Nullable<int> value);
+    partial void OnUSER_IDChanged();
+    partial void OnBILL_STATUSChanging(System.Nullable<int> value);
+    partial void OnBILL_STATUSChanged();
+    partial void OnDATE_STATUSChanging(System.Nullable<System.DateTime> value);
+    partial void OnDATE_STATUSChanged();
+    partial void OnIS_DELETEChanging(System.Nullable<bool> value);
+    partial void OnIS_DELETEChanged();
+    partial void OnEMP_BHChanging(string value);
+    partial void OnEMP_BHChanged();
+    partial void OnEMP_XMChanging(string value);
+    partial void OnEMP_XMChanged();
+    partial void OnEMP_GHChanging(string value);
+    partial void OnEMP_GHChanged();
+    partial void OnCOMPANYChanging(string value);
+    partial void OnCOMPANYChanged();
+    partial void OnEMP_TNChanging(System.Nullable<int> value);
+    partial void OnEMP_TNChanged();
+    partial void OnCUS_GTChanging(string value);
+    partial void OnCUS_GTChanged();
+    partial void OnCONT_NOTE_DELIChanging(string value);
+    partial void OnCONT_NOTE_DELIChanged();
+    partial void OnCONT_NOTE_XMChanging(string value);
+    partial void OnCONT_NOTE_XMChanged();
+    #endregion
+		
+		public CONTRACT()
+		{
+			this._CONTRACT_DETAILs = new EntitySet<CONTRACT_DETAIL>(new Action<CONTRACT_DETAIL>(this.attach_CONTRACT_DETAILs), new Action<CONTRACT_DETAIL>(this.detach_CONTRACT_DETAILs));
+			this._CONTRACT_HISTORies = new EntitySet<CONTRACT_HISTORY>(new Action<CONTRACT_HISTORY>(this.attach_CONTRACT_HISTORies), new Action<CONTRACT_HISTORY>(this.detach_CONTRACT_HISTORies));
+			this._BILLs = new EntitySet<BILL>(new Action<BILL>(this.attach_BILLs), new Action<BILL>(this.detach_BILLs));
+			this._CONTRACT_HISTORYWEEKs = new EntitySet<CONTRACT_HISTORYWEEK>(new Action<CONTRACT_HISTORYWEEK>(this.attach_CONTRACT_HISTORYWEEKs), new Action<CONTRACT_HISTORYWEEK>(this.detach_CONTRACT_HISTORYWEEKs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CUS", DbType="Int")]
+		public System.Nullable<int> ID_CUS
+		{
+			get
+			{
+				return this._ID_CUS;
+			}
+			set
+			{
+				if ((this._ID_CUS != value))
+				{
+					this.OnID_CUSChanging(value);
+					this.SendPropertyChanging();
+					this._ID_CUS = value;
+					this.SendPropertyChanged("ID_CUS");
+					this.OnID_CUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NO", DbType="NVarChar(150)")]
+		public string CONT_NO
+		{
+			get
+			{
+				return this._CONT_NO;
+			}
+			set
+			{
+				if ((this._CONT_NO != value))
+				{
+					this.OnCONT_NOChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_NO = value;
+					this.SendPropertyChanged("CONT_NO");
+					this.OnCONT_NOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_PRODUCT_NAME", DbType="NVarChar(550)")]
+		public string CONT_PRODUCT_NAME
+		{
+			get
+			{
+				return this._CONT_PRODUCT_NAME;
+			}
+			set
+			{
+				if ((this._CONT_PRODUCT_NAME != value))
+				{
+					this.OnCONT_PRODUCT_NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_PRODUCT_NAME = value;
+					this.SendPropertyChanged("CONT_PRODUCT_NAME");
+					this.OnCONT_PRODUCT_NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_PRODUCT_PRICE", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CONT_PRODUCT_PRICE
+		{
+			get
+			{
+				return this._CONT_PRODUCT_PRICE;
+			}
+			set
+			{
+				if ((this._CONT_PRODUCT_PRICE != value))
+				{
+					this.OnCONT_PRODUCT_PRICEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_PRODUCT_PRICE = value;
+					this.SendPropertyChanged("CONT_PRODUCT_PRICE");
+					this.OnCONT_PRODUCT_PRICEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_TOTAL_PRICE", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CONT_TOTAL_PRICE
+		{
+			get
+			{
+				return this._CONT_TOTAL_PRICE;
+			}
+			set
+			{
+				if ((this._CONT_TOTAL_PRICE != value))
+				{
+					this.OnCONT_TOTAL_PRICEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_TOTAL_PRICE = value;
+					this.SendPropertyChanged("CONT_TOTAL_PRICE");
+					this.OnCONT_TOTAL_PRICEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_PREPAY_PRICE", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CONT_PREPAY_PRICE
+		{
+			get
+			{
+				return this._CONT_PREPAY_PRICE;
+			}
+			set
+			{
+				if ((this._CONT_PREPAY_PRICE != value))
+				{
+					this.OnCONT_PREPAY_PRICEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_PREPAY_PRICE = value;
+					this.SendPropertyChanged("CONT_PREPAY_PRICE");
+					this.OnCONT_PREPAY_PRICEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_DEBT_PRICE", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CONT_DEBT_PRICE
+		{
+			get
+			{
+				return this._CONT_DEBT_PRICE;
+			}
+			set
+			{
+				if ((this._CONT_DEBT_PRICE != value))
+				{
+					this.OnCONT_DEBT_PRICEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_DEBT_PRICE = value;
+					this.SendPropertyChanged("CONT_DEBT_PRICE");
+					this.OnCONT_DEBT_PRICEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_TYPE", DbType="Int")]
+		public System.Nullable<int> CONT_TYPE
+		{
+			get
+			{
+				return this._CONT_TYPE;
+			}
+			set
+			{
+				if ((this._CONT_TYPE != value))
+				{
+					this.OnCONT_TYPEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_TYPE = value;
+					this.SendPropertyChanged("CONT_TYPE");
+					this.OnCONT_TYPEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_STATUS", DbType="Int NOT NULL")]
+		public int CONT_STATUS
+		{
+			get
+			{
+				return this._CONT_STATUS;
+			}
+			set
+			{
+				if ((this._CONT_STATUS != value))
+				{
+					this.OnCONT_STATUSChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_STATUS = value;
+					this.SendPropertyChanged("CONT_STATUS");
+					this.OnCONT_STATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_DATE", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> CONT_DATE
+		{
+			get
+			{
+				return this._CONT_DATE;
+			}
+			set
+			{
+				if ((this._CONT_DATE != value))
+				{
+					this.OnCONT_DATEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_DATE = value;
+					this.SendPropertyChanged("CONT_DATE");
+					this.OnCONT_DATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_LOST_PRICE", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CONT_LOST_PRICE
+		{
+			get
+			{
+				return this._CONT_LOST_PRICE;
+			}
+			set
+			{
+				if ((this._CONT_LOST_PRICE != value))
+				{
+					this.OnCONT_LOST_PRICEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_LOST_PRICE = value;
+					this.SendPropertyChanged("CONT_LOST_PRICE");
+					this.OnCONT_LOST_PRICEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NOTE", DbType="NVarChar(550)")]
+		public string CONT_NOTE
+		{
+			get
+			{
+				return this._CONT_NOTE;
+			}
+			set
+			{
+				if ((this._CONT_NOTE != value))
+				{
+					this.OnCONT_NOTEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_NOTE = value;
+					this.SendPropertyChanged("CONT_NOTE");
+					this.OnCONT_NOTEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NOTE_TRACK", DbType="NVarChar(550)")]
+		public string CONT_NOTE_TRACK
+		{
+			get
+			{
+				return this._CONT_NOTE_TRACK;
+			}
+			set
+			{
+				if ((this._CONT_NOTE_TRACK != value))
+				{
+					this.OnCONT_NOTE_TRACKChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_NOTE_TRACK = value;
+					this.SendPropertyChanged("CONT_NOTE_TRACK");
+					this.OnCONT_NOTE_TRACKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_DELI_DATE", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> CONT_DELI_DATE
+		{
+			get
+			{
+				return this._CONT_DELI_DATE;
+			}
+			set
+			{
+				if ((this._CONT_DELI_DATE != value))
+				{
+					this.OnCONT_DELI_DATEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_DELI_DATE = value;
+					this.SendPropertyChanged("CONT_DELI_DATE");
+					this.OnCONT_DELI_DATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_DELI_PRICE", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CONT_DELI_PRICE
+		{
+			get
+			{
+				return this._CONT_DELI_PRICE;
+			}
+			set
+			{
+				if ((this._CONT_DELI_PRICE != value))
+				{
+					this.OnCONT_DELI_PRICEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_DELI_PRICE = value;
+					this.SendPropertyChanged("CONT_DELI_PRICE");
+					this.OnCONT_DELI_PRICEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_WEEK_PRICE", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CONT_WEEK_PRICE
+		{
+			get
+			{
+				return this._CONT_WEEK_PRICE;
+			}
+			set
+			{
+				if ((this._CONT_WEEK_PRICE != value))
+				{
+					this.OnCONT_WEEK_PRICEChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_WEEK_PRICE = value;
+					this.SendPropertyChanged("CONT_WEEK_PRICE");
+					this.OnCONT_WEEK_PRICEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_WEEK_COUNT", DbType="Int")]
+		public System.Nullable<int> CONT_WEEK_COUNT
+		{
+			get
+			{
+				return this._CONT_WEEK_COUNT;
+			}
+			set
+			{
+				if ((this._CONT_WEEK_COUNT != value))
+				{
+					this.OnCONT_WEEK_COUNTChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_WEEK_COUNT = value;
+					this.SendPropertyChanged("CONT_WEEK_COUNT");
+					this.OnCONT_WEEK_COUNTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int")]
+		public System.Nullable<int> USER_ID
+		{
+			get
+			{
+				return this._USER_ID;
+			}
+			set
+			{
+				if ((this._USER_ID != value))
+				{
+					this.OnUSER_IDChanging(value);
+					this.SendPropertyChanging();
+					this._USER_ID = value;
+					this.SendPropertyChanged("USER_ID");
+					this.OnUSER_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BILL_STATUS", DbType="Int")]
+		public System.Nullable<int> BILL_STATUS
+		{
+			get
+			{
+				return this._BILL_STATUS;
+			}
+			set
+			{
+				if ((this._BILL_STATUS != value))
+				{
+					this.OnBILL_STATUSChanging(value);
+					this.SendPropertyChanging();
+					this._BILL_STATUS = value;
+					this.SendPropertyChanged("BILL_STATUS");
+					this.OnBILL_STATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_STATUS", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> DATE_STATUS
+		{
+			get
+			{
+				return this._DATE_STATUS;
+			}
+			set
+			{
+				if ((this._DATE_STATUS != value))
+				{
+					this.OnDATE_STATUSChanging(value);
+					this.SendPropertyChanging();
+					this._DATE_STATUS = value;
+					this.SendPropertyChanged("DATE_STATUS");
+					this.OnDATE_STATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IS_DELETE", DbType="Bit")]
+		public System.Nullable<bool> IS_DELETE
+		{
+			get
+			{
+				return this._IS_DELETE;
+			}
+			set
+			{
+				if ((this._IS_DELETE != value))
+				{
+					this.OnIS_DELETEChanging(value);
+					this.SendPropertyChanging();
+					this._IS_DELETE = value;
+					this.SendPropertyChanged("IS_DELETE");
+					this.OnIS_DELETEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_BH", DbType="VarChar(50)")]
+		public string EMP_BH
+		{
+			get
+			{
+				return this._EMP_BH;
+			}
+			set
+			{
+				if ((this._EMP_BH != value))
+				{
+					this.OnEMP_BHChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_BH = value;
+					this.SendPropertyChanged("EMP_BH");
+					this.OnEMP_BHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_XM", DbType="VarChar(50)")]
+		public string EMP_XM
+		{
+			get
+			{
+				return this._EMP_XM;
+			}
+			set
+			{
+				if ((this._EMP_XM != value))
+				{
+					this.OnEMP_XMChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_XM = value;
+					this.SendPropertyChanged("EMP_XM");
+					this.OnEMP_XMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_GH", DbType="VarChar(50)")]
+		public string EMP_GH
+		{
+			get
+			{
+				return this._EMP_GH;
+			}
+			set
+			{
+				if ((this._EMP_GH != value))
+				{
+					this.OnEMP_GHChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_GH = value;
+					this.SendPropertyChanged("EMP_GH");
+					this.OnEMP_GHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COMPANY", DbType="VarChar(50)")]
+		public string COMPANY
+		{
+			get
+			{
+				return this._COMPANY;
+			}
+			set
+			{
+				if ((this._COMPANY != value))
+				{
+					this.OnCOMPANYChanging(value);
+					this.SendPropertyChanging();
+					this._COMPANY = value;
+					this.SendPropertyChanged("COMPANY");
+					this.OnCOMPANYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMP_TN", DbType="Int")]
+		public System.Nullable<int> EMP_TN
+		{
+			get
+			{
+				return this._EMP_TN;
+			}
+			set
+			{
+				if ((this._EMP_TN != value))
+				{
+					this.OnEMP_TNChanging(value);
+					this.SendPropertyChanging();
+					this._EMP_TN = value;
+					this.SendPropertyChanged("EMP_TN");
+					this.OnEMP_TNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CUS_GT", DbType="NVarChar(550)")]
+		public string CUS_GT
+		{
+			get
+			{
+				return this._CUS_GT;
+			}
+			set
+			{
+				if ((this._CUS_GT != value))
+				{
+					this.OnCUS_GTChanging(value);
+					this.SendPropertyChanging();
+					this._CUS_GT = value;
+					this.SendPropertyChanged("CUS_GT");
+					this.OnCUS_GTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NOTE_DELI", DbType="NVarChar(550)")]
+		public string CONT_NOTE_DELI
+		{
+			get
+			{
+				return this._CONT_NOTE_DELI;
+			}
+			set
+			{
+				if ((this._CONT_NOTE_DELI != value))
+				{
+					this.OnCONT_NOTE_DELIChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_NOTE_DELI = value;
+					this.SendPropertyChanged("CONT_NOTE_DELI");
+					this.OnCONT_NOTE_DELIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONT_NOTE_XM", DbType="NVarChar(1000)")]
+		public string CONT_NOTE_XM
+		{
+			get
+			{
+				return this._CONT_NOTE_XM;
+			}
+			set
+			{
+				if ((this._CONT_NOTE_XM != value))
+				{
+					this.OnCONT_NOTE_XMChanging(value);
+					this.SendPropertyChanging();
+					this._CONT_NOTE_XM = value;
+					this.SendPropertyChanged("CONT_NOTE_XM");
+					this.OnCONT_NOTE_XMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CONTRACT_CONTRACT_DETAIL", Storage="_CONTRACT_DETAILs", ThisKey="ID", OtherKey="ID_CONT")]
+		public EntitySet<CONTRACT_DETAIL> CONTRACT_DETAILs
+		{
+			get
+			{
+				return this._CONTRACT_DETAILs;
+			}
+			set
+			{
+				this._CONTRACT_DETAILs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CONTRACT_CONTRACT_HISTORY", Storage="_CONTRACT_HISTORies", ThisKey="ID", OtherKey="ID_CONT")]
+		public EntitySet<CONTRACT_HISTORY> CONTRACT_HISTORies
+		{
+			get
+			{
+				return this._CONTRACT_HISTORies;
+			}
+			set
+			{
+				this._CONTRACT_HISTORies.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CONTRACT_BILL", Storage="_BILLs", ThisKey="ID", OtherKey="ID_CONT")]
+		public EntitySet<BILL> BILLs
+		{
+			get
+			{
+				return this._BILLs;
+			}
+			set
+			{
+				this._BILLs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CONTRACT_CONTRACT_HISTORYWEEK", Storage="_CONTRACT_HISTORYWEEKs", ThisKey="ID", OtherKey="ID_CONT")]
+		public EntitySet<CONTRACT_HISTORYWEEK> CONTRACT_HISTORYWEEKs
+		{
+			get
+			{
+				return this._CONTRACT_HISTORYWEEKs;
+			}
+			set
+			{
+				this._CONTRACT_HISTORYWEEKs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CONTRACT_DETAILs(CONTRACT_DETAIL entity)
+		{
+			this.SendPropertyChanging();
+			entity.CONTRACT = this;
+		}
+		
+		private void detach_CONTRACT_DETAILs(CONTRACT_DETAIL entity)
+		{
+			this.SendPropertyChanging();
+			entity.CONTRACT = null;
+		}
+		
+		private void attach_CONTRACT_HISTORies(CONTRACT_HISTORY entity)
+		{
+			this.SendPropertyChanging();
+			entity.CONTRACT = this;
+		}
+		
+		private void detach_CONTRACT_HISTORies(CONTRACT_HISTORY entity)
+		{
+			this.SendPropertyChanging();
+			entity.CONTRACT = null;
+		}
+		
+		private void attach_BILLs(BILL entity)
+		{
+			this.SendPropertyChanging();
+			entity.CONTRACT = this;
+		}
+		
+		private void detach_BILLs(BILL entity)
+		{
+			this.SendPropertyChanging();
+			entity.CONTRACT = null;
+		}
+		
+		private void attach_CONTRACT_HISTORYWEEKs(CONTRACT_HISTORYWEEK entity)
+		{
+			this.SendPropertyChanging();
+			entity.CONTRACT = this;
+		}
+		
+		private void detach_CONTRACT_HISTORYWEEKs(CONTRACT_HISTORYWEEK entity)
+		{
+			this.SendPropertyChanging();
+			entity.CONTRACT = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COMPANY")]
+	public partial class COMPANY : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _COM_NAME;
+		
+		private string _COM_PHONE;
+		
+		private string _COM_ADDRESS;
+		
+		private System.DateTime _COM_DATE;
+		
+		private System.Nullable<int> _USER_ID;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnCOM_NAMEChanging(string value);
+    partial void OnCOM_NAMEChanged();
+    partial void OnCOM_PHONEChanging(string value);
+    partial void OnCOM_PHONEChanged();
+    partial void OnCOM_ADDRESSChanging(string value);
+    partial void OnCOM_ADDRESSChanged();
+    partial void OnCOM_DATEChanging(System.DateTime value);
+    partial void OnCOM_DATEChanged();
+    partial void OnUSER_IDChanging(System.Nullable<int> value);
+    partial void OnUSER_IDChanged();
+    #endregion
+		
+		public COMPANY()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COM_NAME", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string COM_NAME
+		{
+			get
+			{
+				return this._COM_NAME;
+			}
+			set
+			{
+				if ((this._COM_NAME != value))
+				{
+					this.OnCOM_NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._COM_NAME = value;
+					this.SendPropertyChanged("COM_NAME");
+					this.OnCOM_NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COM_PHONE", DbType="NVarChar(100)")]
+		public string COM_PHONE
+		{
+			get
+			{
+				return this._COM_PHONE;
+			}
+			set
+			{
+				if ((this._COM_PHONE != value))
+				{
+					this.OnCOM_PHONEChanging(value);
+					this.SendPropertyChanging();
+					this._COM_PHONE = value;
+					this.SendPropertyChanged("COM_PHONE");
+					this.OnCOM_PHONEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COM_ADDRESS", DbType="NVarChar(500)")]
+		public string COM_ADDRESS
+		{
+			get
+			{
+				return this._COM_ADDRESS;
+			}
+			set
+			{
+				if ((this._COM_ADDRESS != value))
+				{
+					this.OnCOM_ADDRESSChanging(value);
+					this.SendPropertyChanging();
+					this._COM_ADDRESS = value;
+					this.SendPropertyChanged("COM_ADDRESS");
+					this.OnCOM_ADDRESSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COM_DATE", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime COM_DATE
+		{
+			get
+			{
+				return this._COM_DATE;
+			}
+			set
+			{
+				if ((this._COM_DATE != value))
+				{
+					this.OnCOM_DATEChanging(value);
+					this.SendPropertyChanging();
+					this._COM_DATE = value;
+					this.SendPropertyChanged("COM_DATE");
+					this.OnCOM_DATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USER_ID", DbType="Int")]
+		public System.Nullable<int> USER_ID
+		{
+			get
+			{
+				return this._USER_ID;
+			}
+			set
+			{
+				if ((this._USER_ID != value))
+				{
+					this.OnUSER_IDChanging(value);
+					this.SendPropertyChanging();
+					this._USER_ID = value;
+					this.SendPropertyChanged("USER_ID");
+					this.OnUSER_IDChanged();
 				}
 			}
 		}

@@ -18,6 +18,7 @@ namespace Appketoan.Pages
         private AppketoanDataContext db = new AppketoanDataContext();
         private clsFormat fm = new clsFormat();
         private UserRepo _UserRepo = new UserRepo();
+        private CompanyRepo _CompanyRepo = new CompanyRepo();
         private CustomerRepo _CustomerRepo = new CustomerRepo();
         private CustomerHistoryRepo _CustomerHistoryRepo = new CustomerHistoryRepo();
         private EmployerRepo _EmployerRepo = new EmployerRepo();
@@ -25,6 +26,7 @@ namespace Appketoan.Pages
         private ContractDetailRepo _ContractDetailRepo = new ContractDetailRepo();
         private ContractHistoryRepo _ContractHistoryRepo = new ContractHistoryRepo();
         private BillRepo _BillRepo = new BillRepo();
+        private ContractHistoryWeekRepo _ContractHistoryWeekRepo = new ContractHistoryWeekRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             //DateTime a= DateTime.FromOADate(0);
@@ -80,19 +82,21 @@ namespace Appketoan.Pages
                     c.CONT_PRODUCT_PRICE = Utils.CDecDef(row[26])*1000;
                     c.CONT_TOTAL_PRICE = Utils.CDecDef(row[8]) * 1000;
                     c.CONT_DELI_PRICE = Utils.CDecDef(row[9]) * 1000;
+                    c.CONT_DEBT_PRICE = c.CONT_TOTAL_PRICE - c.CONT_DELI_PRICE;
                     c.CONT_WEEK_PRICE = Utils.CDecDef(row[10]) * 1000;
                     c.CONT_WEEK_COUNT = Utils.CIntDef(row[11]);
                     c.CONT_NOTE = Utils.CStrDef(row[15]);
                     c.CONT_NOTE_TRACK = Utils.CStrDef(row[17]);
                     
                     string empIds = "";
-                    string [] empNamestr = Utils.CStrDef(row[18]).Split('+','-');
+                    string [] empNamestr = Utils.CStrDef(row[18]).Split('+');
                     foreach (var item in empNamestr)
                     {
                         EMPLOYER emp = _EmployerRepo.GetByNam(item);
                         if (emp == null)
                         {
                             emp = new EMPLOYER();
+                            emp.EMP_CHUCVU = 2;
                             emp.EMP_NAME = item;
                             emp.EMP_DATE = DateTime.Now;
                             _EmployerRepo.Create(emp);
@@ -102,13 +106,14 @@ namespace Appketoan.Pages
                     c.EMP_BH = empIds;
 
                     string empXMIds = "";
-                    string[] empXMNamestr = Utils.CStrDef(row[19]).Split('+', '-');
+                    string[] empXMNamestr = Utils.CStrDef(row[19]).Split('+');
                     foreach (var item in empXMNamestr)
                     {
                         EMPLOYER emp = _EmployerRepo.GetByNam(item);
                         if (emp == null)
                         {
                             emp = new EMPLOYER();
+                            emp.EMP_CHUCVU = 2;
                             emp.EMP_NAME = item;
                             emp.EMP_DATE = DateTime.Now;
                             _EmployerRepo.Create(emp);
@@ -118,13 +123,14 @@ namespace Appketoan.Pages
                     c.EMP_XM = empXMIds;
 
                     string empGHIds = "";
-                    string[] empGHNamestr = Utils.CStrDef(row[20]).Split('+', '-');
-                    foreach (var item in empXMNamestr)
+                    string[] empGHNamestr = Utils.CStrDef(row[20]).Split('+');
+                    foreach (var item in empGHNamestr)
                     {
                         EMPLOYER emp = _EmployerRepo.GetByNam(item);
                         if (emp == null)
                         {
                             emp = new EMPLOYER();
+                            emp.EMP_CHUCVU = 2;
                             emp.EMP_NAME = item;
                             emp.EMP_DATE = DateTime.Now;
                             _EmployerRepo.Create(emp);
@@ -133,32 +139,48 @@ namespace Appketoan.Pages
                     }
                     c.EMP_GH = empGHIds;
 
+                    string comIds = "";
+                    string[] comNamestr = Utils.CStrDef(row[21]).Split('+');
+                    foreach (var item in comNamestr)
+                    {
+                        COMPANY com = _CompanyRepo.GetByNam(item.Trim());
+                        if (com == null)
+                        {
+                            com = new COMPANY();
+                            com.COM_NAME = item.Trim();
+                            com.COM_DATE = DateTime.Now;
+                            _CompanyRepo.Create(com);
+                        }
+                        comIds += com.ID + ",";
+                    }
+                    c.COMPANY = comIds;
+
                     c.CUS_GT = Utils.CStrDef(row[22]);
                     c.CONT_NOTE_DELI = Utils.CStrDef(row[23]);
                     c.CONT_NOTE_XM = Utils.CStrDef(row[24]);
 
                     _ContractRepo.Create(c);
 
-                    //tạo details các kỳ thu dựa vào ngày giao hàng và loại hợp đồng
-                    for (int j = 1; j <= c.CONT_WEEK_COUNT; j++)
-                    {
-                        CONTRACT_DETAIL cd = new CONTRACT_DETAIL();
-                        cd.ID_CONT = c.ID;
-                        if (c.CONT_TYPE == 3)
-                        {
-                            cd.CONTD_DATE_THU = c.CONT_DELI_DATE.Value.AddMonths(j);
-                        }
-                        else if (c.CONT_TYPE == 2)
-                        {
-                            cd.CONTD_DATE_THU = c.CONT_DELI_DATE.Value.AddDays(j * 2 * 7);
-                        }
-                        else if (c.CONT_TYPE == 1)
-                        {
-                            cd.CONTD_DATE_THU = c.CONT_DELI_DATE.Value.AddDays(j * 7);
-                        }
-                        //cd.CONTD_DEBT_PRICE = c.CONT_DEBT_PRICE - (c.CONT_WEEK_PRICE * j);
-                        _ContractDetailRepo.Create(cd);
-                    }
+                    ////tạo details các kỳ thu dựa vào ngày giao hàng và loại hợp đồng
+                    //for (int j = 1; j <= c.CONT_WEEK_COUNT; j++)
+                    //{
+                    //    CONTRACT_DETAIL cd = new CONTRACT_DETAIL();
+                    //    cd.ID_CONT = c.ID;
+                    //    if (c.CONT_TYPE == 3)
+                    //    {
+                    //        cd.CONTD_DATE_THU = c.CONT_DELI_DATE.Value.AddMonths(j);
+                    //    }
+                    //    else if (c.CONT_TYPE == 2)
+                    //    {
+                    //        cd.CONTD_DATE_THU = c.CONT_DELI_DATE.Value.AddDays(j * 2 * 7);
+                    //    }
+                    //    else if (c.CONT_TYPE == 1)
+                    //    {
+                    //        cd.CONTD_DATE_THU = c.CONT_DELI_DATE.Value.AddDays(j * 7);
+                    //    }
+                    //    //cd.CONTD_DEBT_PRICE = c.CONT_DEBT_PRICE - (c.CONT_WEEK_PRICE * j);
+                    //    _ContractDetailRepo.Create(cd);
+                    //}
                     //tạo lịch sử chuyển đổi đầu tiên
                     CONTRACT_HISTORY ch = new CONTRACT_HISTORY();
                     ch.ID_CONT = c.ID;
@@ -234,73 +256,155 @@ namespace Appketoan.Pages
                 var results = from myRow in sortedDT.AsEnumerable()
                 where myRow.Field<string>("F1") == c[i].CONT_NO
                 select myRow;
-                DataTable dt = results.Any() ? results.CopyToDataTable() : null;   
+                DataTable dt = results.Any() ? results.CopyToDataTable() : null;   //danh sách detail tren excel theo so hop dong
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     DataView dv1 = dt.DefaultView;
                     dv1.Sort = "F7 asc";
-                    dt = dv1.ToTable();
+                    dt = dv1.ToTable();//danh sách detail tren excel theo so hop dong sort
                     for (int j = 0; j < dt.Rows.Count; j++)
                     {
-                        //insert bill
-                        BILL b = new BILL();
-                        var cc =_ContractRepo.GetByIdNo(Utils.CStrDef(dt.Rows[j][0]));
-                        b.ID_CONT = cc.ID;
                         decimal tiengop = 0;
                         tiengop = Utils.CDecDef(dt.Rows[j][2]) * 1000;
-                        b.BILL_STATUS = tiengop > 0 ? 1 : 0;
-                        string namethungan = Utils.CStrDef(dt.Rows[j][3]);
-                        EMPLOYER emp = _EmployerRepo.GetByNam(namethungan);
-                        if (emp == null)
+                        if (Utils.CDecDef(c[i].CONT_DELI_PRICE) == 0 && c[i].CONT_DELI_DATE.Value.ToString("dd/MM/yyyy") == DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6])).ToString("dd/MM/yyyy"))//kiem tra ngay thu voi ngay giao hang
                         {
-                            emp = new EMPLOYER();
-                            emp.EMP_NAME = namethungan;
-                            emp.EMP_DATE = DateTime.Now;
-                            _EmployerRepo.Create(emp);
-                        }
-                        b.ID_EMPLOY = emp.ID;
-                        //b.BILL_DELI_DATE = Utils.CDateDef(Utils.CStrDef(dt.Rows[j][6]), DateTime.MinValue);
-                        b.BILL_DELI_DATE = DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6]));
-                        if (b.BILL_DELI_DATE == DateTime.MinValue)
-                            b.BILL_DELI_DATE = null;
-                        b.BILLL_RECEIVER_DATE = b.BILL_DELI_DATE;
-                        _BillRepo.Create(b);
-
-                        //update or insert chi tiet hop dong
-                        var cdetail = _ContractDetailRepo.GetNoPriceByContractId(b.ID_CONT.Value);
-                        if (cdetail != null)
-                        {
-                            cdetail.CONTD_DATE_THU_TT = b.BILLL_RECEIVER_DATE;
-                            cdetail.CONTD_PAY_PRICE = tiengop;
-                            if (cdetail.CONTD_PAY_PRICE == 0)
-                                cdetail.CONTD_PAY_PRICE = null;
-                            _ContractDetailRepo.Update(cdetail);
+                            //cap nhat lai tien giao hang
+                            var cl = _ContractRepo.GetById(c[i].ID);
+                            if (cl != null)
+                            {
+                                cl.CONT_DELI_PRICE = tiengop;
+                                _ContractRepo.Update(cl);
+                            }                            
                         }
                         else
                         {
-                            CONTRACT_DETAIL cde = new CONTRACT_DETAIL();
-                            cde.ID_CONT = b.ID_CONT;
-                            cde.CONTD_DATE_THU_TT = b.BILLL_RECEIVER_DATE;
-                            cde.CONTD_PAY_PRICE = tiengop;
-                            if (cde.CONTD_PAY_PRICE == 0)
-                                cde.CONTD_PAY_PRICE = null;
-                            _ContractDetailRepo.Create(cde);
-                        }                       
-
-                        //cập nhật nhân viên thu ngan
-                        if (j == dt.Rows.Count - 1)
-                        {
-                            var cl = _ContractRepo.GetById(b.ID_CONT.Value);
-                            if (cl != null)
+                            //insert bill
+                            BILL b = new BILL();
+                            //var cc = _ContractRepo.GetById(c[i].ID);
+                            b.ID_CONT = c[i].ID;
+                            b.BILL_STATUS = tiengop > 0 ? 1 : 0;
+                            string namethungan = Utils.CStrDef(dt.Rows[j][3]);
+                            EMPLOYER emp = _EmployerRepo.GetByNam(namethungan);
+                            if (emp == null)
                             {
-                                cl.EMP_TN = emp.ID;
-                                _ContractRepo.Update(cl);
+                                emp = new EMPLOYER();
+                                emp.EMP_CHUCVU = 2;
+                                emp.EMP_NAME = namethungan;
+                                emp.EMP_DATE = DateTime.Now;
+                                _EmployerRepo.Create(emp);
+                            }
+                            b.ID_EMPLOY = emp.ID;
+                            //b.BILL_DELI_DATE = Utils.CDateDef(Utils.CStrDef(dt.Rows[j][6]), DateTime.MinValue);
+                            b.BILL_DELI_DATE = DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6]));
+                            if (b.BILL_DELI_DATE == DateTime.MinValue)
+                                b.BILL_DELI_DATE = null;
+                            b.BILLL_RECEIVER_DATE = b.BILL_DELI_DATE;
+                            _BillRepo.Create(b);
+
+                            var lidetail = _ContractDetailRepo.GetListByContractId(b.ID_CONT.Value);
+                            if (lidetail != null && lidetail.Count > 0)
+                            {
+                                //update or insert chi tiet hop dong                            
+                                var cdetail = _ContractDetailRepo.GetNoPriceByContractId(b.ID_CONT.Value);
+                                if (cdetail != null)
+                                {
+                                    cdetail.CONTD_DATE_THU_TT = DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6]));
+                                    cdetail.CONTD_PAY_PRICE = tiengop;
+                                    if (cdetail.CONTD_PAY_PRICE == 0)
+                                        cdetail.CONTD_PAY_PRICE = null;
+                                    _ContractDetailRepo.Update(cdetail);
+                                }
+                                else
+                                {
+                                    var deee = lidetail.OrderByDescending(n => n.CONTD_DATE_THU).Take(1).Single(); 
+                                    CONTRACT_DETAIL cde = new CONTRACT_DETAIL();
+                                    cde.ID_CONT = b.ID_CONT;
+                                    cde.CONTD_DATE_THU = deee.CONTD_DATE_THU;
+                                    cde.CONTD_DATE_THU_TT = b.BILLL_RECEIVER_DATE;
+                                    cde.CONTD_PAY_PRICE = tiengop;
+                                    if (cde.CONTD_PAY_PRICE == 0)
+                                        cde.CONTD_PAY_PRICE = null;
+                                    _ContractDetailRepo.Create(cde);
+                                }
+                            }
+                            else
+                            {
+                                //tao cac ky thu dua vao ky dau tien                                
+                                for (int d = 0; d < c[i].CONT_WEEK_COUNT; d++)
+                                {
+                                    CONTRACT_DETAIL cd = new CONTRACT_DETAIL();
+                                    cd.ID_CONT = c[i].ID;
+                                    if (c[i].CONT_TYPE == 3)
+                                    {
+                                        cd.CONTD_DATE_THU = DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6])).AddMonths(d);
+                                    }
+                                    else if (c[i].CONT_TYPE == 2)
+                                    {
+                                        cd.CONTD_DATE_THU = DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6])).AddDays(d * 2 * 7);
+                                    }
+                                    else if (c[i].CONT_TYPE == 1)
+                                    {
+                                        cd.CONTD_DATE_THU = DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6])).AddDays(d * 7);
+                                    }
+                                    _ContractDetailRepo.Create(cd);
+                                }
+                                //cap nhat ky thu dau
+                                var cdetail = _ContractDetailRepo.GetNoPriceByContractId(b.ID_CONT.Value);
+                                if (cdetail != null)
+                                {
+                                    cdetail.CONTD_DATE_THU_TT = DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6]));
+                                    cdetail.CONTD_PAY_PRICE = tiengop;
+                                    if (cdetail.CONTD_PAY_PRICE == 0)
+                                        cdetail.CONTD_PAY_PRICE = null;
+                                    _ContractDetailRepo.Update(cdetail);
+                                }
+                                //ghi lịch sử
+                                CONTRACT_HISTORYWEEK cthis = new CONTRACT_HISTORYWEEK();
+                                cthis.ID_CONT = b.ID_CONT.Value;
+                                cthis.CONTHIS_WEEK = gettypeContrachisWeek(DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6])).DayOfWeek);
+                                cthis.CONTHIS_TRANSFER_DATE = DateTime.Now;
+                                cthis.USER_ID = Utils.CIntDef(Session["Userid"]);
+                                _ContractHistoryWeekRepo.Create(cthis);
+                            }
+
+                            //cập nhật nhân viên thu ngan
+                            if (j == dt.Rows.Count - 1)
+                            {
+                                var cl = _ContractRepo.GetById(b.ID_CONT.Value);
+                                if (cl != null)
+                                {
+                                    cl.EMP_TN = emp.ID;
+                                    _ContractRepo.Update(cl);
+                                }
                             }
                         }
                     }
 
                 }
+            }
+        }
+
+        public int gettypeContrachisWeek(DayOfWeek sta)
+        {
+            switch (sta)
+            {
+                case DayOfWeek.Monday:
+                    return 2;
+                case DayOfWeek.Tuesday:
+                    return 3;
+                case DayOfWeek.Wednesday:
+                    return 4;
+                case DayOfWeek.Thursday:
+                    return 5;
+                case DayOfWeek.Friday:
+                    return 6;
+                case DayOfWeek.Saturday:
+                    return 7;
+                case DayOfWeek.Sunday:
+                    return 8;
+                default:
+                    return 2;
             }
         }
     }

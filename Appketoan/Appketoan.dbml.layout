@@ -2,64 +2,30 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.375, 17.125" name="Appketoan">
   <DataContextMoniker Name="/AppketoanDataContext" />
   <nestedChildShapes>
-    <classShape Id="6d28b48b-b75e-4b0f-a7e3-32c6552330d2" absoluteBounds="3.625, 1, 2, 5.5335310872395826">
-      <DataClassMoniker Name="/AppketoanDataContext/CONTRACT" />
-      <nestedChildShapes>
-        <elementListCompartment Id="d86d65a5-0293-4b12-bea4-3b1e8ea34a08" absoluteBounds="3.64, 1.46, 1.9700000000000002, 4.973531087239583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="14feb2a5-15da-448a-9ea2-5aa9392bce64" absoluteBounds="7, 0.5, 2, 1.9178898111979166">
       <DataClassMoniker Name="/AppketoanDataContext/CONTRACT_DETAIL" />
       <nestedChildShapes>
         <elementListCompartment Id="1132b74e-cbb1-42b6-9520-4d1c176d0911" absoluteBounds="7.015, 0.96, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.625 : 1.70894490559896); (7 : 1.70894490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/AppketoanDataContext/CONTRACT/CONTRACT_CONTRACT_DETAIL" />
-      <nodes>
-        <classShapeMoniker Id="6d28b48b-b75e-4b0f-a7e3-32c6552330d2" />
-        <classShapeMoniker Id="14feb2a5-15da-448a-9ea2-5aa9392bce64" />
-      </nodes>
-    </associationConnector>
     <classShape Id="ba178f22-482f-4e0d-a842-f04dc08f378f" absoluteBounds="7, 2.5, 2, 1.5891951497395831">
       <DataClassMoniker Name="/AppketoanDataContext/CONTRACT_HISTORY" />
       <nestedChildShapes>
         <elementListCompartment Id="f640fb61-3985-4a71-88c4-9a37c3309bed" absoluteBounds="7.015, 2.96, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.625 : 3.29459757486979); (7 : 3.29459757486979)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/AppketoanDataContext/CONTRACT/CONTRACT_CONTRACT_HISTORY" />
-      <nodes>
-        <classShapeMoniker Id="6d28b48b-b75e-4b0f-a7e3-32c6552330d2" />
-        <classShapeMoniker Id="ba178f22-482f-4e0d-a842-f04dc08f378f" />
-      </nodes>
-    </associationConnector>
     <classShape Id="04894a59-c6ab-48f4-8e4e-224e8d823886" absoluteBounds="7, 4.25, 2, 1.9178898111979166">
       <DataClassMoniker Name="/AppketoanDataContext/BILL" />
       <nestedChildShapes>
         <elementListCompartment Id="67188dcd-4436-4524-b93a-e89046c582ba" absoluteBounds="7.015, 4.71, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.625 : 5.20894490559896); (7 : 5.20894490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/AppketoanDataContext/CONTRACT/CONTRACT_BILL" />
-      <nodes>
-        <classShapeMoniker Id="6d28b48b-b75e-4b0f-a7e3-32c6552330d2" />
-        <classShapeMoniker Id="04894a59-c6ab-48f4-8e4e-224e8d823886" />
-      </nodes>
-    </associationConnector>
     <classShape Id="a0b91452-ad6d-44ba-b427-9cb807875ddc" absoluteBounds="7, 6.5, 2, 1.5891951497395831">
       <DataClassMoniker Name="/AppketoanDataContext/CONTRACT_HISTORYWEEK" />
       <nestedChildShapes>
         <elementListCompartment Id="fd515946-5e2b-4476-82fc-40a66eb47a88" absoluteBounds="7.015, 6.96, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.78125 : 6.53353108723958); (3.78125 : 7.23551604361979); (7 : 7.23551604361979)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/AppketoanDataContext/CONTRACT/CONTRACT_CONTRACT_HISTORYWEEK" />
-      <nodes>
-        <classShapeMoniker Id="6d28b48b-b75e-4b0f-a7e3-32c6552330d2" />
-        <classShapeMoniker Id="a0b91452-ad6d-44ba-b427-9cb807875ddc" />
-      </nodes>
-    </associationConnector>
     <classShape Id="e4ff4b25-6c39-4e4c-8c1c-79bf4d02cbc2" absoluteBounds="3.375, 9.125, 2, 2.24658447265625">
       <DataClassMoniker Name="/AppketoanDataContext/CUSTOMER" />
       <nestedChildShapes>
@@ -113,6 +79,46 @@
       <DataClassMoniker Name="/AppketoanDataContext/USER" />
       <nestedChildShapes>
         <elementListCompartment Id="d95cf058-a132-411f-a127-aa81ee904f2b" absoluteBounds="9.14, 11.96, 1.9700000000000002, 2.8370157877604165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="13faff96-cdb8-4502-84b3-0022fd8850b8" absoluteBounds="3.25, 1.375, 2, 5.69787841796875">
+      <DataClassMoniker Name="/AppketoanDataContext/CONTRACT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6ba9f769-31f0-445f-a785-7fc9bd49407d" absoluteBounds="3.2649999999999997, 1.835, 1.9700000000000002, 5.13787841796875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 1.89644490559896); (7 : 1.89644490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AppketoanDataContext/CONTRACT/CONTRACT_CONTRACT_DETAIL" />
+      <nodes>
+        <classShapeMoniker Id="13faff96-cdb8-4502-84b3-0022fd8850b8" />
+        <classShapeMoniker Id="14feb2a5-15da-448a-9ea2-5aa9392bce64" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 3.29459757486979); (7 : 3.29459757486979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AppketoanDataContext/CONTRACT/CONTRACT_CONTRACT_HISTORY" />
+      <nodes>
+        <classShapeMoniker Id="13faff96-cdb8-4502-84b3-0022fd8850b8" />
+        <classShapeMoniker Id="ba178f22-482f-4e0d-a842-f04dc08f378f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 5.20894490559896); (7 : 5.20894490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AppketoanDataContext/CONTRACT/CONTRACT_BILL" />
+      <nodes>
+        <classShapeMoniker Id="13faff96-cdb8-4502-84b3-0022fd8850b8" />
+        <classShapeMoniker Id="04894a59-c6ab-48f4-8e4e-224e8d823886" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 6.78643920898437); (7 : 6.78643920898437)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AppketoanDataContext/CONTRACT/CONTRACT_CONTRACT_HISTORYWEEK" />
+      <nodes>
+        <classShapeMoniker Id="13faff96-cdb8-4502-84b3-0022fd8850b8" />
+        <classShapeMoniker Id="a0b91452-ad6d-44ba-b427-9cb807875ddc" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ac97f02c-70fc-4448-acf2-5eccb8ac5f6d" absoluteBounds="3.375, 7.25, 2, 1.75354248046875">
+      <DataClassMoniker Name="/AppketoanDataContext/COMPANY" />
+      <nestedChildShapes>
+        <elementListCompartment Id="817891ce-87e1-4840-90bb-5b63eecec892" absoluteBounds="3.3899999999999997, 7.71, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -185,6 +185,11 @@
                                 <%#getEmp(Eval("EMP_GH"))%>
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Công ty">
+                            <DataItemTemplate>
+                                <%#getCompany(Eval("COMPANY"))%>
+                            </DataItemTemplate>
+                        </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Giấy tờ" Width="250px">
                             <DataItemTemplate>
                             <span title='<%# Eval("CUS_GT")%>'>

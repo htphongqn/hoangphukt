@@ -41,8 +41,8 @@ namespace Appketoan.Pages
 
         private void LogIn()
         {
-            try
-            {
+            //try
+            //{
                 if (Log_In(txtUsername.Value, txtPassword.Value))
                 {
                     Load_All_Cus(txtUsername.Value);
@@ -52,11 +52,11 @@ namespace Appketoan.Pages
                 {
                     clsDataUtil.Show("Tên đăng nhập hoặc mập khẩu không chính xác!");
                 }
-            }
-            catch (Exception ex)
-            {
-                clsVproErrorHandler.HandlerError(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    clsVproErrorHandler.HandlerError(ex);
+            //}
         }
 
         public bool Log_In(string Username, string MatKhau)

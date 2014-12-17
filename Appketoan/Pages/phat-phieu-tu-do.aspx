@@ -46,7 +46,7 @@
                             OnClick="lbtnSearch_Click"><span class="p-i-search"></span></asp:LinkButton>
                     </td>
                      <td align="right">
-                     <div style="text-align:left;width:550px">
+                     <div style="text-align:left;width:400px">
                     <asp:DropDownList ID="ddlEmployer" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*"
