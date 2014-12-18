@@ -74,7 +74,7 @@
                                     <%# getTitle(Eval("CUS_FULLNAME"), 40)%></a>
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Chứng minh nhân dân" FieldName="CUS_CMND">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Chứng minh nhân dân" FieldName="CUS_CMND"  Width="145px">
                             <DataItemTemplate>
                                 <%# Eval("CUS_CMND")%>
                             </DataItemTemplate>
@@ -92,7 +92,7 @@
                                 </span>
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Loại">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Loại" Width="50px">
                             <DataItemTemplate>
                                 <%# GetType(Eval("CUS_TYPE"))%>
                             </DataItemTemplate>

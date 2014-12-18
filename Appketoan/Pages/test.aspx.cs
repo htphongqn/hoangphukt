@@ -20,6 +20,12 @@ namespace Appketoan.Pages
             DateTime n = DateTime.Now;
             DayOfWeek dow = DateTime.Now.DayOfWeek;
             string thu2 = DayOfWeek.Monday.ToString();
+
+            bool bcona = "112,22,".Contains("112" + ",");
+            bool bcona2 = "112,22,".Contains("22" + ",");
+            bool bcona3 =  "112,22,".Contains("1122" + ",") ;
+            bool bcona4 = "112,22,".Contains("2112" + ",");
+            bool bcona5 = "112,22,".Contains("12" + ",");
         }
     }
 }

@@ -82,65 +82,163 @@ namespace Appketoan.Pages
             //tien hang
             var cth = db.CONTRACTs.Where(a => a.CONT_DELI_DATE != null && a.CONT_PRODUCT_PRICE != null
                 && a.CONT_PRODUCT_PRICE.Value > 0
-                && (a.EMP_BH != null && (a.EMP_BH.Contains(stremploye + ",") || stremploye == "0"))
-                && (a.EMP_XM != null && (a.EMP_XM.Contains(stremploye + ",") || stremploye == "0"))
-                && (a.EMP_GH != null && (a.EMP_GH.Contains(stremploye + ",") || stremploye == "0"))
                 && (a.CONT_DELI_DATE.Value.Day == d || d == 0)
                 && (a.CONT_DELI_DATE.Value.Month == m || m == 0)
                 && (a.CONT_DELI_DATE.Value.Year == y || y == 0)).ToList();
-            decimal pricehang = 0;
-            if (cth != null && cth.Count > 0)
+            var cth2 = cth;
+            if (idemploye > 0)
             {
-                pricehang = Utils.CDecDef(cth.Sum(a => a.CONT_PRODUCT_PRICE));
+                cth2 = new List<CONTRACT>();
+                foreach (var item in cth)
+                {
+                    bool add = false;
+                    string[] strBHs = item.EMP_BH.Split(',');
+                    string[] strXMs = item.EMP_XM.Split(',');
+                    string[] strGHs = item.EMP_GH.Split(',');
+                    foreach (var str in strBHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strXMs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strGHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    if (add)
+                    {
+                        cth2.Add(item);
+                    }
+                }
+            }
+            decimal pricehang = 0;
+            if (cth2 != null && cth2.Count > 0)
+            {
+                pricehang = Utils.CDecDef(cth2.Sum(a => a.CONT_PRODUCT_PRICE));
             }
             lbPriceHang.Text = fm.FormatMoney(pricehang);
 
             //tổng tiền
             var ctt = db.CONTRACTs.Where(a => a.CONT_DELI_DATE != null && a.CONT_TOTAL_PRICE != null
                 && a.CONT_TOTAL_PRICE.Value > 0
-                && (a.EMP_BH != null && (a.EMP_BH.Contains(stremploye + ",") || stremploye == "0"))
-                && (a.EMP_XM != null && (a.EMP_XM.Contains(stremploye + ",") || stremploye == "0"))
-                && (a.EMP_GH != null && (a.EMP_GH.Contains(stremploye + ",") || stremploye == "0"))
                 && (a.CONT_DELI_DATE.Value.Day == d || d == 0)
                 && (a.CONT_DELI_DATE.Value.Month == m || m == 0)
                 && (a.CONT_DELI_DATE.Value.Year == y || y == 0)).ToList();
-            decimal pricett = 0;
-            if (ctt != null && ctt.Count > 0)
+            var ctt2 = ctt;
+            if (idemploye > 0)
             {
-                pricett = Utils.CDecDef(ctt.Sum(a => a.CONT_TOTAL_PRICE));
+                ctt2 = new List<CONTRACT>();
+                foreach (var item in ctt)
+                {
+                    bool add = false;
+                    string[] strBHs = item.EMP_BH.Split(',');
+                    string[] strXMs = item.EMP_XM.Split(',');
+                    string[] strGHs = item.EMP_GH.Split(',');
+                    foreach (var str in strBHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strXMs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strGHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    if (add)
+                    {
+                        ctt2.Add(item);
+                    }
+                }
+            }
+            decimal pricett = 0;
+            if (ctt2 != null && ctt2.Count > 0)
+            {
+                pricett = Utils.CDecDef(ctt2.Sum(a => a.CONT_TOTAL_PRICE));
             }
             lbPriceTong.Text = fm.FormatMoney(pricett);
             //tiền đầu
             var ctd = db.CONTRACTs.Where(a => a.CONT_DELI_DATE != null && a.CONT_DELI_PRICE != null
                 && a.CONT_DELI_PRICE.Value > 0
-                && (a.EMP_BH != null && (a.EMP_BH.Contains(stremploye + ",") || stremploye == "0"))
-                && (a.EMP_XM != null && (a.EMP_XM.Contains(stremploye + ",") || stremploye == "0"))
-                && (a.EMP_GH != null && (a.EMP_GH.Contains(stremploye + ",") || stremploye == "0"))
                 && (a.CONT_DELI_DATE.Value.Day == d || d == 0)
                 && (a.CONT_DELI_DATE.Value.Month == m || m == 0)
                 && (a.CONT_DELI_DATE.Value.Year == y || y == 0)).ToList();
-            decimal pricetd = 0;
-            if (ctd != null && ctd.Count > 0)
+            var ctd2 = ctd;
+            if (idemploye > 0)
             {
-                pricetd = Utils.CDecDef(ctd.Sum(a => a.CONT_DELI_PRICE));
+                ctd2 = new List<CONTRACT>();
+                foreach (var item in ctd)
+                {
+                    bool add = false;
+                    string[] strBHs = item.EMP_BH.Split(',');
+                    string[] strXMs = item.EMP_XM.Split(',');
+                    string[] strGHs = item.EMP_GH.Split(',');
+                    foreach (var str in strBHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strXMs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strGHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    if (add)
+                    {
+                        ctd2.Add(item);
+                    }
+                }
+            }
+            decimal pricetd = 0;
+            if (ctd2 != null && ctd2.Count > 0)
+            {
+                pricetd = Utils.CDecDef(ctd2.Sum(a => a.CONT_DELI_PRICE));
             }
             lbPriceDau.Text = fm.FormatMoney(pricetd);
             //tien thu
-
+       
             var query = from cde in db.CONTRACT_DETAILs
                         join b in db.BILLs on cde.ID_CONT equals b.ID_CONT
-                        where (b.ID_EMPLOY != null && (b.ID_EMPLOY == idemploye || stremploye == "0"))
+                        where (b.BILLL_RECEIVER_DATE == cde.CONTD_DATE_THU_TT)
+                        && (b.ID_EMPLOY == idemploye || stremploye == "0")
                         select cde;
             var l = query.Where(a => a.CONTD_DATE_THU_TT != null && a.CONTD_PAY_PRICE != null
                 && a.CONTD_PAY_PRICE.Value > 0
                 && (a.CONTD_DATE_THU_TT.Value.Day == d || d == 0)
                 && (a.CONTD_DATE_THU_TT.Value.Month == m || m == 0)
                 && (a.CONTD_DATE_THU_TT.Value.Year == y || y == 0)).ToList();
-            //var l = db.CONTRACT_DETAILs.Where(a => a.CONTD_DATE_THU_TT != null && a.CONTD_PAY_PRICE != null
-            //    && a.CONTD_PAY_PRICE.Value > 0
-            //    && (a.CONTD_DATE_THU_TT.Value.Day == d || d == 0)
-            //    && (a.CONTD_DATE_THU_TT.Value.Month == m || m == 0)
-            //    && (a.CONTD_DATE_THU_TT.Value.Year == y || y== 0)).ToList();
             decimal pricethu = 0;
             if (l != null && l.Count > 0)
             {
@@ -151,19 +249,53 @@ namespace Appketoan.Pages
             var ctconno = db.CONTRACTs.Where(a => a.CONT_DELI_DATE != null && a.CONT_DEBT_PRICE != null
                 && a.CONT_DEBT_PRICE.Value > 0
                 && (a.CONT_STATUS == 3 || a.CONT_STATUS == 4)
-                && (a.EMP_BH != null && (a.EMP_BH.Contains(stremploye + ",") || stremploye == "0"))
-                && (a.EMP_XM != null && (a.EMP_XM.Contains(stremploye + ",") || stremploye == "0"))
-                && (a.EMP_GH != null && (a.EMP_GH.Contains(stremploye + ",") || stremploye == "0"))
                 && (a.CONT_DELI_DATE.Value.Day == d || d == 0)
                 && (a.CONT_DELI_DATE.Value.Month == m || m == 0)
                 && (a.CONT_DELI_DATE.Value.Year == y || y == 0)).ToList();
-            decimal priceconno = 0;
-            if (ctconno != null && ctconno.Count > 0)
+            var ctconno3 = ctconno;
+            if (idemploye > 0)
             {
-                priceconno = Utils.CDecDef(ctconno.Sum(a => a.CONT_DEBT_PRICE));
+                ctconno3 = new List<CONTRACT>();
+                foreach (var item in ctconno)
+                {
+                    bool add = false;
+                    string[] strBHs = item.EMP_BH.Split(',');
+                    string[] strXMs = item.EMP_XM.Split(',');
+                    string[] strGHs = item.EMP_GH.Split(',');
+                    foreach (var str in strBHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strXMs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strGHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    if (add)
+                    {
+                        ctconno3.Add(item);
+                    }
+                }
+            }
+            decimal priceconno = 0;
+            if (ctconno3 != null && ctconno3.Count > 0)
+            {
+                priceconno = Utils.CDecDef(ctconno3.Sum(a => a.CONT_DEBT_PRICE));
             }
             decimal pricetthu = 0;
-            foreach (var item in ctconno)
+            foreach (var item in ctconno3)
             {
                 var dtthu = db.CONTRACT_DETAILs.Where(a => a.CONTD_DATE_THU_TT != null && a.CONTD_PAY_PRICE != null
                 && a.CONTD_PAY_PRICE.Value > 0
@@ -188,19 +320,53 @@ namespace Appketoan.Pages
 
             var ctconno2 = db.CONTRACTs.Where(a => a.CONT_DELI_DATE != null && a.CONT_DEBT_PRICE != null
                && a.CONT_DEBT_PRICE.Value > 0
-               && (a.EMP_BH != null && (a.EMP_BH.Contains(stremploye + ",") || stremploye == "0"))
-               && (a.EMP_XM != null && (a.EMP_XM.Contains(stremploye + ",") || stremploye == "0"))
-               && (a.EMP_GH != null && (a.EMP_GH.Contains(stremploye + ",") || stremploye == "0"))
                && (a.CONT_DELI_DATE.Value.Day == d || d == 0)
                && (a.CONT_DELI_DATE.Value.Month == m || m == 0)
                && (a.CONT_DELI_DATE.Value.Year == y || y == 0)).ToList();
-            decimal priceconno2 = 0;
-            if (ctconno2 != null && ctconno2.Count > 0)
+            var ctconno4 = ctconno2;
+            if (idemploye > 0)
             {
-                priceconno2 = Utils.CDecDef(ctconno2.Sum(a => a.CONT_DEBT_PRICE));
+                ctconno4 = new List<CONTRACT>();
+                foreach (var item in ctconno2)
+                {
+                    bool add = false;
+                    string[] strBHs = item.EMP_BH.Split(',');
+                    string[] strXMs = item.EMP_XM.Split(',');
+                    string[] strGHs = item.EMP_GH.Split(',');
+                    foreach (var str in strBHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strXMs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    foreach (var str in strGHs)
+                    {
+                        if (str == stremploye)
+                        {
+                            add = true;
+                        }
+                    }
+                    if (add)
+                    {
+                        ctconno4.Add(item);
+                    }
+                }
+            }
+            decimal priceconno2 = 0;
+            if (ctconno4 != null && ctconno4.Count > 0)
+            {
+                priceconno2 = Utils.CDecDef(ctconno4.Sum(a => a.CONT_DEBT_PRICE));
             }
             decimal pricetthu2 = 0;
-            foreach (var item in ctconno2)
+            foreach (var item in ctconno4)
             {
                 var dtthu2 = db.CONTRACT_DETAILs.Where(a => a.CONTD_DATE_THU_TT != null && a.CONTD_PAY_PRICE != null
                 && a.CONTD_PAY_PRICE.Value > 0

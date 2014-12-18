@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="doanh-so-nhan-vien-thu-ngan.aspx.cs" Inherits="Appketoan.Pages.doanh_so_nhan_vien_thu_ngan" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="x_doanh-so-nhan-vien-thu-ngan.aspx.cs" Inherits="Appketoan.Pages.doanh_so_nhan_vien_thu_ngan" %>
 
 
 <%@ Register Assembly="DevExpress.Web.ASPxGridView.v12.1, Version=12.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"

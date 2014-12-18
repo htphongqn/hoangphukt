@@ -153,7 +153,7 @@
                                 <%#getMoneythattoat(Eval("CONT_DEBT_PRICE"), Eval("ID"))%>
                             </DataItemTemplate>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Còn lại">
+                        <dx:GridViewDataTextColumn VisibleIndex="1" Caption="Còn lại" Width="110px">
                             <DataItemTemplate>
                                 <%#getMoneyconlai(Eval("CONT_DEBT_PRICE"), Eval("ID"))%>
                             </DataItemTemplate>

@@ -269,11 +269,12 @@ namespace Appketoan.Pages
                         tiengop = Utils.CDecDef(dt.Rows[j][2]) * 1000;
                         if (Utils.CDecDef(c[i].CONT_DELI_PRICE) == 0 && c[i].CONT_DELI_DATE.Value.ToString("dd/MM/yyyy") == DateTime.FromOADate(Utils.CDblDef(dt.Rows[j][6])).ToString("dd/MM/yyyy"))//kiem tra ngay thu voi ngay giao hang
                         {
-                            //cap nhat lai tien giao hang
+                            //cap nhat lai tien giao hang va con no
                             var cl = _ContractRepo.GetById(c[i].ID);
                             if (cl != null)
                             {
                                 cl.CONT_DELI_PRICE = tiengop;
+                                cl.CONT_DEBT_PRICE = cl.CONT_TOTAL_PRICE - tiengop;
                                 _ContractRepo.Update(cl);
                             }                            
                         }
@@ -406,6 +407,44 @@ namespace Appketoan.Pages
                 default:
                     return 2;
             }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            OleDbConnection conn = new OleDbConnection();
+
+            OleDbCommand cmd = new OleDbCommand();
+            string path = @"D:\PhongHT\Yeucau\Hoangphu\du-lieu.xls";//duong dan toi file excel
+            string Strconn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path;
+            Strconn += ";Extended Properties=Excel 8.0";
+            conn.ConnectionString = Strconn;
+            cmd.CommandText = "Select * from [TONG KET$]";//ten sheet
+            cmd.Connection = conn;
+
+            cmd.Connection = conn;
+            OleDbDataAdapter dap = new OleDbDataAdapter(cmd);
+            dap.Fill(table);
+            
+            var c = db.CONTRACTs.ToList();
+            for (int i = 0; i < c.Count; i++)
+            {
+                var results = from myRow in table.AsEnumerable()
+                              where myRow.Field<string>("F3") == c[i].CONT_NO
+                              select myRow;
+                DataTable dt = results.Any() ? results.CopyToDataTable() : null;   //danh sách detail tren excel theo so hop dong
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+
+                    CONTRACT updatecontract = _ContractRepo.GetById(c[i].ID);
+                    updatecontract.CONT_PRODUCT_PRICE = Utils.CDecDef(row[26]) * 1000;
+
+                    _ContractRepo.Update(updatecontract);
+                }
+            }
+                
         }
     }
 }

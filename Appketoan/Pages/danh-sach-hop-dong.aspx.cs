@@ -252,7 +252,7 @@ namespace Appketoan.Pages
                 EMPLOYER emp = _EmployerRepo.GetById(Utils.CIntDef(item));
                 if (emp != null)
                 {
-                    name += emp.EMP_NAME + ",";
+                    name += emp.EMP_NAME + "+";
                 }                
             }
             if (name.Length > 0)
@@ -268,7 +268,7 @@ namespace Appketoan.Pages
                 COMPANY com = _CompanyRepo.GetById(Utils.CIntDef(item));
                 if (com != null)
                 {
-                    name += com.COM_NAME + ",";
+                    name += com.COM_NAME + "+";
                 }
             }
             if (name.Length > 0)
@@ -341,8 +341,8 @@ namespace Appketoan.Pages
             {
                 case 2: return "Còn góp";
                 case 3: return "Thanh lý";
-                case 4: return "Xử lý";
-                case 5: return "Chết";
+                case 4: return "Chết";
+                //case 5: return "Xử lý";
             }
             return "";
         }

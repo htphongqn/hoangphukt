@@ -326,8 +326,8 @@
                                                 <asp:RadioButtonList ID="Rdstatuscontract" runat="server" RepeatColumns="4">
                                                     <asp:ListItem Value="2" Selected="True" Text="Còn góp"></asp:ListItem>
                                                     <asp:ListItem Value="3" Text="Thanh lý"></asp:ListItem>
-                                                    <asp:ListItem Value="4" Text="Xử lý"></asp:ListItem>
-                                                    <asp:ListItem Value="5" Text="Chết"></asp:ListItem>
+                                                    <asp:ListItem Value="4" Text="Chết"></asp:ListItem>
+                                                    <%--<asp:ListItem Value="5" Text="Xử lý"></asp:ListItem>--%>
                                                 </asp:RadioButtonList>
                                             </td>
                                         </tr>

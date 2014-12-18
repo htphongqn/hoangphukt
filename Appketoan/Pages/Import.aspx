@@ -10,13 +10,18 @@
     <form id="form1" runat="server">
     <div>
     <asp:FileUpload ID="file_Upload" runat="server" Width="251px" />
-                                <asp:Button ID="bt_import" runat="server" onclick="bt_import_Click" 
+                                <asp:Button ID="bt_import" runat="server" Enabled="false" onclick="bt_import_Click" 
                                     Text="Import" />
     </div>
     <div>
     <asp:FileUpload ID="FileUpload1" runat="server" Width="251px" />
-                                <asp:Button ID="Button1" runat="server" onclick="bt_import_detail_Click" 
+                                <asp:Button ID="Button1" runat="server"  Enabled="false" onclick="bt_import_detail_Click" 
                                     Text="Import Detail" />
+    </div>
+     <div>
+    <asp:FileUpload ID="FileUpload2" runat="server" Width="251px" />
+                                <asp:Button ID="Button2" runat="server" Enabled="false"
+                                    Text="Update Tien Hang" onclick="Button2_Click" />
     </div>
     </form>
 </body>

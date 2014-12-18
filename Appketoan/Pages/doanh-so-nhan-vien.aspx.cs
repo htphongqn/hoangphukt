@@ -77,33 +77,71 @@ namespace Appketoan.Pages
             int idmonth = Utils.CIntDef(ddlMonth.SelectedValue);
             int idyear = Utils.CIntDef(ddlYear.SelectedValue);
             //bán hàng
-            var list = db.CONTRACTs.Where(n => n.EMP_BH != null && (n.EMP_BH.Contains(stremploye + ",") || stremploye == "0")
-                //.Where(row => row.Values.Any(s=>s.Value == searchValue));
-                && (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
+            var list = db.CONTRACTs.Where(n =>            
+                (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
                 && (n.CONT_DELI_DATE.Value.Month == idmonth || idmonth == 0)
                 && (n.CONT_DELI_DATE.Value.Year == idyear || idyear == 0)
                 ).ToList();
-            lbBanhang.Text = list.Count + " Hợp đồng";
+            int i = list.Count;
+            if (stremploye != "" && stremploye != "0")
+            {
+                i = 0;
+                foreach (var item in list)
+                {
+                    string[] strs = item.EMP_BH.Split(',');
+                    foreach (var str in strs)
+                    {
+                        if (str == stremploye)
+                            i++;
+                    }
+                }
+            }
+            lbBanhang.Text = i + " Hợp đồng";
             //xác minh
-            var listxm = db.CONTRACTs.Where(n => n.EMP_XM != null && (n.EMP_XM.Contains(stremploye + ",") || stremploye == "0")
-                //.Where(row => row.Values.Any(s=>s.Value == searchValue));
-                && (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
+            var listxm = db.CONTRACTs.Where(n => 
+                (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
                 && (n.CONT_DELI_DATE.Value.Month == idmonth || idmonth == 0)
                 && (n.CONT_DELI_DATE.Value.Year == idyear || idyear == 0)
                 ).ToList();
-            lbXacminh.Text = listxm.Count + " Hợp đồng";
+            i = listxm.Count;
+            if (stremploye != "" && stremploye != "0")
+            {
+                i = 0;
+                foreach (var item in listxm)
+                {
+                    string[] strs = item.EMP_XM.Split(',');
+                    foreach (var str in strs)
+                    {
+                        if (str == stremploye)
+                            i++;
+                    }
+                }
+            }
+            lbXacminh.Text = i + " Hợp đồng";
             //giao hàng
-            var listgh = db.CONTRACTs.Where(n => n.EMP_GH != null && (n.EMP_GH.Contains(stremploye + ",") || stremploye == "0")
-                //.Where(row => row.Values.Any(s=>s.Value == searchValue));
-                && (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
+            var listgh = db.CONTRACTs.Where(n => 
+                (n.CONT_DELI_DATE.Value.Day == idday || idday == 0)
                 && (n.CONT_DELI_DATE.Value.Month == idmonth || idmonth == 0)
                 && (n.CONT_DELI_DATE.Value.Year == idyear || idyear == 0)
                 ).ToList();
-            lbGiaohang.Text = listgh.Count + " Hợp đồng";
+            i = listgh.Count;
+            if (stremploye != "" && stremploye != "0")
+            {
+                i = 0;
+                foreach (var item in listgh)
+                {
+                    string[] strs = item.EMP_GH.Split(',');
+                    foreach (var str in strs)
+                    {
+                        if (str == stremploye)
+                            i++;
+                    }
+                }
+            }
+            lbGiaohang.Text = i + " Hợp đồng";
             //thu ngân
             int idEmp =Utils.CIntDef(stremploye);
-            var listtn = db.BILLs.Where(n => n.ID_EMPLOY != null && (n.ID_EMPLOY == idEmp || stremploye == "0")
-                //.Where(row => row.Values.Any(s=>s.Value == searchValue));
+            var listtn = db.BILLs.Where(n => (n.ID_EMPLOY == idEmp || idEmp == 0)
                 && (n.BILLL_RECEIVER_DATE.Value.Day == idday || idday == 0)
                 && (n.BILLL_RECEIVER_DATE.Value.Month == idmonth || idmonth == 0)
                 && (n.BILLL_RECEIVER_DATE.Value.Year == idyear || idyear == 0)
