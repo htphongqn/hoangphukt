@@ -391,7 +391,7 @@ namespace Appketoan.Pages
         public string getMoneythattoat(object CONT_DEBT_PRICE, object _idct)
         {
             var c = _ContractRepo.GetById(Utils.CIntDef(_idct));
-            if (c.CONT_STATUS == 3 || c.CONT_STATUS == 4)
+            if (c.CONT_STATUS == Cost.HD_THANHLY || c.CONT_STATUS == Cost.HD_CHET)
             {
                 decimal _total = Utils.CDecDef(CONT_DEBT_PRICE) - getAllthu(_idct);
                 return fm.FormatMoney(_total);
@@ -400,6 +400,11 @@ namespace Appketoan.Pages
         }
         public string getMoneyconlai(object CONT_DEBT_PRICE, object _idct)
         {
+             var c = _ContractRepo.GetById(Utils.CIntDef(_idct));
+             if (c.CONT_STATUS == Cost.HD_THANHLY || c.CONT_STATUS == Cost.HD_CHET)
+             {
+                 return "";
+             }
             decimal _total = Utils.CDecDef(CONT_DEBT_PRICE) - getAllthu(_idct);
             return fm.FormatMoney(_total);
         }

@@ -1134,6 +1134,7 @@ namespace Appketoan.Pages
         }
         private void Save_history()
         {
+            //check hợp lệ
             CONTRACT_DETAIL contractNextpay = _ContractDetailRepo.GetNextPayDateConveByContractId(id, pickdateconvert.returnDate);
             if (contractNextpay == null)
             {
@@ -1147,12 +1148,18 @@ namespace Appketoan.Pages
                 return;
             }
             var contract = _ContractRepo.GetById(id);
+            if (contract.BILL_STATUS == 1)
+            {
+                MessageBox1.ShowMessage("Hãy thực hiện nhận phiếu trước khi thực hiện chuyển đổi!", "Thông báo");
+                return;
+            }
             //check với loại hiên tại
             if (contract.CONT_TYPE == Utils.CIntDef(Rdtypecont_convert.SelectedValue))
             {
                 MessageBox1.ShowMessage("Loại hợp đồng trùng với loại hợp đồng hiện tại!","Thông báo");
                 return;
             }
+            //thực hiện
             //cập nhật lại loại hợp đồng
             if (contract != null)
             {
@@ -1198,6 +1205,7 @@ namespace Appketoan.Pages
         }
         private void Save_historyweek()
         {
+            //check hợp lệ
             CONTRACT_DETAIL contractNextpay = _ContractDetailRepo.GetNextPayDateConveByContractId(id, pickconvertday.returnDate);
             if (contractNextpay == null)
             {
@@ -1210,6 +1218,12 @@ namespace Appketoan.Pages
                 MessageBox1.ShowMessage("Ngày chuyển đổi phải lớn hơn ngày thu đầu tiên!", "Thông báo");
                 return;
             }
+            var contract = _ContractRepo.GetById(id);
+            if (contract.BILL_STATUS == 1)
+            {
+                MessageBox1.ShowMessage("Hãy thực hiện nhận phiếu trước khi thực hiện chuyển đổi!", "Thông báo");
+                return;
+            }
             //check với thứ hiên tại
             DayOfWeek WCurrent = contractNextpay.CONTD_DATE_THU.Value.DayOfWeek;
             DayOfWeek WSelect = GetDayOfWeek(ddlContractDay.SelectedIndex);
@@ -1218,13 +1232,12 @@ namespace Appketoan.Pages
                 MessageBox1.ShowMessage("Thứ đi thu trùng với thứ hiện tại!", "Thông báo");
                 return;
             }
+            //thực hiện
             int op = OperationTwoWeek(WCurrent, WSelect);
             contractNextpay.CONTD_DATE_THU = contractNextpay.CONTD_DATE_THU.Value.AddDays(op);
             _ContractDetailRepo.Update(contractNextpay);
-            //cập nhật lại kỳ thu chưa góp so với ngày chuyển đổi
-            var contract = _ContractRepo.GetById(id);
-            var contractListpay = _ContractDetailRepo.GetListPayDateConveByContractId(id, pickconvertday.returnDate);
-            
+            //cập nhật lại kỳ thu chưa góp so với ngày chuyển đổi            
+            var contractListpay = _ContractDetailRepo.GetListPayDateConveByContractId(id, pickconvertday.returnDate);            
             for (int i = 1; i < contractListpay.Count; i++)
 			{
                 if (contract.CONT_TYPE == 3)

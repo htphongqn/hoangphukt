@@ -40,7 +40,7 @@
                             <asp:ListItem Text="--Chọn tình trạng hợp đồng--" Value="0" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="Hợp đồng còn góp" Value="2"></asp:ListItem>
                             <asp:ListItem Text="Hợp đồng thanh lý" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="Hợp đồng dựt nợ" Value="4"></asp:ListItem>
+                            <asp:ListItem Text="Hợp đồng chết" Value="4"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
 

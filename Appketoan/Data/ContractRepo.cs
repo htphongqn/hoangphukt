@@ -95,6 +95,7 @@ namespace Appketoan.Data
             try
             {
                 CONTRACT cus = this.GetById(id);
+                cus.IS_DELETE = true;
                 return this.Delete(cus);
             }
             catch (Exception e)
@@ -107,7 +108,8 @@ namespace Appketoan.Data
         {
             try
             {
-                //user.IsDelete = true;
+                CONTRACT cusOld = this.GetById(cus.ID);
+                cusOld = cus;
                 db.SubmitChanges();
                 return 0;
             }

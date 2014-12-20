@@ -27,6 +27,7 @@ namespace Appketoan.Pages
         {
             if (!IsPostBack)
             {
+                pickdate_deli.returnDate = DateTime.Now;
                 showEmployer();
                 LoadLandau();                
             }
@@ -130,17 +131,18 @@ namespace Appketoan.Pages
                     BILL b = new BILL();
                     b.ID_CONT = Utils.CIntDef(item);
                     b.ID_EMPLOY = Utils.CIntDef(ddlEmployer.SelectedValue);
-                    b.BILL_DELI_DATE = DateTime.Now;
+                    b.BILL_DELI_DATE = pickdate_deli.returnDate;
                     int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item));
                     Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
                     if (lbDatethu != null)
                     {
                         b.CONTD_DATE_THU = DateTime.ParseExact(lbDatethu.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                        _BillRepo.Create(b);
+                                                
                         //cập nhật trạng thái phiếu
                         CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(item));
                         if (contract.EMP_TN == null)
                         {
+                            b.CONTD_DATE_THU = pickdate_deli.returnDate;
                             //tạo details các kỳ thu dựa vào ngày hom nay(ngay giao lan dau) và loại hợp đồng
                             for (int j = 0; j < contract.CONT_WEEK_COUNT; j++)
                             {
@@ -164,10 +166,12 @@ namespace Appketoan.Pages
                             CONTRACT_HISTORYWEEK cthis = new CONTRACT_HISTORYWEEK();
                             cthis.ID_CONT = contract.ID;
                             cthis.CONTHIS_WEEK = gettypeContrachisWeek(b.CONTD_DATE_THU.Value.DayOfWeek);
-                            cthis.CONTHIS_TRANSFER_DATE = DateTime.Now;
+                            cthis.CONTHIS_TRANSFER_DATE = pickdate_deli.returnDate;
                             cthis.USER_ID = Utils.CIntDef(Session["Userid"]);
                             _ContractHistoryWeekRepo.Create(cthis);
                         }
+                        _BillRepo.Create(b);
+
                         contract.BILL_STATUS = 1;
                         contract.EMP_TN = Utils.CIntDef(ddlEmployer.SelectedValue);
                         _ContractRepo.Update(contract);
@@ -195,7 +199,7 @@ namespace Appketoan.Pages
                         BILL b = new BILL();
                         b.ID_CONT = Utils.CIntDef(item);
                         b.ID_EMPLOY = Utils.CIntDef(hddEmp_TN.Value);
-                        b.BILL_DELI_DATE = DateTime.Now;
+                        b.BILL_DELI_DATE = pickdate_deli.returnDate;
                         Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
                         if (lbDatethu != null)
                         {

@@ -76,6 +76,15 @@ namespace Appketoan.Pages {
         protected global::System.Web.UI.WebControls.LinkButton lbtnPhatphieudachon;
         
         /// <summary>
+        /// pickdate_deli control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::vpro.eshop.cpanel.Calendar.pickerAndCalendar pickdate_deli;
+        
+        /// <summary>
         /// ASPxGridView1_phatphieu control.
         /// </summary>
         /// <remarks>

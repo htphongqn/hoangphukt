@@ -18,6 +18,7 @@ namespace Appketoan.Pages
         private EmployerRepo _EmployerRepo = new EmployerRepo();
         private ContractRepo _ContractRepo = new ContractRepo();
         private ContractDetailRepo _ContractDetailRepo = new ContractDetailRepo();
+        private ContractHistoryWeekRepo _ContractHistoryWeekRepo = new ContractHistoryWeekRepo();
         private CustomerRepo _CustomerRepo = new CustomerRepo();
         private BillRepo _BillRepo = new BillRepo();
         private int _count = 1;
@@ -28,6 +29,7 @@ namespace Appketoan.Pages
             _count = 1;
             if (!IsPostBack)
             {
+                pickdate_recei.returnDate = DateTime.Now;
                 showEmployer();
                 LoadContract_Cannhanphieu();
             }
@@ -392,7 +394,53 @@ namespace Appketoan.Pages
             LoadContract_Cannhanphieu();
         }
 
-        
+        protected void lbtnPhatlai_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<object> fieldValues = ASPxGridView1_nhanphieu.GetSelectedFieldValues(new string[] { "ID_CONT" });
+                foreach (var item in fieldValues)
+                {
+                    int index = ASPxGridView1_nhanphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item));
+
+                    //xóa bill đã phát
+                    HiddenField hddID = ASPxGridView1_nhanphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_nhanphieu.Columns["BILL_STATUS"], "hddID") as HiddenField;//id bill
+                    _BillRepo.Remove(Utils.CIntDef(hddID.Value));
+                    //cập nhật lại contract bill stattus
+                    CONTRACT contract = _ContractRepo.GetById(Utils.CIntDef(item));
+                    contract.BILL_STATUS = 0;
+                    _ContractRepo.Update(contract);
+                    //if phiếu mới cập nhật nhan viên thu ngân = null, xóa list details, xóa contract hisweek
+                    bool checkbill = _ContractDetailRepo.CheckBillNewById(Utils.CIntDef(item));
+                    if (checkbill)
+                    {
+                        //cập nhật nhan viên thu ngân = null
+                        contract = _ContractRepo.GetById(Utils.CIntDef(item));
+                        contract.EMP_TN = null;
+                        _ContractRepo.Update(contract);
+                        //xóa list details
+                        var listdetails = _ContractDetailRepo.GetListByContractId(Utils.CIntDef(item));
+                        foreach (var detail in listdetails)
+                        {
+                            _ContractDetailRepo.Remove(detail);
+                        }
+                        //xóa contract hisweek
+                        var listhisweek = _ContractHistoryWeekRepo.GetListByContractID(Utils.CIntDef(item));
+                        foreach (var week in listhisweek)
+                        {
+                            _ContractHistoryWeekRepo.Remove(week);
+                        }
+                    }
+                }
+
+
+            }
+            catch
+            {
+
+            }
+            Response.Redirect("~/Pages/nhan-phieu.aspx");
+        }             
 
     }
 }

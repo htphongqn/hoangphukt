@@ -26,6 +26,7 @@ namespace Appketoan.Pages
         {
             if (!IsPostBack)
             {
+                pickdate_deli.returnDate = DateTime.Now;
                 showEmployer();
                 loadDateInWeek();
                 LoadContract_Canphatphieu();                
@@ -192,7 +193,7 @@ namespace Appketoan.Pages
                     BILL b = new BILL();
                     b.ID_CONT = Utils.CIntDef(item);
                     b.ID_EMPLOY = Utils.CIntDef(ddlEmployer.SelectedValue);
-                    b.BILL_DELI_DATE = DateTime.Now;
+                    b.BILL_DELI_DATE = pickdate_deli.returnDate;
                     int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item));
                     Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
                     if (lbDatethu != null)
@@ -230,7 +231,7 @@ namespace Appketoan.Pages
                         BILL b = new BILL();
                         b.ID_CONT = Utils.CIntDef(item);
                         b.ID_EMPLOY = Utils.CIntDef(hddEmp_TN.Value);
-                        b.BILL_DELI_DATE = DateTime.Now;
+                        b.BILL_DELI_DATE = pickdate_deli.returnDate;
                         Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(index, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
                         if (lbDatethu != null)
                         {
@@ -331,7 +332,7 @@ namespace Appketoan.Pages
                         BILL b = new BILL();
                         b.ID_CONT = Utils.CIntDef(hddConID.Value);
                         b.ID_EMPLOY = Utils.CIntDef(hddEmp_TN.Value);
-                        b.BILL_DELI_DATE = DateTime.Now;
+                        b.BILL_DELI_DATE = pickdate_deli.returnDate;
                         //int index = ASPxGridView1_phatphieu.FindVisibleIndexByKeyValue(Utils.CIntDef(item.ID_CONT));
                         Label lbDatethu = ASPxGridView1_phatphieu.FindRowCellTemplateControl(i, (GridViewDataColumn)ASPxGridView1_phatphieu.Columns["CONTD_DATE_THU"], "lbDatethu") as Label;
                         if (lbDatethu != null)

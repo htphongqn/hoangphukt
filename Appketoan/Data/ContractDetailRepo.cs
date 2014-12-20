@@ -87,6 +87,20 @@ namespace Appketoan.Data
                 return null;
             }
         }
+        public virtual bool CheckBillNewById(int id)
+        {
+            try
+            {                
+                var list =  GetListByContractId(id).Where(a => a.CONTD_DATE_THU_TT != null).ToList();
+                if (list != null && list.Count > 0)//phiếu củ
+                    return false;
+                return true;//phiếu mới
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public virtual CONTRACT_DETAIL GetById(int id)
         {
             try

@@ -57,6 +57,8 @@
                     </asp:DropDownList>
                 <asp:LinkButton CssClass="k-button" ID="lbtnSearch" ToolTip="Tìm kiếm" runat="server"
                             OnClick="lbtnSearch_Click"><span class="p-i-search"></span></asp:LinkButton>
+                            <asp:LinkButton CssClass="k-button" ID="lbtnPhatlai" ToolTip="Phát lại" runat="server"
+                            OnClick="lbtnPhatlai_Click" OnClientClick="return confirm('Phát lại phiếu đã chọn?');">Phát lại</asp:LinkButton>
                             </td>
                      <td align="right">                         
                         <div style="float:right">

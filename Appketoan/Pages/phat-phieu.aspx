@@ -4,7 +4,8 @@
     Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
 <%@ Register Assembly="DevExpress.Web.ASPxEditors.v12.1, Version=12.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
     Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
-
+    <%@ Register Src="../Calendar/pickerAndCalendar.ascx" TagName="pickerAndCalendar"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <script type="text/javascript">
          function pageLoad() {
@@ -48,7 +49,9 @@
                             OnClick="lbtnSearch_Click"><span class="p-i-search"></span></asp:LinkButton>
                     </td>
                      <td align="right">
-                     <div style="text-align:left;width:550px">
+                     <div style="text-align:left;width:650px">
+                     
+                    <div style="float:right">
                     <asp:DropDownList ID="ddlEmployer" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*"
@@ -61,6 +64,10 @@
                 <asp:LinkButton CssClass="k-button" ID="lbtnPhatphieumacdinh" 
                              ToolTip="Phát phiếu mặc định" runat="server" onclick="lbtnPhatphieumacdinh_Click" OnClientClick="return confirm('Phát tất cả các phiếu mặc định cho nhân viên?');"
                             >Phát phiếu mặc định</asp:LinkButton>
+                            </div>
+                            <div style="float:right">
+                     <uc1:pickerAndCalendar ID="pickdate_deli" runat="server" />
+                    </div>
                     </div>
                     
                 

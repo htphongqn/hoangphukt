@@ -4,7 +4,8 @@
     Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
 <%@ Register Assembly="DevExpress.Web.ASPxEditors.v12.1, Version=12.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
     Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
-
+    <%@ Register Src="../Calendar/pickerAndCalendar.ascx" TagName="pickerAndCalendar"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <script type="text/javascript">
          function pageLoad() {
@@ -46,7 +47,8 @@
                             OnClick="lbtnSearch_Click"><span class="p-i-search"></span></asp:LinkButton>
                     </td>
                      <td align="right">
-                     <div style="text-align:left;width:400px">
+                     <div style="text-align:left;width:500px">
+                     <div style="float:right">
                     <asp:DropDownList ID="ddlEmployer" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*"
@@ -55,7 +57,11 @@
                     <asp:LinkButton CssClass="k-button" ID="lbtnPhatphieu" ToolTip="Phát phiếu" runat="server" ValidationGroup="G2" OnClientClick="return confirm('Phát phiếu đã chọn cho nhân viên?');"
                             OnClick="lbtnPhatphieu_Click">Phát phiếu</asp:LinkButton>
                     <asp:LinkButton CssClass="k-button" ID="lbtnPhatphieudachon" ToolTip="Phát phiếu đã chọn" runat="server" OnClientClick="return confirm('Phát phiếu đã chọn?');"
-                            OnClick="lbtnPhatphieudachon_Click">Phát phiếu đã chọn</asp:LinkButton>                
+                            OnClick="lbtnPhatphieudachon_Click">Phát phiếu đã chọn</asp:LinkButton>  
+                            </div>
+                            <div style="float:right">
+                     <uc1:pickerAndCalendar ID="pickdate_deli" runat="server" />
+                    </div>              
                     </div>
                     
                 
