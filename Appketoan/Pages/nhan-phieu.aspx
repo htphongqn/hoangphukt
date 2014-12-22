@@ -47,18 +47,17 @@
         <table width="100%">
             <tbody>
                 <tr>
-                <td style="width:130px">
-                <input class="k-textbox k-input search-noidung fill-input" width="130px" id="txtKeyword"
-                            name="txtKeyword" type="text" runat="server" placeholder="Nhập số hợp đồng" />
-                            
-                </td>
                 <td>
+                <asp:Panel ID="pnContract" runat="server" DefaultButton="lbtnSearch">
+                <input class="k-textbox k-input search-noidung" width="130px" id="txtKeyword"
+                            name="txtKeyword" type="text" runat="server" placeholder="Nhập số hợp đồng" />
                 <asp:DropDownList ID="ddlEmployerSearch" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
                     </asp:DropDownList>
                 <asp:LinkButton CssClass="k-button" ID="lbtnSearch" ToolTip="Tìm kiếm" runat="server"
                             OnClick="lbtnSearch_Click"><span class="p-i-search"></span></asp:LinkButton>
                             <asp:LinkButton CssClass="k-button" ID="lbtnPhatlai" ToolTip="Phát lại" runat="server"
                             OnClick="lbtnPhatlai_Click" OnClientClick="return confirm('Phát lại phiếu đã chọn?');">Phát lại</asp:LinkButton>
+                </asp:Panel>
                             </td>
                      <td align="right">                         
                         <div style="float:right">

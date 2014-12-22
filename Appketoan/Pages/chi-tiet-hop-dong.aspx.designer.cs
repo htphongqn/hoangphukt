@@ -580,13 +580,31 @@ namespace Appketoan.Pages {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
         
         /// <summary>
-        /// Label1 control.
+        /// lbMessageThuTK control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbMessageThuTK;
+        
+        /// <summary>
+        /// txtPayprice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPayprice;
+        
+        /// <summary>
+        /// pickdate_datethuTT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::vpro.eshop.cpanel.Calendar.pickerAndCalendar pickdate_datethuTT;
         
         /// <summary>
         /// lkbtnSavethu control.

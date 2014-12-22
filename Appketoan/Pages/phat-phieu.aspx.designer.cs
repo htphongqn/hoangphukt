@@ -13,6 +13,15 @@ namespace Appketoan.Pages {
     public partial class phat_phieu {
         
         /// <summary>
+        /// pnContract control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnContract;
+        
+        /// <summary>
         /// txtKeyword control.
         /// </summary>
         /// <remarks>

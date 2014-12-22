@@ -877,7 +877,7 @@ namespace Appketoan.Pages
         }
         private void load_list_detail()
         {
-            var list = db.CONTRACT_DETAILs.Where(n => n.ID_CONT == id).OrderBy(n=>n.CONTD_DATE_THU_TT).OrderBy(n=>n.CONTD_DATE_THU);
+            var list = db.CONTRACT_DETAILs.Where(n => n.ID_CONT == id).OrderBy(n => n.CONTD_DATE_THU);//.OrderBy(n=>n.CONTD_DATE_THU_TT)
             HttpContext.Current.Session["dienmay.listctdetail"] = list;
             ASPxGridView_contractdetail.DataSource = list;
             ASPxGridView_contractdetail.DataBind();
@@ -936,7 +936,11 @@ namespace Appketoan.Pages
             foreach (var item in fieldValues)
             {
                 CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetById(Utils.CIntDef(item));
-                contractdetail.CONTD_PAY_PRICE = contract.CONT_WEEK_PRICE;
+                contractdetail.CONTD_DATE_THU_TT = pickdate_datethuTT.returnDate;
+                decimal? price = null;
+                if (Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", "")) > 0)
+                    price = Utils.CDecDef(Utils.CStrDef(txtPayprice.Text).Replace(",", ""));
+                contractdetail.CONTD_PAY_PRICE = price;
                 _ContractDetailRepo.Update(contractdetail);
             }
 
@@ -948,6 +952,7 @@ namespace Appketoan.Pages
             foreach (var item in fieldValues)
             {
                 CONTRACT_DETAIL contractdetail = _ContractDetailRepo.GetById(Utils.CIntDef(item));
+                contractdetail.CONTD_DATE_THU_TT = null;
                 contractdetail.CONTD_PAY_PRICE = null;
                 _ContractDetailRepo.Update(contractdetail);
             }

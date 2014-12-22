@@ -586,7 +586,7 @@
                                             <td>
                                                 <asp:ValidationSummary ID="ValidationSummary2" runat="server" ForeColor="Red" ShowMessageBox="True"
                                                     ShowSummary="False" ValidationGroup="G3" />
-                                                <asp:Label ID="Label1" runat="server" Text="" ForeColor="Red"></asp:Label>
+                                                <asp:Label ID="lbMessageThuTK" runat="server" Text="" ForeColor="Red"></asp:Label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -608,9 +608,16 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
+                                            <div style="float:left">
+                                            <asp:TextBox ID="txtPayprice" runat="server" class="text" CssClass="k-textbox textbox" onkeyup="FormatNumber(this);" onblur="FormatNumber(this);" Width="100" placeholder="Nhập tiền thu"></asp:TextBox>
+                                            </div>
+                                            <div style="float:left">
+                                            <uc1:pickerAndCalendar ID="pickdate_datethuTT" runat="server" />
+                                            </div>
+                                            <div style="float:left">
                                                 <asp:LinkButton ID="lkbtnSavethu" ToolTip="Nhận tiền không cần phát phiếu thu" Text="Nhận tiền" CssClass="k-button" runat="server" CausesValidation="false" OnClick="LinkButton2_Click"></asp:LinkButton>
                                                     <asp:LinkButton ID="lkbtnSavenothu" ToolTip="Chưa nhận tiền" Text="Chưa nhận tiền" CssClass="k-button" runat="server"  OnClick="LinkButton3_Click"></asp:LinkButton>
-                                               
+                                               </div>
                                             </td>
                                         </tr>
                                         <tr>

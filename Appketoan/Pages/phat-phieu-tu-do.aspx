@@ -35,16 +35,16 @@
         <table width="100%">
             <tbody>
                 <tr>
-                <td style="width:130px">
-                <input class="k-textbox k-input search-noidung fill-input" width="130px" id="txtKeyword"
+                <td>
+                <asp:Panel ID="pnContract" runat="server" DefaultButton="lbtnSearch">
+                <input class="k-textbox k-input search-noidung" width="130px" id="txtKeyword"
                             name="txtKeyword" type="text" runat="server" placeholder="Nhập số hợp đồng" />
-                </td>
-                    <td align="left">
                         <asp:DropDownList ID="ddlEmployerSearch" runat="server" CssClass="chosen-select k-textbox textbox" Width="170px">
                     </asp:DropDownList>
                                            
                         <asp:LinkButton CssClass="k-button" ID="lbtnSearch" ToolTip="Tìm kiếm" runat="server"
                             OnClick="lbtnSearch_Click"><span class="p-i-search"></span></asp:LinkButton>
+                    </asp:Panel>
                     </td>
                      <td align="right">
                      <div style="text-align:left;width:500px">

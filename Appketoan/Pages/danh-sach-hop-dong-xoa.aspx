@@ -24,6 +24,7 @@
         </div>
     </div>
     <div id="div-search">
+    <asp:Panel ID="pnContract" runat="server" DefaultButton="lbtnSearch">
         <table>
             <tbody>
                 <tr>
@@ -58,6 +59,7 @@
                 </tr>
             </tbody>
         </table>
+        </asp:Panel>
     </div>
     <table width="100%" cellpadding="3" cellspacing="3" style="background-color: #f4f4f4;
         border: 1px solid #aecaf0;">
