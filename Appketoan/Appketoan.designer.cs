@@ -60,9 +60,6 @@ namespace Appketoan
     partial void InsertGROUP_MENU(GROUP_MENU instance);
     partial void UpdateGROUP_MENU(GROUP_MENU instance);
     partial void DeleteGROUP_MENU(GROUP_MENU instance);
-    partial void InsertMENU_PARENT(MENU_PARENT instance);
-    partial void UpdateMENU_PARENT(MENU_PARENT instance);
-    partial void DeleteMENU_PARENT(MENU_PARENT instance);
     partial void InsertUSER(USER instance);
     partial void UpdateUSER(USER instance);
     partial void DeleteUSER(USER instance);
@@ -72,6 +69,12 @@ namespace Appketoan
     partial void InsertCOMPANY(COMPANY instance);
     partial void UpdateCOMPANY(COMPANY instance);
     partial void DeleteCOMPANY(COMPANY instance);
+    partial void InsertMENU_PARENT(MENU_PARENT instance);
+    partial void UpdateMENU_PARENT(MENU_PARENT instance);
+    partial void DeleteMENU_PARENT(MENU_PARENT instance);
+    partial void InsertQUANTITY_IN_LIST(QUANTITY_IN_LIST instance);
+    partial void UpdateQUANTITY_IN_LIST(QUANTITY_IN_LIST instance);
+    partial void DeleteQUANTITY_IN_LIST(QUANTITY_IN_LIST instance);
     #endregion
 		
 		public AppketoanDataContext() : 
@@ -184,14 +187,6 @@ namespace Appketoan
 			}
 		}
 		
-		public System.Data.Linq.Table<MENU_PARENT> MENU_PARENTs
-		{
-			get
-			{
-				return this.GetTable<MENU_PARENT>();
-			}
-		}
-		
 		public System.Data.Linq.Table<USER> USERs
 		{
 			get
@@ -213,6 +208,22 @@ namespace Appketoan
 			get
 			{
 				return this.GetTable<COMPANY>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MENU_PARENT> MENU_PARENTs
+		{
+			get
+			{
+				return this.GetTable<MENU_PARENT>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QUANTITY_IN_LIST> QUANTITY_IN_LISTs
+		{
+			get
+			{
+				return this.GetTable<QUANTITY_IN_LIST>();
 			}
 		}
 		
@@ -2403,188 +2414,6 @@ namespace Appketoan
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MENU_PARENT")]
-	public partial class MENU_PARENT : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MENU_PAR_ID;
-		
-		private string _MENU_NAME;
-		
-		private System.Nullable<int> _MENU_PAR_ACTIVE;
-		
-		private System.Nullable<int> _MENU_RANK;
-		
-		private System.Nullable<int> _MENU_PARENT1;
-		
-		private string _MENU_PARENT_LINK;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMENU_PAR_IDChanging(int value);
-    partial void OnMENU_PAR_IDChanged();
-    partial void OnMENU_NAMEChanging(string value);
-    partial void OnMENU_NAMEChanged();
-    partial void OnMENU_PAR_ACTIVEChanging(System.Nullable<int> value);
-    partial void OnMENU_PAR_ACTIVEChanged();
-    partial void OnMENU_RANKChanging(System.Nullable<int> value);
-    partial void OnMENU_RANKChanged();
-    partial void OnMENU_PARENT1Changing(System.Nullable<int> value);
-    partial void OnMENU_PARENT1Changed();
-    partial void OnMENU_PARENT_LINKChanging(string value);
-    partial void OnMENU_PARENT_LINKChanged();
-    #endregion
-		
-		public MENU_PARENT()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_PAR_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MENU_PAR_ID
-		{
-			get
-			{
-				return this._MENU_PAR_ID;
-			}
-			set
-			{
-				if ((this._MENU_PAR_ID != value))
-				{
-					this.OnMENU_PAR_IDChanging(value);
-					this.SendPropertyChanging();
-					this._MENU_PAR_ID = value;
-					this.SendPropertyChanged("MENU_PAR_ID");
-					this.OnMENU_PAR_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_NAME", DbType="NVarChar(550)")]
-		public string MENU_NAME
-		{
-			get
-			{
-				return this._MENU_NAME;
-			}
-			set
-			{
-				if ((this._MENU_NAME != value))
-				{
-					this.OnMENU_NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._MENU_NAME = value;
-					this.SendPropertyChanged("MENU_NAME");
-					this.OnMENU_NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_PAR_ACTIVE", DbType="Int")]
-		public System.Nullable<int> MENU_PAR_ACTIVE
-		{
-			get
-			{
-				return this._MENU_PAR_ACTIVE;
-			}
-			set
-			{
-				if ((this._MENU_PAR_ACTIVE != value))
-				{
-					this.OnMENU_PAR_ACTIVEChanging(value);
-					this.SendPropertyChanging();
-					this._MENU_PAR_ACTIVE = value;
-					this.SendPropertyChanged("MENU_PAR_ACTIVE");
-					this.OnMENU_PAR_ACTIVEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_RANK", DbType="Int")]
-		public System.Nullable<int> MENU_RANK
-		{
-			get
-			{
-				return this._MENU_RANK;
-			}
-			set
-			{
-				if ((this._MENU_RANK != value))
-				{
-					this.OnMENU_RANKChanging(value);
-					this.SendPropertyChanging();
-					this._MENU_RANK = value;
-					this.SendPropertyChanged("MENU_RANK");
-					this.OnMENU_RANKChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="MENU_PARENT", Storage="_MENU_PARENT1", DbType="Int")]
-		public System.Nullable<int> MENU_PARENT1
-		{
-			get
-			{
-				return this._MENU_PARENT1;
-			}
-			set
-			{
-				if ((this._MENU_PARENT1 != value))
-				{
-					this.OnMENU_PARENT1Changing(value);
-					this.SendPropertyChanging();
-					this._MENU_PARENT1 = value;
-					this.SendPropertyChanged("MENU_PARENT1");
-					this.OnMENU_PARENT1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_PARENT_LINK", DbType="NVarChar(250)")]
-		public string MENU_PARENT_LINK
-		{
-			get
-			{
-				return this._MENU_PARENT_LINK;
-			}
-			set
-			{
-				if ((this._MENU_PARENT_LINK != value))
-				{
-					this.OnMENU_PARENT_LINKChanging(value);
-					this.SendPropertyChanging();
-					this._MENU_PARENT_LINK = value;
-					this.SendPropertyChanged("MENU_PARENT_LINK");
-					this.OnMENU_PARENT_LINKChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[USER]")]
 	public partial class USER : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4034,6 +3863,346 @@ namespace Appketoan
 					this._USER_ID = value;
 					this.SendPropertyChanged("USER_ID");
 					this.OnUSER_IDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MENU_PARENT")]
+	public partial class MENU_PARENT : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MENU_PAR_ID;
+		
+		private string _MENU_NAME;
+		
+		private System.Nullable<int> _MENU_PAR_ACTIVE;
+		
+		private System.Nullable<int> _MENU_RANK;
+		
+		private System.Nullable<int> _MENU_PARENT1;
+		
+		private string _MENU_PARENT_LINK;
+		
+		private System.Nullable<int> _ORDERBY;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMENU_PAR_IDChanging(int value);
+    partial void OnMENU_PAR_IDChanged();
+    partial void OnMENU_NAMEChanging(string value);
+    partial void OnMENU_NAMEChanged();
+    partial void OnMENU_PAR_ACTIVEChanging(System.Nullable<int> value);
+    partial void OnMENU_PAR_ACTIVEChanged();
+    partial void OnMENU_RANKChanging(System.Nullable<int> value);
+    partial void OnMENU_RANKChanged();
+    partial void OnMENU_PARENT1Changing(System.Nullable<int> value);
+    partial void OnMENU_PARENT1Changed();
+    partial void OnMENU_PARENT_LINKChanging(string value);
+    partial void OnMENU_PARENT_LINKChanged();
+    partial void OnORDERBYChanging(System.Nullable<int> value);
+    partial void OnORDERBYChanged();
+    #endregion
+		
+		public MENU_PARENT()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_PAR_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MENU_PAR_ID
+		{
+			get
+			{
+				return this._MENU_PAR_ID;
+			}
+			set
+			{
+				if ((this._MENU_PAR_ID != value))
+				{
+					this.OnMENU_PAR_IDChanging(value);
+					this.SendPropertyChanging();
+					this._MENU_PAR_ID = value;
+					this.SendPropertyChanged("MENU_PAR_ID");
+					this.OnMENU_PAR_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_NAME", DbType="NVarChar(550)")]
+		public string MENU_NAME
+		{
+			get
+			{
+				return this._MENU_NAME;
+			}
+			set
+			{
+				if ((this._MENU_NAME != value))
+				{
+					this.OnMENU_NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._MENU_NAME = value;
+					this.SendPropertyChanged("MENU_NAME");
+					this.OnMENU_NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_PAR_ACTIVE", DbType="Int")]
+		public System.Nullable<int> MENU_PAR_ACTIVE
+		{
+			get
+			{
+				return this._MENU_PAR_ACTIVE;
+			}
+			set
+			{
+				if ((this._MENU_PAR_ACTIVE != value))
+				{
+					this.OnMENU_PAR_ACTIVEChanging(value);
+					this.SendPropertyChanging();
+					this._MENU_PAR_ACTIVE = value;
+					this.SendPropertyChanged("MENU_PAR_ACTIVE");
+					this.OnMENU_PAR_ACTIVEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_RANK", DbType="Int")]
+		public System.Nullable<int> MENU_RANK
+		{
+			get
+			{
+				return this._MENU_RANK;
+			}
+			set
+			{
+				if ((this._MENU_RANK != value))
+				{
+					this.OnMENU_RANKChanging(value);
+					this.SendPropertyChanging();
+					this._MENU_RANK = value;
+					this.SendPropertyChanged("MENU_RANK");
+					this.OnMENU_RANKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="MENU_PARENT", Storage="_MENU_PARENT1", DbType="Int")]
+		public System.Nullable<int> MENU_PARENT1
+		{
+			get
+			{
+				return this._MENU_PARENT1;
+			}
+			set
+			{
+				if ((this._MENU_PARENT1 != value))
+				{
+					this.OnMENU_PARENT1Changing(value);
+					this.SendPropertyChanging();
+					this._MENU_PARENT1 = value;
+					this.SendPropertyChanged("MENU_PARENT1");
+					this.OnMENU_PARENT1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MENU_PARENT_LINK", DbType="NVarChar(250)")]
+		public string MENU_PARENT_LINK
+		{
+			get
+			{
+				return this._MENU_PARENT_LINK;
+			}
+			set
+			{
+				if ((this._MENU_PARENT_LINK != value))
+				{
+					this.OnMENU_PARENT_LINKChanging(value);
+					this.SendPropertyChanging();
+					this._MENU_PARENT_LINK = value;
+					this.SendPropertyChanged("MENU_PARENT_LINK");
+					this.OnMENU_PARENT_LINKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERBY", DbType="Int")]
+		public System.Nullable<int> ORDERBY
+		{
+			get
+			{
+				return this._ORDERBY;
+			}
+			set
+			{
+				if ((this._ORDERBY != value))
+				{
+					this.OnORDERBYChanging(value);
+					this.SendPropertyChanging();
+					this._ORDERBY = value;
+					this.SendPropertyChanged("ORDERBY");
+					this.OnORDERBYChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QUANTITY_IN_LIST")]
+	public partial class QUANTITY_IN_LIST : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _CODE;
+		
+		private System.Nullable<int> _QUANTITY;
+		
+		private string _NOTE;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnCODEChanging(string value);
+    partial void OnCODEChanged();
+    partial void OnQUANTITYChanging(System.Nullable<int> value);
+    partial void OnQUANTITYChanged();
+    partial void OnNOTEChanging(string value);
+    partial void OnNOTEChanged();
+    #endregion
+		
+		public QUANTITY_IN_LIST()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CODE", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string CODE
+		{
+			get
+			{
+				return this._CODE;
+			}
+			set
+			{
+				if ((this._CODE != value))
+				{
+					this.OnCODEChanging(value);
+					this.SendPropertyChanging();
+					this._CODE = value;
+					this.SendPropertyChanged("CODE");
+					this.OnCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUANTITY", DbType="Int")]
+		public System.Nullable<int> QUANTITY
+		{
+			get
+			{
+				return this._QUANTITY;
+			}
+			set
+			{
+				if ((this._QUANTITY != value))
+				{
+					this.OnQUANTITYChanging(value);
+					this.SendPropertyChanging();
+					this._QUANTITY = value;
+					this.SendPropertyChanged("QUANTITY");
+					this.OnQUANTITYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE", DbType="NVarChar(550)")]
+		public string NOTE
+		{
+			get
+			{
+				return this._NOTE;
+			}
+			set
+			{
+				if ((this._NOTE != value))
+				{
+					this.OnNOTEChanging(value);
+					this.SendPropertyChanging();
+					this._NOTE = value;
+					this.SendPropertyChanged("NOTE");
+					this.OnNOTEChanged();
 				}
 			}
 		}

@@ -82,6 +82,15 @@
                                         </tr>
                                         <tr>
                                             <td class="td_left" align="right" valign="top" nowrap="nowrap">
+                                               &nbsp;Sắp xếp
+                                            </td>
+                                            <td align="left" nowrap="nowrap">
+                                                <asp:TextBox ID="txtOrderby" runat="server" class="text" CssClass="k-textbox textbox"></asp:TextBox>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td_left" align="right" valign="top" nowrap="nowrap">
                                                 Kích hoạt
                                             </td>
                                             <td align="left">

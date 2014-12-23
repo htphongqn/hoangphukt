@@ -48,7 +48,7 @@ namespace Appketoan.UIs
         {
             try
             {
-                var list = db.MENU_PARENTs.Where(n => n.MENU_PAR_ACTIVE == 1 && n.MENU_RANK==1 && (_gtype != 1 ? listmenuid_cap1().Contains(n.MENU_PAR_ID.ToString()) : _gtype == 1)).OrderBy(n => n.MENU_PAR_ID).ToList();
+                var list = db.MENU_PARENTs.Where(n => n.MENU_PAR_ACTIVE == 1 && n.MENU_RANK==1 && (_gtype != 1 ? listmenuid_cap1().Contains(n.MENU_PAR_ID.ToString()) : _gtype == 1)).OrderByDescending(n => n.ORDERBY).ToList();
                 if (list.Count > 0)
                 {
                     Rpmenu.DataSource = list;
@@ -67,7 +67,7 @@ namespace Appketoan.UIs
         public IQueryable menuchild(object par_id)
         {
             int id = Utils.CIntDef(par_id);
-            var list = db.MENU_PARENTs.Where(n => n.MENU_PARENT1 == id);
+            var list = db.MENU_PARENTs.Where(n => n.MENU_PARENT1 == id).OrderByDescending(n=>n.ORDERBY);
             return list.ToList().Count > 0 ? list : null;
             
         }

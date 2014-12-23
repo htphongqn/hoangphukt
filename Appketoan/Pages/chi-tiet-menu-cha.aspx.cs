@@ -45,6 +45,7 @@ namespace Appketoan.Pages
                     txtlinkmenu.Text = list[0].MENU_PARENT_LINK;
                     rblActive.SelectedValue = list[0].MENU_PAR_ACTIVE.ToString();
                     Drmenu_parent.SelectedValue = list[0].MENU_PARENT1.ToString();
+                    txtOrderby.Text = Utils.CStrDef(list[0].ORDERBY);
                 }
             }
             catch (Exception)
@@ -76,6 +77,7 @@ namespace Appketoan.Pages
                     menu.MENU_RANK = rank;
                     menu.MENU_NAME = Txtname.Text;
                     menu.MENU_PARENT_LINK = txtlinkmenu.Text;
+                    menu.ORDERBY = Utils.CIntDef(txtOrderby.Text);
                     menu.MENU_PAR_ACTIVE = Utils.CIntDef(rblActive.SelectedValue);
                     db.MENU_PARENTs.InsertOnSubmit(menu);
                     db.SubmitChanges();
@@ -94,6 +96,7 @@ namespace Appketoan.Pages
                         i.MENU_PARENT1 = _idpar;
                         i.MENU_NAME = Txtname.Text;
                         i.MENU_PARENT_LINK = txtlinkmenu.Text;
+                        i.ORDERBY = Utils.CIntDef(txtOrderby.Text);
                         i.MENU_PAR_ACTIVE = Utils.CIntDef(rblActive.SelectedValue);
                     }
                     db.SubmitChanges();

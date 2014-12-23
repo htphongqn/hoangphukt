@@ -220,7 +220,7 @@
                     <Settings ShowHorizontalScrollBar="true" />
                     <Settings VerticalScrollableHeight="350" />
                     <Settings ShowVerticalScrollBar="true" />
-                    <SettingsPager PageSize="50">
+                    <SettingsPager PageSize="50" Mode="ShowAllRecords">
                     </SettingsPager>
                 </dx:ASPxGridView>
 
@@ -228,6 +228,7 @@
                 <div class="navigation">
                     <asp:Literal ID="ltrPage" runat="server"></asp:Literal>
                     <div style="float:right">
+                    Trang
                     <asp:DropDownList ID="ddlPage" runat="server" AutoPostBack="true" 
                         onselectedindexchanged="ddlPage_SelectedIndexChanged">
                     </asp:DropDownList>

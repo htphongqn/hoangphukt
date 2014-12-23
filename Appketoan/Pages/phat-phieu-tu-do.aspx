@@ -74,8 +74,6 @@
         border: 1px solid #aecaf0">
         <tr>
             <td>
-
-
                 <dx:ASPxGridView ID="ASPxGridView1_phatphieu" runat="server" AutoGenerateColumns="False"
                     Width="100%" Theme="Aqua" 
                     KeyFieldName="ID_CONT"
@@ -139,6 +137,19 @@
                 </dx:ASPxGridView>
             </td>
         </tr>
+        <%--<tr>
+            <td>
+                Số lượng
+                <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="true" 
+                        onselectedindexchanged="ddlPageSize_SelectedIndexChanged">
+                        <asp:ListItem Value="30" Text="30" Selected="True"></asp:ListItem>
+                        <asp:ListItem Value="50" Text="50"></asp:ListItem>
+                        <asp:ListItem Value="100" Text="100"></asp:ListItem>
+                        <asp:ListItem Value="150" Text="150"></asp:ListItem>
+                        <asp:ListItem Value="200" Text="200"></asp:ListItem>
+                    </asp:DropDownList>
+            </td>
+        </tr>--%>
     </table>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
   <script src="../chosen/chosen.jquery.js" type="text/javascript"></script>

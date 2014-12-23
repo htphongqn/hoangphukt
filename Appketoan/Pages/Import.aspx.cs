@@ -143,11 +143,11 @@ namespace Appketoan.Pages
                     string[] comNamestr = Utils.CStrDef(row[21]).Split('+');
                     foreach (var item in comNamestr)
                     {
-                        COMPANY com = _CompanyRepo.GetByNam(item.Trim());
+                        COMPANY com = _CompanyRepo.GetByNam(item);
                         if (com == null)
                         {
                             com = new COMPANY();
-                            com.COM_NAME = item.Trim();
+                            com.COM_NAME = item;
                             com.COM_DATE = DateTime.Now;
                             _CompanyRepo.Create(com);
                         }

@@ -69,7 +69,8 @@ namespace Appketoan.Pages
             //    ASPxGridView_contract.DataBind();
             //}
 
-            int sotin = 20;
+            QUANTITY_IN_LIST Q_Contract = db.QUANTITY_IN_LISTs.Single(q => q.CODE == Cost.CONTRACT);
+            int sotin = Utils.CIntDef(Q_Contract.QUANTITY);
             if (list.Count > 0)
             {
                 if (_page != 0)

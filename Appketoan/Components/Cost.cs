@@ -7,6 +7,13 @@ namespace Appketoan.Components
 {
     public class Cost
     {
+        //CODE
+        public const string CONTRACT = "CONTRACT";
+        public const string CONTRACTDELETE = "CONTRACTDELETE";
+        public const string BILLDELI = "BILLDELI";
+        public const string BILLRECEI = "BILLRECEI";
+        public const string BILLDELIFREE = "BILLDELIFREE";
+
         //  CUS_TYPE
         public const int CUSTOMER_GOOD = 1;
         public const int CUSTOMER_HANDLING = 2;

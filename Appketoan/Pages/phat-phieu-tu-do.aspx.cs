@@ -28,6 +28,8 @@ namespace Appketoan.Pages
             if (!IsPostBack)
             {
                 pickdate_deli.returnDate = DateTime.Now;
+                QUANTITY_IN_LIST Q_BILLDELIFREE = db.QUANTITY_IN_LISTs.Single(q => q.CODE == Cost.BILLDELIFREE);
+                ASPxGridView1_phatphieu.SettingsPager.PageSize = Utils.CIntDef(Q_BILLDELIFREE.QUANTITY);
                 showEmployer();
                 LoadLandau();                
             }
@@ -339,6 +341,13 @@ namespace Appketoan.Pages
             ASPxGridView1_phatphieu.DataSource = Session["listtudo"];
             ASPxGridView1_phatphieu.DataBind();
         }
+
+        //protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    ASPxGridView1_phatphieu.SettingsPager.PageSize = Utils.CIntDef(ddlPageSize.SelectedItem.Value);
+        //    ASPxGridView1_phatphieu.DataSource = Session["listtudo"];
+        //    ASPxGridView1_phatphieu.DataBind();
+        //}
 
 
     }

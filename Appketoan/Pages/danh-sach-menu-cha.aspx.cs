@@ -35,7 +35,8 @@ namespace Appketoan.Pages
         {
             try
             {
-                var list = db.MENU_PARENTs.Where(n=>n.MENU_NAME == txtKeyword.Value || txtKeyword.Value == "" || txtKeyword.Value == null).ToList();
+                var list = db.MENU_PARENTs.Where(n=>n.MENU_NAME == txtKeyword.Value || txtKeyword.Value == "" || txtKeyword.Value == null).
+                    OrderByDescending(n=>n.ORDERBY).ToList();
                 if (list.Count > 0)
                 {
                     HttpContext.Current.Session["ktoan.listmenucha"] = list;

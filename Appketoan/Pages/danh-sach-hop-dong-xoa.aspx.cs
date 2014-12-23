@@ -28,6 +28,8 @@ namespace Appketoan.Pages
             cusid = Utils.CIntDef(Request.QueryString["cusid"]);
             if (!IsPostBack)
             {
+                QUANTITY_IN_LIST Q_ContractDelete = db.QUANTITY_IN_LISTs.Single(q => q.CODE == Cost.CONTRACTDELETE);
+                ASPxGridView_contract.SettingsPager.PageSize = Utils.CIntDef(Q_ContractDelete.QUANTITY);
                 Load_listcontract();
             }
             else

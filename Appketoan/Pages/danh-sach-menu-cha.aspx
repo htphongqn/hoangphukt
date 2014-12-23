@@ -71,6 +71,12 @@
                                 <%# Getactive(Eval("MENU_PAR_ACTIVE"))%>
                             </DataCellTemplate>
                         </dx:TreeListTextColumn>
+                        <dx:TreeListTextColumn Caption="Sắp xếp" VisibleIndex="2"
+                            Width="200px">
+                            <DataCellTemplate>
+                                <%# Eval("ORDERBY")%>
+                            </DataCellTemplate>
+                        </dx:TreeListTextColumn>
                     </Columns>
                     <SettingsSelection AllowSelectAll="True" Enabled="True" />
                 </dx:ASPxTreeList>

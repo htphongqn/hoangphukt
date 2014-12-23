@@ -27,6 +27,8 @@ namespace Appketoan.Pages
             if (!IsPostBack)
             {
                 pickdate_deli.returnDate = DateTime.Now;
+                QUANTITY_IN_LIST Q_BILLDELI = db.QUANTITY_IN_LISTs.Single(q => q.CODE == Cost.BILLDELI);
+                ASPxGridView1_phatphieu.SettingsPager.PageSize = Utils.CIntDef(Q_BILLDELI.QUANTITY);
                 showEmployer();
                 loadDateInWeek();
                 LoadContract_Canphatphieu();                

@@ -30,6 +30,8 @@ namespace Appketoan.Pages
             if (!IsPostBack)
             {
                 pickdate_recei.returnDate = DateTime.Now;
+                QUANTITY_IN_LIST Q_BILLRECEI = db.QUANTITY_IN_LISTs.Single(q => q.CODE == Cost.BILLRECEI);
+                ASPxGridView1_nhanphieu.SettingsPager.PageSize = Utils.CIntDef(Q_BILLRECEI.QUANTITY);
                 showEmployer();
                 LoadContract_Cannhanphieu();
             }
